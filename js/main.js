@@ -645,7 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── ENTRANCE ANIMATIONS (Intersection) ────
   const fadeEls = document.querySelectorAll(
-    ".feat-card, .role-card, .a11y-card, .ann-card, .ds-card",
+    ".feat-card, .role-card, .a11y-card, .ann-card",
   );
   const fadeObserver = new IntersectionObserver(
     (entries) => {
