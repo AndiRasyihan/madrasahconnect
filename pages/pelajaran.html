@@ -9,26 +9,118 @@
   </head>
   <body>
     <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
-    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
-      <button
-        id="btnHC"
-        class="a11y-btn"
-        onclick="toggleHighContrast()"
-        aria-label="Kontras tinggi"
-        aria-pressed="false"
-      >
+    <!-- ══════════ ACCESSIBILITY TOOLBAR (mini) ══════════ -->
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas Cepat">
+      <button id="btnHC" class="a11y-btn" onclick="toggleHighContrast()" aria-label="Mode kontras tinggi" aria-pressed="false">
         <span class="tooltip">Kontras Tinggi</span>◑
       </button>
-      <button
-        id="btnBig"
-        class="a11y-btn"
-        onclick="toggleBigText()"
-        aria-label="Perbesar teks"
-        aria-pressed="false"
-      >
+      <button id="btnBig" class="a11y-btn" onclick="toggleBigText()" aria-label="Perbesar ukuran teks" aria-pressed="false">
         <span class="tooltip">Teks Lebih Besar</span>A+
       </button>
+      <button id="btnDys" class="a11y-btn" onclick="toggleDyslexia()" aria-label="Font ramah disleksia" aria-pressed="false">
+        <span class="tooltip">Font Disleksia</span>Aa
+      </button>
+      <button id="btnA11yOpen" class="a11y-btn" aria-label="Buka panel aksesibilitas lengkap">
+        <span class="tooltip">Semua Fitur</span>♿
+      </button>
     </aside>
+
+    <!-- ══════════ ACCESSIBILITY PANEL (full) ══════════ -->
+    <div id="a11yPanelOverlay" class="a11y-panel-overlay" aria-hidden="true"></div>
+    <div id="a11yPanel" class="a11y-panel" role="dialog" aria-modal="true" aria-label="Panel Aksesibilitas Lengkap">
+      <div class="a11y-panel-header">
+        <h2>♿ Aksesibilitas</h2>
+        <button id="a11yPanelCloseBtn" class="a11y-panel-close" aria-label="Tutup panel aksesibilitas">✕</button>
+      </div>
+      <div class="a11y-panel-body">
+        <div class="a11y-group">
+          <div class="a11y-group-title">Ukuran & Tipografi</div>
+          <div class="a11y-slider-group">
+            <div class="a11y-slider-label">
+              <strong>📏 Ukuran Font</strong>
+              <span id="a11yFontVal">16px</span>
+            </div>
+            <input type="range" id="a11yFontSlider" class="a11y-slider" min="12" max="28" step="2" value="16" aria-label="Atur ukuran font" />
+          </div>
+          <div class="a11y-option" data-key="dyslexia" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">Aa</div>
+            <div class="a11y-option-text"><strong>Font Disleksia</strong><span>Ganti ke font ramah disleksia</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="spacing" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">↕</div>
+            <div class="a11y-option-text"><strong>Spasi Teks</strong><span>Perbesar jarak antar huruf dan baris</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Tampilan & Warna</div>
+          <div class="a11y-option" data-key="hc" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">◑</div>
+            <div class="a11y-option-text"><strong>Kontras Tinggi</strong><span>Tingkatkan kontras warna</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="dark" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🌙</div>
+            <div class="a11y-option-text"><strong>Mode Gelap</strong><span>Latar belakang gelap</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="grayscale" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🔘</div>
+            <div class="a11y-option-text"><strong>Skala Abu-abu</strong><span>Hilangkan warna</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="saturate" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🎨</div>
+            <div class="a11y-option-text"><strong>Saturasi Tinggi</strong><span>Perkuat warna untuk buta warna</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Navigasi & Fokus</div>
+          <div class="a11y-option" data-key="links" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🔗</div>
+            <div class="a11y-option-text"><strong>Sorot Semua Link</strong><span>Highlight pada link</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="strongFocus" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🎯</div>
+            <div class="a11y-option-text"><strong>Fokus Kuat</strong><span>Perbesar indikator fokus keyboard</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="bigCursor" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">👆</div>
+            <div class="a11y-option-text"><strong>Kursor Besar</strong><span>Perbesar ukuran kursor</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="readingGuide" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">📖</div>
+            <div class="a11y-option-text"><strong>Panduan Baca</strong><span>Garis bantu mengikuti kursor</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Konten & Animasi</div>
+          <div class="a11y-option" data-key="noAnim" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">⏸</div>
+            <div class="a11y-option-text"><strong>Hentikan Animasi</strong><span>Matikan animasi dan transisi</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div class="a11y-option" data-key="noImages" role="switch" aria-pressed="false" tabindex="0">
+            <div class="a11y-option-icon">🖼</div>
+            <div class="a11y-option-text"><strong>Sembunyikan Gambar</strong><span>Fokus pada teks</span></div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="a11y-panel-footer">
+        <button id="a11yResetBtn" class="a11y-reset-btn" aria-label="Reset semua pengaturan aksesibilitas">↺ Reset Semua</button>
+        <button id="a11yShortcutBtn" class="a11y-shortcut-btn" aria-label="Lihat pintasan keyboard">⌨ Pintasan</button>
+      </div>
+    </div>
+
+    <!-- Reading Guide -->
+    <div id="readingGuide" class="reading-guide" aria-hidden="true"></div>
 
     <aside class="sidebar" id="sidebar" aria-label="Menu samping">
       <div class="sidebar-header">

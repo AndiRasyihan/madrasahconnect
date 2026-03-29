@@ -67,40 +67,316 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   sections.forEach((s) => sectionObserver.observe(s));
 
-  // ── ACCESSIBILITY TOOLBAR ─────────────────
-  let hcOn = false,
-    bigText = false,
-    dyslexia = false;
-
-  window.toggleHighContrast = function () {
-    hcOn = !hcOn;
-    document.body.classList.toggle("hc", hcOn);
-    document.getElementById("btnHC")?.classList.toggle("active", hcOn);
-    announce(
-      hcOn ? "Mode kontras tinggi diaktifkan" : "Mode kontras tinggi dimatikan",
-    );
-    showToast(hcOn ? "◑ Kontras tinggi ON" : "◑ Kontras tinggi OFF");
+  // ── ACCESSIBILITY PANEL & FEATURES ─────────────────
+  const A11Y_STORAGE_KEY = "mc_a11y_prefs";
+  const a11yState = {
+    hc: false,
+    bigText: false,
+    dyslexia: false,
+    spacing: false,
+    links: false,
+    grayscale: false,
+    noAnim: false,
+    bigCursor: false,
+    noImages: false,
+    strongFocus: false,
+    readingGuide: false,
+    saturate: false,
+    dark: false,
+    fontSize: 16,
   };
 
-  window.toggleBigText = function () {
-    bigText = !bigText;
-    document.documentElement.style.fontSize = bigText ? "20px" : "";
-    document.getElementById("btnBig")?.classList.toggle("active", bigText);
-    announce(bigText ? "Teks diperbesar" : "Ukuran teks normal");
-    showToast(bigText ? "A+ Teks diperbesar" : "A Teks normal");
-  };
+  // Load saved preferences
+  function loadA11yPrefs() {
+    try {
+      const saved = localStorage.getItem(A11Y_STORAGE_KEY);
+      if (saved) {
+        const prefs = JSON.parse(saved);
+        Object.assign(a11yState, prefs);
+      }
+    } catch (e) {
+      /* ignore */
+    }
+  }
 
-  window.toggleDyslexia = function () {
-    dyslexia = !dyslexia;
-    document.body.style.fontFamily = dyslexia
+  function saveA11yPrefs() {
+    try {
+      localStorage.setItem(A11Y_STORAGE_KEY, JSON.stringify(a11yState));
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  // Apply all a11y states to DOM
+  function applyA11yState() {
+    const b = document.body;
+    const html = document.documentElement;
+
+    b.classList.toggle("hc", a11yState.hc);
+    b.classList.toggle("a11y-spacing", a11yState.spacing);
+    b.classList.toggle("a11y-links", a11yState.links);
+    b.classList.toggle("a11y-grayscale", a11yState.grayscale);
+    b.classList.toggle("a11y-no-anim", a11yState.noAnim);
+    b.classList.toggle("a11y-big-cursor", a11yState.bigCursor);
+    b.classList.toggle("a11y-no-images", a11yState.noImages);
+    b.classList.toggle("a11y-strong-focus", a11yState.strongFocus);
+    b.classList.toggle("a11y-reading-guide", a11yState.readingGuide);
+    b.classList.toggle("a11y-saturate", a11yState.saturate);
+    b.classList.toggle("a11y-dark", a11yState.dark);
+
+    // Font size
+    html.style.fontSize =
+      a11yState.fontSize !== 16 ? a11yState.fontSize + "px" : "";
+
+    // Dyslexia font
+    b.style.fontFamily = a11yState.dyslexia
       ? '"Comic Sans MS", "OpenDyslexic", cursive'
       : "";
-    document.getElementById("btnDys")?.classList.toggle("active", dyslexia);
-    announce(
-      dyslexia ? "Font disleksia diaktifkan" : "Font default diaktifkan",
-    );
-    showToast(dyslexia ? "Aa Font disleksia ON" : "Aa Font default ON");
+
+    // Update panel option states
+    document.querySelectorAll(".a11y-option[data-key]").forEach((opt) => {
+      const key = opt.dataset.key;
+      opt.classList.toggle("active", !!a11yState[key]);
+      const pressed = a11yState[key] ? "true" : "false";
+      opt.setAttribute("aria-pressed", pressed);
+    });
+
+    // Update slider
+    const slider = document.getElementById("a11yFontSlider");
+    const sliderVal = document.getElementById("a11yFontVal");
+    if (slider) slider.value = a11yState.fontSize;
+    if (sliderVal) sliderVal.textContent = a11yState.fontSize + "px";
+
+    // Update mini toolbar button states
+    document.getElementById("btnHC")?.classList.toggle("active", a11yState.hc);
+    document
+      .getElementById("btnBig")
+      ?.classList.toggle("active", a11yState.fontSize > 16);
+    document
+      .getElementById("btnDys")
+      ?.classList.toggle("active", a11yState.dyslexia);
+
+    saveA11yPrefs();
+  }
+
+  // Toggle a11y preference
+  function toggleA11y(key) {
+    a11yState[key] = !a11yState[key];
+    applyA11yState();
+
+    const labels = {
+      hc: ["Mode kontras tinggi diaktifkan", "Mode kontras tinggi dimatikan"],
+      dyslexia: ["Font disleksia diaktifkan", "Font default diaktifkan"],
+      spacing: ["Spasi teks diperbesar", "Spasi teks normal"],
+      links: ["Sorotan link diaktifkan", "Sorotan link dimatikan"],
+      grayscale: ["Mode abu-abu diaktifkan", "Mode abu-abu dimatikan"],
+      noAnim: ["Animasi dihentikan", "Animasi diaktifkan kembali"],
+      bigCursor: ["Kursor besar diaktifkan", "Kursor besar dimatikan"],
+      noImages: ["Gambar disembunyikan", "Gambar ditampilkan kembali"],
+      strongFocus: ["Fokus kuat diaktifkan", "Fokus kuat dimatikan"],
+      readingGuide: ["Panduan baca diaktifkan", "Panduan baca dimatikan"],
+      saturate: ["Saturasi warna ditingkatkan", "Saturasi warna normal"],
+      dark: ["Mode gelap diaktifkan", "Mode gelap dimatikan"],
+    };
+    const pair = labels[key];
+    if (pair) {
+      const msg = a11yState[key] ? pair[0] : pair[1];
+      announce(msg);
+      showToast(msg);
+    }
+  }
+
+  // Reset all a11y prefs
+  function resetA11y() {
+    Object.keys(a11yState).forEach((k) => {
+      if (k === "fontSize") a11yState[k] = 16;
+      else a11yState[k] = false;
+    });
+    applyA11yState();
+    announce("Semua pengaturan aksesibilitas direset");
+    showToast("↺ Semua pengaturan aksesibilitas direset");
+  }
+
+  // Panel open/close
+  function openA11yPanel() {
+    const panel = document.getElementById("a11yPanel");
+    const overlay = document.getElementById("a11yPanelOverlay");
+    if (panel) {
+      panel.classList.add("open");
+      panel.querySelector(".a11y-panel-close")?.focus();
+    }
+    if (overlay) overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    announce("Panel aksesibilitas dibuka");
+  }
+
+  function closeA11yPanel() {
+    const panel = document.getElementById("a11yPanel");
+    const overlay = document.getElementById("a11yPanelOverlay");
+    if (panel) panel.classList.remove("open");
+    if (overlay) overlay.classList.remove("open");
+    document.body.style.overflow = "";
+    document.getElementById("btnA11yOpen")?.focus();
+  }
+
+  // Expose globally
+  window.toggleA11y = toggleA11y;
+  window.resetA11y = resetA11y;
+  window.openA11yPanel = openA11yPanel;
+  window.closeA11yPanel = closeA11yPanel;
+
+  // Keep old functions working for backward compat
+  window.toggleHighContrast = function () {
+    toggleA11y("hc");
   };
+  window.toggleBigText = function () {
+    a11yState.fontSize = a11yState.fontSize <= 16 ? 20 : 16;
+    applyA11yState();
+    announce(
+      a11yState.fontSize > 16 ? "Teks diperbesar" : "Ukuran teks normal",
+    );
+    showToast(a11yState.fontSize > 16 ? "A+ Teks diperbesar" : "A Teks normal");
+  };
+  window.toggleDyslexia = function () {
+    toggleA11y("dyslexia");
+  };
+
+  // Setup panel toggle buttons
+  document.querySelectorAll(".a11y-option[data-key]").forEach((opt) => {
+    opt.addEventListener("click", () => toggleA11y(opt.dataset.key));
+    opt.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleA11y(opt.dataset.key);
+      }
+    });
+  });
+
+  // Font size slider
+  const fontSlider = document.getElementById("a11yFontSlider");
+  if (fontSlider) {
+    fontSlider.addEventListener("input", () => {
+      a11yState.fontSize = parseInt(fontSlider.value);
+      applyA11yState();
+    });
+    fontSlider.addEventListener("change", () => {
+      announce("Ukuran font: " + a11yState.fontSize + " piksel");
+    });
+  }
+
+  // Panel buttons
+  document
+    .getElementById("btnA11yOpen")
+    ?.addEventListener("click", openA11yPanel);
+  document
+    .getElementById("a11yPanelOverlay")
+    ?.addEventListener("click", closeA11yPanel);
+  document
+    .getElementById("a11yPanelCloseBtn")
+    ?.addEventListener("click", closeA11yPanel);
+  document.getElementById("a11yResetBtn")?.addEventListener("click", resetA11y);
+  document.getElementById("a11yShortcutBtn")?.addEventListener("click", () => {
+    mcModal(
+      "⌨️ Pintasan Keyboard Aksesibilitas",
+      `
+      <div class="kbd-grid">
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>A</kbd> <span>Buka Panel</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>H</kbd> <span>Kontras Tinggi</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>D</kbd> <span>Mode Gelap</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>+</kbd> <span>Perbesar Teks</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>-</kbd> <span>Perkecil Teks</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>G</kbd> <span>Panduan Baca</span></div>
+        <div class="kbd-item"><kbd>Alt</kbd>+<kbd>R</kbd> <span>Reset Semua</span></div>
+        <div class="kbd-item"><kbd>Esc</kbd> <span>Tutup Panel</span></div>
+        <div class="kbd-item"><kbd>Tab</kbd> <span>Navigasi Elemen</span></div>
+        <div class="kbd-item"><kbd>Enter</kbd> <span>Aktifkan Tombol</span></div>
+      </div>
+    `,
+    );
+  });
+
+  // Reading guide (follows mouse)
+  const readingGuide = document.getElementById("readingGuide");
+  if (readingGuide) {
+    document.addEventListener("mousemove", (e) => {
+      if (a11yState.readingGuide) {
+        readingGuide.style.top = e.clientY - 6 + "px";
+      }
+    });
+  }
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    if (!e.altKey) return;
+    switch (e.key.toLowerCase()) {
+      case "a":
+        e.preventDefault();
+        openA11yPanel();
+        break;
+      case "h":
+        e.preventDefault();
+        toggleA11y("hc");
+        break;
+      case "d":
+        e.preventDefault();
+        toggleA11y("dark");
+        break;
+      case "g":
+        e.preventDefault();
+        toggleA11y("readingGuide");
+        break;
+      case "r":
+        e.preventDefault();
+        resetA11y();
+        break;
+      case "+":
+      case "=":
+        e.preventDefault();
+        a11yState.fontSize = Math.min(28, a11yState.fontSize + 2);
+        applyA11yState();
+        announce("Ukuran font: " + a11yState.fontSize + "px");
+        break;
+      case "-":
+        e.preventDefault();
+        a11yState.fontSize = Math.max(12, a11yState.fontSize - 2);
+        applyA11yState();
+        announce("Ukuran font: " + a11yState.fontSize + "px");
+        break;
+    }
+  });
+
+  // Close panel on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const panel = document.getElementById("a11yPanel");
+      if (panel?.classList.contains("open")) {
+        e.stopPropagation();
+        closeA11yPanel();
+      }
+    }
+  });
+
+  // Focus trap for a11y panel
+  document.getElementById("a11yPanel")?.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const panel = document.getElementById("a11yPanel");
+    const focusable = panel.querySelectorAll(
+      'button, [href], input, [tabindex]:not([tabindex="-1"]), .a11y-option',
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  // Load and apply saved preferences on start
+  loadA11yPrefs();
+  applyA11yState();
 
   // ── LIVE REGION ANNOUNCER ─────────────────
   function announce(msg) {
@@ -154,6 +430,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginOverlay) {
     loginOverlay.addEventListener("click", (e) => {
       if (e.target === loginOverlay) closeLogin();
+    });
+    // Focus trap for login modal
+    loginOverlay.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusable = loginOverlay.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
   document.addEventListener("keydown", (e) => {
