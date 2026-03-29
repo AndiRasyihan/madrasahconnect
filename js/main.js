@@ -872,4 +872,107 @@ document.addEventListener("DOMContentLoaded", () => {
         else window.location.href = "profil.html";
       });
     });
+
+  // ── AUTO-ENHANCE ONCLICK ELEMENTS (A11Y) ──
+  // Adds role, tabindex, aria-label, and keyboard support to all
+  // clickable divs/spans that use onclick but lack proper ARIA attrs.
+  document.querySelectorAll("[onclick]").forEach((el) => {
+    const tag = el.tagName.toLowerCase();
+    // Skip elements that are already natively accessible
+    if (["a", "button", "input", "select", "textarea", "summary"].includes(tag))
+      return;
+    // Add role="button" if no role set
+    if (!el.getAttribute("role")) el.setAttribute("role", "button");
+    // Add tabindex so it's keyboard-focusable
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
+    // Add aria-label from text content if none exists
+    if (!el.getAttribute("aria-label") && !el.getAttribute("aria-labelledby")) {
+      const label = el.textContent.trim().replace(/\s+/g, " ").substring(0, 80);
+      if (label) el.setAttribute("aria-label", label);
+    }
+    // Enable Enter/Space to trigger click
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+
+  // ── BISINDO SIGN LANGUAGE GLOSSARY ────────
+  // Provides a BISINDO glossary modal for common school-related terms.
+  window.openBisindo = function () {
+    const terms = [
+      {
+        word: "Sekolah",
+        sign: "Telapak tangan kanan menepuk punggung tangan kiri dua kali",
+      },
+      {
+        word: "Guru",
+        sign: "Jari telunjuk kanan menunjuk ke depan, lalu tangan membentuk huruf G di depan dahi",
+      },
+      {
+        word: "Murid",
+        sign: "Tangan kanan menunjuk ke diri sendiri, lalu jari membentuk huruf M",
+      },
+      {
+        word: "Belajar",
+        sign: "Kedua tangan terbuka di depan dada, bergerak bergantian ke atas dan bawah seperti membaca buku",
+      },
+      {
+        word: "Ujian",
+        sign: "Jari telunjuk dan jari tengah kanan membentuk huruf V, digerakkan ke bawah di depan dada",
+      },
+      {
+        word: "Nilai",
+        sign: "Tangan kanan membentuk angka dengan jari, digerakkan dari atas ke bawah",
+      },
+      {
+        word: "Tugas",
+        sign: "Tangan kanan mengepal, digerakkan ke depan dengan tegas dua kali",
+      },
+      {
+        word: "Jadwal",
+        sign: "Telapak tangan kiri terbuka menghadap ke atas, jari telunjuk kanan menunjuk ke telapak kiri",
+      },
+      {
+        word: "Lulus",
+        sign: "Kedua tangan terbuka diangkat dari dada ke atas dengan gerakan melepas",
+      },
+      {
+        word: "Terima Kasih",
+        sign: "Tangan kanan menyentuh dagu lalu bergerak ke depan dan ke bawah",
+      },
+      { word: "Tolong", sign: "Telapak tangan kanan menepuk dada dua kali" },
+      {
+        word: "Izin",
+        sign: "Tangan kanan membentuk huruf I, digerakkan dari dahi ke depan",
+      },
+    ];
+    let html = '<div style="max-height:60vh;overflow-y:auto">';
+    html +=
+      '<p style="margin-bottom:16px;color:var(--gray-600,#4b5563);font-size:14px">Panduan istilah sekolah dalam Bahasa Isyarat Indonesia (BISINDO). Gunakan panduan ini untuk komunikasi inklusif di lingkungan madrasah.</p>';
+    html += '<div style="display:grid;gap:10px">';
+    terms.forEach((t) => {
+      html += `<div style="display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:8px;border:1px solid var(--gray-200,#e5e7eb);background:var(--green-50,#f0fdf4)">
+        <span style="font-size:20px;min-width:32px;text-align:center" aria-hidden="true">🤟</span>
+        <div><strong style="font-size:14px;color:var(--green-700,#15803d)">${t.word}</strong>
+        <p style="font-size:13px;color:var(--gray-600,#4b5563);margin-top:4px">${t.sign}</p></div>
+      </div>`;
+    });
+    html += "</div></div>";
+    mcModal("🤟 Kamus BISINDO — Istilah Sekolah", html);
+  };
+
+  // Add BISINDO button to accessibility panel if it exists
+  const a11yOpts = document.querySelector(".a11y-options");
+  if (a11yOpts) {
+    const bisindoBtn = document.createElement("button");
+    bisindoBtn.className = "a11y-option";
+    bisindoBtn.setAttribute("aria-label", "Buka Kamus BISINDO");
+    bisindoBtn.innerHTML =
+      '<span class="a11y-opt-icon">🤟</span><span class="a11y-opt-label">Kamus BISINDO</span>';
+    bisindoBtn.addEventListener("click", () => window.openBisindo());
+    a11yOpts.appendChild(bisindoBtn);
+  }
 });
