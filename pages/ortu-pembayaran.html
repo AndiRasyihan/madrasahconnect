@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran – Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ortu-pembayaran.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-ortu.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="ortu-nilai.html"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a class="sidebar-link" href="ortu-jadwal.html"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a
+          class="sidebar-link active"
+          href="ortu-pembayaran.html"
+          aria-current="page"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="ortu-pesan.html"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ortu-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <h1>💰 Pembayaran SPP</h1>
+        <p>Kelola pembayaran SPP dan biaya sekolah Ahmad Fauzi</p>
+      </div>
+      <div class="alert-warn">
+        ⚠️ <strong>SPP bulan April 2026 belum dibayar.</strong> Jatuh tempo: 10
+        April 2026. Segera lakukan pembayaran.
+      </div>
+      <div class="pay-grid">
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Tagihan Belum Dibayar</div>
+            </div>
+            <div class="card-body">
+              <div class="bill-item">
+                <div class="bi-info">
+                  <div class="bi-icon" style="background: #fef3c7">💰</div>
+                  <div>
+                    <div class="bi-name">SPP Bulan April 2026</div>
+                    <div class="bi-desc">Ahmad Fauzi – Kelas 10 IPA</div>
+                  </div>
+                </div>
+                <div class="bi-amount">
+                  <div class="bi-price">Rp 750.000</div>
+                  <div class="bi-due">
+                    <span class="badge badge-red">Belum Bayar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Pembayaran Terakhir</div>
+            </div>
+            <div class="card-body">
+              <div class="bill-item">
+                <div class="bi-info">
+                  <div class="bi-icon" style="background: #def7ec">✅</div>
+                  <div>
+                    <div class="bi-name">SPP Bulan Maret 2026</div>
+                    <div class="bi-desc">
+                      Dibayar: 8 Mar 2026 · Transfer Bank
+                    </div>
+                  </div>
+                </div>
+                <div class="bi-amount">
+                  <div class="bi-price">Rp 750.000</div>
+                  <div class="bi-due">
+                    <span class="badge badge-green">Lunas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bill-item">
+                <div class="bi-info">
+                  <div class="bi-icon" style="background: #def7ec">✅</div>
+                  <div>
+                    <div class="bi-name">SPP Bulan Februari 2026</div>
+                    <div class="bi-desc">Dibayar: 5 Feb 2026 · VA BCA</div>
+                  </div>
+                </div>
+                <div class="bi-amount">
+                  <div class="bi-price">Rp 750.000</div>
+                  <div class="bi-due">
+                    <span class="badge badge-green">Lunas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bill-item">
+                <div class="bi-info">
+                  <div class="bi-icon" style="background: #def7ec">✅</div>
+                  <div>
+                    <div class="bi-name">SPP Bulan Januari 2026</div>
+                    <div class="bi-desc">Dibayar: 6 Jan 2026 · VA Mandiri</div>
+                  </div>
+                </div>
+                <div class="bi-amount">
+                  <div class="bi-price">Rp 750.000</div>
+                  <div class="bi-due">
+                    <span class="badge badge-green">Lunas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="pay-summary">
+            <div class="ps-title">💳 Bayar SPP April 2026</div>
+            <div class="ps-row">
+              <span>SPP Bulanan</span><span>Rp 750.000</span>
+            </div>
+            <div class="ps-row">
+              <span>Biaya Admin</span><span>Rp 2.500</span>
+            </div>
+            <div class="ps-total">
+              <span>Total</span><span>Rp 752.500</span>
+            </div>
+            <div class="form-group" style="margin-top: 16px">
+              <label class="form-label">Metode Pembayaran</label>
+              <div class="method-grid">
+                <div class="method-opt sel" onclick="selMethod(this)">
+                  <span class="mi">🏦</span>VA BCA
+                </div>
+                <div class="method-opt" onclick="selMethod(this)">
+                  <span class="mi">🏦</span>VA Mandiri
+                </div>
+                <div class="method-opt" onclick="selMethod(this)">
+                  <span class="mi">🏦</span>VA BNI
+                </div>
+                <div class="method-opt" onclick="selMethod(this)">
+                  <span class="mi">📱</span>GoPay
+                </div>
+                <div class="method-opt" onclick="selMethod(this)">
+                  <span class="mi">📱</span>OVO
+                </div>
+                <div class="method-opt" onclick="selMethod(this)">
+                  <span class="mi">📱</span>DANA
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn-primary"
+              onclick="
+                showToast(
+                  'Pembayaran berhasil diproses! Nomor VA: 8800-1234-5678-9012',
+                  '✅',
+                )
+              "
+            >
+              Bayar Sekarang
+            </button>
+            <p
+              style="
+                font-size: 10px;
+                color: var(--gray-400);
+                text-align: center;
+                margin-top: 8px;
+              "
+            >
+              Pembayaran diproses oleh payment gateway yang aman & terenkripsi
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/ortu-pembayaran.js"></script>
+  </body>
+</html>

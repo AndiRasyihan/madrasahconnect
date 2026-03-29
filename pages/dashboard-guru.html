@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard-guru.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a
+          class="sidebar-link active"
+          href="dashboard-guru.html"
+          aria-current="page"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>Assalamu'alaikum, Bu Siti 👋</h1>
+          <p>Sabtu, 28 Maret 2026 · Semester Genap 2025/2026</p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--green-50)">🏫</div>
+          <div>
+            <div class="stat-num">6</div>
+            <div class="stat-label">Kelas Diampu</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #dbeafe">👥</div>
+          <div>
+            <div class="stat-num">192</div>
+            <div class="stat-label">Total Siswa</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fef3c7">📋</div>
+          <div>
+            <div class="stat-num">12</div>
+            <div class="stat-label">Tugas Belum Dinilai</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fce7f3">📊</div>
+          <div>
+            <div class="stat-num">87.2</div>
+            <div class="stat-label">Rata-rata Nilai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-action">
+        <div
+          class="qa-btn"
+          onclick="window.location.href = 'guru-absensi.html'"
+        >
+          <div class="qa-icon">✅</div>
+          <div class="qa-label">Input Absensi</div>
+        </div>
+        <div class="qa-btn" onclick="window.location.href = 'guru-tugas.html'">
+          <div class="qa-icon">📝</div>
+          <div class="qa-label">Buat Tugas Baru</div>
+        </div>
+        <div class="qa-btn" onclick="window.location.href = 'guru-nilai.html'">
+          <div class="qa-icon">📊</div>
+          <div class="qa-label">Input Nilai</div>
+        </div>
+        <div class="qa-btn" onclick="window.location.href = 'guru-ujian.html'">
+          <div class="qa-icon">📚</div>
+          <div class="qa-label">Bank Soal</div>
+        </div>
+        <div
+          class="qa-btn"
+          onclick="window.location.href = 'guru-pengumuman.html'"
+        >
+          <div class="qa-icon">📢</div>
+          <div class="qa-label">Buat Pengumuman</div>
+        </div>
+        <div class="qa-btn" onclick="window.location.href = 'guru-rapor.html'">
+          <div class="qa-icon">📄</div>
+          <div class="qa-label">Cetak Rapor</div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header"><h3>📅 Jadwal Mengajar Hari Ini</h3></div>
+          <div class="card-body">
+            <div class="schedule-item">
+              <div class="schedule-time">07:30</div>
+              <div>
+                <div class="schedule-class">Kelas 10 IPA</div>
+                <div class="schedule-room">Ruang 3A · Bab Aljabar Linear</div>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">09:15</div>
+              <div>
+                <div class="schedule-class">Kelas 10 IPS</div>
+                <div class="schedule-room">Ruang 4B · Bab Statistika</div>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">11:15</div>
+              <div>
+                <div class="schedule-class">Kelas 11 IPA</div>
+                <div class="schedule-room">Ruang 5A · Bab Trigonometri</div>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">13:00</div>
+              <div>
+                <div class="schedule-class">Kelas 11 IPS</div>
+                <div class="schedule-room">Ruang 5B · Bab Peluang</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🔔 Notifikasi</h3></div>
+          <div class="card-body">
+            <div class="notif-item">
+              <div class="notif-icon">📨</div>
+              <div>
+                <div class="notif-text">
+                  Ahmad Fauzi mengirim pesan tentang tugas aljabar
+                </div>
+                <div class="notif-time">10 menit lalu</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">📋</div>
+              <div>
+                <div class="notif-text">
+                  28 siswa sudah mengumpulkan tugas "Latihan Aljabar Bab 3"
+                </div>
+                <div class="notif-time">1 jam lalu</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">⚠️</div>
+              <div>
+                <div class="notif-text">
+                  Deadline input nilai UTS tinggal 3 hari lagi
+                </div>
+                <div class="notif-time">2 jam lalu</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">📢</div>
+              <div>
+                <div class="notif-text">
+                  Rapat guru hari Senin pukul 13:00 di Ruang Guru
+                </div>
+                <div class="notif-time">Kemarin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3>🏫 Kelas Diampu</h3>
+            <a href="guru-kelas.html">Lihat Semua</a>
+          </div>
+          <div class="card-body">
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: var(--green-50)">
+                📐
+              </div>
+              <div>
+                <div class="class-name">Kelas 10 IPA</div>
+                <div class="class-desc">32 siswa · Matematika Wajib</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: var(--green-50); color: var(--green-600)"
+                >Rata-rata: 87.4</span
+              >
+            </div>
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: #dbeafe">📐</div>
+              <div>
+                <div class="class-name">Kelas 10 IPS</div>
+                <div class="class-desc">30 siswa · Matematika Wajib</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: #dbeafe; color: #2563eb"
+                >Rata-rata: 78.6</span
+              >
+            </div>
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: #fef3c7">📐</div>
+              <div>
+                <div class="class-name">Kelas 11 IPA</div>
+                <div class="class-desc">34 siswa · Matematika Peminatan</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: #fef3c7; color: #d97706"
+                >Rata-rata: 82.1</span
+              >
+            </div>
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: #fce7f3">📐</div>
+              <div>
+                <div class="class-name">Kelas 11 IPS</div>
+                <div class="class-desc">28 siswa · Matematika Wajib</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: #fce7f3; color: #db2777"
+                >Rata-rata: 75.3</span
+              >
+            </div>
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: #ede9fe">📐</div>
+              <div>
+                <div class="class-name">Kelas 12 IPA</div>
+                <div class="class-desc">36 siswa · Matematika Peminatan</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: #ede9fe; color: #7c3aed"
+                >Rata-rata: 84.5</span
+              >
+            </div>
+            <div
+              class="class-card"
+              onclick="window.location.href = 'guru-kelas.html'"
+            >
+              <div class="class-icon" style="background: #fee2e2">📐</div>
+              <div>
+                <div class="class-name">Kelas 12 IPS</div>
+                <div class="class-desc">32 siswa · Matematika Wajib</div>
+              </div>
+              <span
+                class="class-badge"
+                style="background: #fee2e2; color: #dc2626"
+                >Rata-rata: 73.8</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>📋 Tugas Perlu Dinilai</h3>
+            <a href="guru-tugas.html">Lihat Semua</a>
+          </div>
+          <div class="card-body">
+            <div class="task-item">
+              <div
+                class="task-status"
+                style="background: var(--coral-400)"
+              ></div>
+              <div class="task-info">
+                <div class="task-name">Latihan Aljabar Bab 3</div>
+                <div class="task-meta">Kelas 10 IPA · Deadline: 29 Mar</div>
+              </div>
+              <div class="task-count">28/32</div>
+            </div>
+            <div class="task-item">
+              <div class="task-status" style="background: #f59e0b"></div>
+              <div class="task-info">
+                <div class="task-name">Soal Statistika 1-20</div>
+                <div class="task-meta">Kelas 10 IPS · Deadline: 30 Mar</div>
+              </div>
+              <div class="task-count">22/30</div>
+            </div>
+            <div class="task-item">
+              <div class="task-status" style="background: #f59e0b"></div>
+              <div class="task-info">
+                <div class="task-name">PR Trigonometri Halaman 45</div>
+                <div class="task-meta">Kelas 11 IPA · Deadline: 31 Mar</div>
+              </div>
+              <div class="task-count">18/34</div>
+            </div>
+            <div class="task-item">
+              <div
+                class="task-status"
+                style="background: var(--green-400)"
+              ></div>
+              <div class="task-info">
+                <div class="task-name">Kuis Peluang Online</div>
+                <div class="task-meta">Kelas 11 IPS · Deadline: 1 Apr</div>
+              </div>
+              <div class="task-count">10/28</div>
+            </div>
+            <div class="task-item">
+              <div
+                class="task-status"
+                style="background: var(--green-400)"
+              ></div>
+              <div class="task-info">
+                <div class="task-name">Latihan UTBK Matematika</div>
+                <div class="task-meta">Kelas 12 IPA · Deadline: 2 Apr</div>
+              </div>
+              <div class="task-count">15/36</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+          <h3>✅ Absensi Hari Ini – Kelas 10 IPA</h3>
+          <a href="guru-absensi.html">Lihat Lengkap</a>
+        </div>
+        <div class="card-body">
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              margin-bottom: 16px;
+              flex-wrap: wrap;
+            "
+          >
+            <span
+              style="
+                padding: 6px 14px;
+                border-radius: var(--radius-full);
+                font-size: 12px;
+                font-weight: 600;
+                background: var(--green-50);
+                color: var(--green-600);
+              "
+              >Hadir: 29</span
+            >
+            <span
+              style="
+                padding: 6px 14px;
+                border-radius: var(--radius-full);
+                font-size: 12px;
+                font-weight: 600;
+                background: #fef3c7;
+                color: #d97706;
+              "
+              >Izin: 1</span
+            >
+            <span
+              style="
+                padding: 6px 14px;
+                border-radius: var(--radius-full);
+                font-size: 12px;
+                font-weight: 600;
+                background: #dbeafe;
+                color: #2563eb;
+              "
+              >Sakit: 1</span
+            >
+            <span
+              style="
+                padding: 6px 14px;
+                border-radius: var(--radius-full);
+                font-size: 12px;
+                font-weight: 600;
+                background: #fee2e2;
+                color: #dc2626;
+              "
+              >Alpha: 1</span
+            >
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Ahmad Fauzi</span
+            ><span class="att-badge att-hadir">Hadir</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Aisyah Putri</span
+            ><span class="att-badge att-hadir">Hadir</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Budi Santoso</span
+            ><span class="att-badge att-izin">Izin</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Dewi Rahmawati</span
+            ><span class="att-badge att-sakit">Sakit</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Farhan Hakim</span
+            ><span class="att-badge att-alpha">Alpha</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Fatimah Azzahra</span
+            ><span class="att-badge att-hadir">Hadir</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Hasan Abdullah</span
+            ><span class="att-badge att-hadir">Hadir</span>
+          </div>
+          <div class="attendance-row">
+            <span class="att-name">Khadijah Nur</span
+            ><span class="att-badge att-hadir">Hadir</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengaturan – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pengaturan.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a
+          class="sidebar-link active"
+          href="pengaturan.html"
+          aria-current="page"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>⚙️ Pengaturan</h1>
+          <p>Kelola akun dan preferensi portal</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <div class="card">
+          <div class="card-header"><h3>🔔 Notifikasi</h3></div>
+          <div class="card-body">
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Tugas</div>
+                <div class="setting-desc">
+                  Ingatkan saat ada tugas baru atau tenggat mendekat
+                </div>
+              </div>
+              <div
+                class="toggle on"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Ujian</div>
+                <div class="setting-desc">
+                  Pemberitahuan jadwal ujian mendatang
+                </div>
+              </div>
+              <div
+                class="toggle on"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Nilai</div>
+                <div class="setting-desc">
+                  Beritahu saat nilai baru diinput guru
+                </div>
+              </div>
+              <div
+                class="toggle on"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Pesan</div>
+                <div class="setting-desc">
+                  Pemberitahuan pesan masuk dari guru
+                </div>
+              </div>
+              <div
+                class="toggle on"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Pengumuman</div>
+                <div class="setting-desc">Info pengumuman sekolah terbaru</div>
+              </div>
+              <div
+                class="toggle on"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Notifikasi Email</div>
+                <div class="setting-desc">Kirim rangkuman harian via email</div>
+              </div>
+              <div
+                class="toggle"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🎨 Tampilan</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>Tema Warna</label>
+              <div class="theme-options">
+                <div
+                  class="theme-opt active"
+                  style="background: var(--green-600); color: #fff"
+                  onclick="selectTheme(this)"
+                  title="Hijau"
+                >
+                  ✓
+                </div>
+                <div
+                  class="theme-opt"
+                  style="background: var(--blue-400); color: #fff"
+                  onclick="selectTheme(this)"
+                  title="Biru"
+                ></div>
+                <div
+                  class="theme-opt"
+                  style="background: var(--teal-400); color: #fff"
+                  onclick="selectTheme(this)"
+                  title="Teal"
+                ></div>
+                <div
+                  class="theme-opt"
+                  style="background: #8b5cf6; color: #fff"
+                  onclick="selectTheme(this)"
+                  title="Ungu"
+                ></div>
+                <div
+                  class="theme-opt"
+                  style="background: var(--coral-400); color: #fff"
+                  onclick="selectTheme(this)"
+                  title="Merah"
+                ></div>
+              </div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-title">Mode Gelap</div>
+                <div class="setting-desc">
+                  Aktifkan tampilan gelap untuk kenyamanan mata
+                </div>
+              </div>
+              <div
+                class="toggle"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Mode gelap segera hadir');
+                "
+              ></div>
+            </div>
+            <div class="form-group" style="margin-top: 12px">
+              <label>Ukuran Font</label>
+              <select
+                class="form-select"
+                onchange="showToast('Ukuran font diperbarui')"
+              >
+                <option>Kecil (12px)</option>
+                <option selected>Normal (14px)</option>
+                <option>Besar (16px)</option>
+                <option>Sangat Besar (18px)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Bahasa</label>
+              <select
+                class="form-select"
+                onchange="showToast('Bahasa diperbarui')"
+              >
+                <option selected>Bahasa Indonesia</option>
+                <option>English</option>
+                <option>Bahasa Arab (العربية)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🔒 Keamanan Akun</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>Password Lama</label
+              ><input
+                type="password"
+                class="form-input"
+                placeholder="Masukkan password lama"
+              />
+            </div>
+            <div class="form-group">
+              <label>Password Baru</label
+              ><input
+                type="password"
+                class="form-input"
+                placeholder="Masukkan password baru (min. 8 karakter)"
+              />
+            </div>
+            <div class="form-group">
+              <label>Konfirmasi Password Baru</label
+              ><input
+                type="password"
+                class="form-input"
+                placeholder="Ulangi password baru"
+              />
+            </div>
+            <button
+              class="btn-save"
+              onclick="showToast('Password berhasil diperbarui ✅')"
+            >
+              Ubah Password
+            </button>
+            <div class="setting-row" style="margin-top: 16px">
+              <div class="setting-info">
+                <div class="setting-title">Verifikasi 2 Langkah</div>
+                <div class="setting-desc">Tambahan keamanan saat login</div>
+              </div>
+              <div
+                class="toggle"
+                onclick="
+                  this.classList.toggle('on');
+                  showToast('Pengaturan diperbarui');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>📧 Informasi Akun</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>Email</label
+              ><input
+                type="email"
+                class="form-input"
+                value="ahmad.fauzi@muh1.sch.id"
+              />
+            </div>
+            <div class="form-group">
+              <label>No. HP</label
+              ><input type="tel" class="form-input" value="0812-3456-7890" />
+            </div>
+            <div class="form-group">
+              <label>Username</label
+              ><input
+                type="text"
+                class="form-input"
+                value="ahmad.fauzi"
+                readonly
+                style="background: var(--gray-50)"
+              />
+            </div>
+            <button
+              class="btn-save"
+              onclick="showToast('Informasi akun berhasil diperbarui ✅')"
+            >
+              Simpan Perubahan
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="danger-zone">
+        <h3>⚠️ Zona Berbahaya</h3>
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title" style="color: var(--gray-900)">
+              Hapus Semua Data Cache
+            </div>
+            <div class="setting-desc">
+              Menghapus data sementara yang tersimpan di perangkat ini
+            </div>
+          </div>
+          <button
+            class="btn-outline"
+            onclick="
+              mcConfirm(
+                '⚠️ Hapus Cache',
+                'Apakah Anda yakin ingin menghapus semua data cache? Tindakan ini tidak dapat dibatalkan.',
+                function () {
+                  showToast('Cache berhasil dihapus ✅');
+                },
+                'Hapus Cache',
+                'mc-btn-danger',
+              )
+            "
+          >
+            Hapus Cache
+          </button>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title" style="color: var(--gray-900)">
+              Logout dari Semua Perangkat
+            </div>
+            <div class="setting-desc">
+              Keluar dari semua sesi aktif di perangkat lain
+            </div>
+          </div>
+          <button
+            class="btn-outline"
+            onclick="
+              mcConfirm(
+                '⚠️ Logout Semua Perangkat',
+                'Semua sesi aktif akan diakhiri. Anda perlu login ulang di semua perangkat.',
+                function () {
+                  showToast('Semua sesi telah diakhiri ✅');
+                  setTimeout(function () {
+                    window.location.href = '../index.html';
+                  }, 1500);
+                },
+                'Logout Semua',
+                'mc-btn-danger',
+              )
+            "
+          >
+            Logout Semua
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/pengaturan.js"></script>
+  </body>
+</html>

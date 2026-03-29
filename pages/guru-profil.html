@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-profil.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a
+          class="sidebar-link active"
+          href="guru-profil.html"
+          aria-current="page"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="profile-banner">
+        <div class="pb-avatar">SR</div>
+        <div>
+          <div class="pb-name">Siti Rahma, S.Pd</div>
+          <div class="pb-role">Guru Matematika</div>
+          <div class="pb-school">
+            SMAN Muhammadiyah 1 · NIP: 198503152010012005
+          </div>
+        </div>
+        <button class="btn-edit" onclick="openGuruEdit()">
+          ✏️ Edit Profil
+        </button>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Tahun Mengajar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Kelas Diampu</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">192</div>
+          <div class="stat-label">Total Siswa</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">87.2</div>
+          <div class="stat-label">Rata-rata Nilai</div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">👤 Informasi Pribadi</div>
+          </div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">Nama Lengkap</span
+              ><span class="info-value">Siti Rahma, S.Pd</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">NIP</span
+              ><span class="info-value">198503152010012005</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tanggal Lahir</span
+              ><span class="info-value">15 Maret 1985</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Jenis Kelamin</span
+              ><span class="info-value">Perempuan</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Agama</span
+              ><span class="info-value">Islam</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Alamat</span
+              ><span class="info-value">Jl. Cempaka No. 12, Yogyakarta</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">No. Telepon</span
+              ><span class="info-value">0812-3456-7890</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email</span
+              ><span class="info-value">siti.rahma@sman-muh1.sch.id</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎓 Riwayat Pendidikan</div>
+          </div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">S1</span
+              ><span class="info-value"
+                >Pendidikan Matematika – UGM (2007)</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">S2</span
+              ><span class="info-value"
+                >Pendidikan Matematika – UNY (2014)</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">SMA</span
+              ><span class="info-value">SMA Muhammadiyah 1 Yogyakarta</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Status</span
+              ><span class="info-value" style="color: var(--green-600)"
+                >✅ Guru Sertifikasi</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">TMT</span
+              ><span class="info-value">1 Januari 2010</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Golongan</span
+              ><span class="info-value">III/c – Penata</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Mata Pelajaran</span
+              ><span class="info-value">Matematika</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Wali Kelas</span
+              ><span class="info-value">10 IPA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📜 Sertifikasi & Pelatihan</div>
+        </div>
+        <div class="card-body">
+          <div class="cert-item">
+            <div class="cert-icon">📜</div>
+            <div>
+              <div class="cert-name">Sertifikasi Profesi Guru</div>
+              <div class="cert-org">Kemenag RI · 2013</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">🎓</div>
+            <div>
+              <div class="cert-name">Pelatihan Kurikulum Merdeka</div>
+              <div class="cert-org">Kemendikbud · 2024</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">💻</div>
+            <div>
+              <div class="cert-name">Workshop Pembelajaran Digital</div>
+              <div class="cert-org">Muhammadiyah · 2025</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">🏅</div>
+            <div>
+              <div class="cert-name">Guru Berprestasi Tingkat Kota</div>
+              <div class="cert-org">Dinas Pendidikan Yogyakarta · 2023</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-profil.js"></script>
+  </body>
+</html>

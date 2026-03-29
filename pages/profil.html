@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/profil.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link active" href="profil.html" aria-current="page"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>👤 Profil Saya</h1>
+          <p>Informasi data diri dan pencapaian</p>
+        </div>
+      </div>
+
+      <div class="profile-hero">
+        <div class="profile-cover"><div class="profile-avatar">AF</div></div>
+        <div class="profile-info-wrap">
+          <div>
+            <div class="profile-name">Ahmad Fauzi</div>
+            <div class="profile-role">
+              Siswa · Kelas 10 IPA · SMAN Muhammadiyah 1
+            </div>
+          </div>
+          <button class="profile-edit-btn" onclick="openEditProfile()">
+            ✏️ Edit Profil
+          </button>
+        </div>
+      </div>
+
+      <div class="stat-mini">
+        <div class="stat-mini-card">
+          <div class="stat-mini-num">87.4</div>
+          <div class="stat-mini-label">Rata-rata Nilai</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="stat-mini-num">#4</div>
+          <div class="stat-mini-label">Peringkat Kelas</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="stat-mini-num">96%</div>
+          <div class="stat-mini-label">Kehadiran</div>
+        </div>
+        <div class="stat-mini-card">
+          <div class="stat-mini-num">2</div>
+          <div class="stat-mini-label">Ekstrakurikuler</div>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header"><h3>📋 Data Pribadi</h3></div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">Nama Lengkap</span
+              ><span class="info-val">Ahmad Fauzi</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">NIS</span
+              ><span class="info-val">2024100042</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">NISN</span
+              ><span class="info-val">0087654321</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tempat, Tgl Lahir</span
+              ><span class="info-val">Surabaya, 15 Mei 2009</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Jenis Kelamin</span
+              ><span class="info-val">Laki-laki</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Agama</span
+              ><span class="info-val">Islam</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Alamat</span
+              ><span class="info-val">Jl. Darmo No. 45, Surabaya</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">No. HP</span
+              ><span class="info-val">0812-3456-7890</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email</span
+              ><span class="info-val">ahmad.fauzi@muh1.sch.id</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>👨‍👩‍👦 Data Orang Tua</h3></div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">Nama Ayah</span
+              ><span class="info-val">H. Muhammad Fauzi</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Pekerjaan Ayah</span
+              ><span class="info-val">Wiraswasta</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">No. HP Ayah</span
+              ><span class="info-val">0813-5678-1234</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Nama Ibu</span
+              ><span class="info-val">Hj. Siti Aminah</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Pekerjaan Ibu</span
+              ><span class="info-val">Guru</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">No. HP Ibu</span
+              ><span class="info-val">0857-8765-4321</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Alamat Orang Tua</span
+              ><span class="info-val">Jl. Darmo No. 45, Surabaya</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Nama Wali</span
+              ><span class="info-val">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🎓 Riwayat Pendidikan</h3></div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">SD</span
+              ><span class="info-val">SDN Darmo 1 Surabaya (2015–2021)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">SMP</span
+              ><span class="info-val">SMPN Muhammadiyah 3 (2021–2024)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">SMA</span
+              ><span class="info-val">SMAN Muhammadiyah 1 (2024–sekarang)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tahun Masuk</span
+              ><span class="info-val">2024/2025</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Status</span
+              ><span class="info-val" style="color: var(--green-600)"
+                >✅ Aktif</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🏆 Pencapaian</h3></div>
+          <div class="card-body">
+            <div class="achievement-grid">
+              <div class="achievement">
+                <div class="achievement-icon">🥇</div>
+                <div class="achievement-title">Juara 1 Olimpiade MTK</div>
+                <div class="achievement-desc">Tingkat Kota 2025</div>
+              </div>
+              <div class="achievement">
+                <div class="achievement-icon">🤖</div>
+                <div class="achievement-title">Best Robot Design</div>
+                <div class="achievement-desc">Kompetisi Robotika 2025</div>
+              </div>
+              <div class="achievement">
+                <div class="achievement-icon">📖</div>
+                <div class="achievement-title">Hafiz 5 Juz</div>
+                <div class="achievement-desc">Program Tahfidz</div>
+              </div>
+              <div class="achievement">
+                <div class="achievement-icon">⭐</div>
+                <div class="achievement-title">Siswa Teladan</div>
+                <div class="achievement-desc">Semester Ganjil 2025</div>
+              </div>
+              <div class="achievement">
+                <div class="achievement-icon">🏃</div>
+                <div class="achievement-title">Juara 3 Lari 100m</div>
+                <div class="achievement-desc">Porseni Kota 2025</div>
+              </div>
+              <div class="achievement">
+                <div class="achievement-icon">📝</div>
+                <div class="achievement-title">Nilai UAS Tertinggi</div>
+                <div class="achievement-desc">Matematika Sem. 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/profil.js"></script>
+  </body>
+</html>

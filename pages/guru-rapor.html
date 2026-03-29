@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapor – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-rapor.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a
+          class="sidebar-link active"
+          href="guru-rapor.html"
+          aria-current="page"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📄 Kelola Rapor</h1>
+          <p>Data rapor siswa Semester Genap 2025/2026</p>
+        </div>
+        <div class="topbar-btns">
+          <button
+            class="btn-outline"
+            onclick="showToast('Export rapor sedang diproses...')"
+          >
+            📥 Export Semua</button
+          ><button
+            class="btn-primary"
+            onclick="showToast('Cetak rapor batch...')"
+          >
+            🖨️ Cetak Batch
+          </button>
+        </div>
+      </div>
+      <div class="ctrl-row">
+        <select class="ctrl-select">
+          <option>10 IPA</option>
+          <option>10 IPS</option>
+          <option>11 IPA</option>
+          <option>11 IPS</option>
+          <option>12 IPA</option>
+          <option>12 IPS</option>
+        </select>
+        <select class="ctrl-select">
+          <option>Semester Genap 2025/2026</option>
+          <option>Semester Ganjil 2025/2026</option>
+        </select>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">32</div>
+          <div class="stat-label">Total Siswa</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color: #059669">28</div>
+          <div class="stat-label">Rapor Siap</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color: #d97706">4</div>
+          <div class="stat-label">Belum Lengkap</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">87.2</div>
+          <div class="stat-label">Rata-rata Kelas</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Data Rapor Siswa – 10 IPA</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>NIS</th>
+              <th>Nama Siswa</th>
+              <th>Rata-rata</th>
+              <th>Predikat</th>
+              <th>Kehadiran</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>10001</td>
+              <td style="font-weight: 600">Ahmad Fauzi</td>
+              <td><span class="grade grade-a">88.5</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>95%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor Ahmad Fauzi...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>10002</td>
+              <td style="font-weight: 600">Aisyah Putri</td>
+              <td><span class="grade grade-a">91.2</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>98%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>10003</td>
+              <td style="font-weight: 600">Budi Santoso</td>
+              <td><span class="grade grade-b">82.8</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+              <td>90%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>10004</td>
+              <td style="font-weight: 600">Citra Dewi</td>
+              <td><span class="grade grade-a">89.4</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>97%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>10005</td>
+              <td style="font-weight: 600">Dimas Pratama</td>
+              <td><span class="grade grade-b">84.1</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+              <td>93%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>10006</td>
+              <td style="font-weight: 600">Eka Rahmawati</td>
+              <td><span class="grade grade-c">76.5</span></td>
+              <td><span class="badge badge-yellow">B</span></td>
+              <td>88%</td>
+              <td><span class="badge badge-yellow">Belum Lengkap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Lengkapi nilai...')"
+                >
+                  ✏️</button
+                ><button class="action-btn" onclick="showToast('Preview...')">
+                  👁️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>10007</td>
+              <td style="font-weight: 600">Fajar Nugroho</td>
+              <td><span class="grade grade-a">87.9</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>96%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>10008</td>
+              <td style="font-weight: 600">Gita Puspita</td>
+              <td><span class="grade grade-a">90.3</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>99%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>10009</td>
+              <td style="font-weight: 600">Hadi Wijaya</td>
+              <td><span class="grade grade-c">74.2</span></td>
+              <td><span class="badge badge-yellow">B-</span></td>
+              <td>82%</td>
+              <td><span class="badge badge-yellow">Belum Lengkap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Lengkapi nilai...')"
+                >
+                  ✏️</button
+                ><button class="action-btn" onclick="showToast('Preview...')">
+                  👁️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>10010</td>
+              <td style="font-weight: 600">Indah Lestari</td>
+              <td><span class="grade grade-a">92.7</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>100%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>10011</td>
+              <td style="font-weight: 600">Joni Setiawan</td>
+              <td><span class="grade grade-b">80.6</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+              <td>91%</td>
+              <td><span class="badge badge-yellow">Belum Lengkap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Lengkapi nilai...')"
+                >
+                  ✏️</button
+                ><button class="action-btn" onclick="showToast('Preview...')">
+                  👁️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>10012</td>
+              <td style="font-weight: 600">Kartika Sari</td>
+              <td><span class="grade grade-a">93.1</span></td>
+              <td><span class="badge badge-green">A</span></td>
+              <td>98%</td>
+              <td><span class="badge badge-green">Siap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Melihat rapor...')"
+                >
+                  👁️</button
+                ><button
+                  class="action-btn"
+                  onclick="showToast('Cetak rapor...')"
+                >
+                  🖨️
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>10013</td>
+              <td style="font-weight: 600">Lukman Hakim</td>
+              <td><span class="grade grade-d">68.3</span></td>
+              <td><span class="badge badge-red">C+</span></td>
+              <td>78%</td>
+              <td><span class="badge badge-yellow">Belum Lengkap</span></td>
+              <td>
+                <button
+                  class="action-btn"
+                  onclick="showToast('Lengkapi nilai...')"
+                >
+                  ✏️</button
+                ><button class="action-btn" onclick="showToast('Preview...')">
+                  👁️
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-rapor.js"></script>
+  </body>
+</html>

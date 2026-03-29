@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Nilai – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-nilai.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a
+          class="sidebar-link active"
+          href="guru-nilai.html"
+          aria-current="page"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📊 Input Nilai</h1>
+          <p>Input dan kelola nilai siswa per kelas</p>
+        </div>
+      </div>
+      <div class="info-banner">
+        ⚠️ Deadline input nilai UTS: <strong>1 April 2026</strong> · Tinggal 3
+        hari lagi
+      </div>
+      <div class="select-row">
+        <select
+          class="form-select"
+          onchange="showToast('Kelas dipilih: ' + this.value)"
+        >
+          <option>Kelas 10 IPA</option>
+          <option>Kelas 10 IPS</option>
+          <option>Kelas 11 IPA</option>
+          <option>Kelas 11 IPS</option>
+          <option>Kelas 12 IPA</option>
+          <option>Kelas 12 IPS</option>
+        </select>
+        <select
+          class="form-select"
+          onchange="showToast('Kategori: ' + this.value)"
+        >
+          <option>Ulangan Harian</option>
+          <option>UTS</option>
+          <option>UAS</option>
+          <option>Tugas</option>
+          <option>Praktikum</option>
+        </select>
+        <select class="form-select">
+          <option>Semester Genap 2025/2026</option>
+          <option>Semester Ganjil 2025/2026</option>
+        </select>
+      </div>
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Siswa</th>
+            <th>UH 1</th>
+            <th>UH 2</th>
+            <th>UH 3</th>
+            <th>Tugas</th>
+            <th>UTS</th>
+            <th>Rata-rata</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Ahmad Fauzi</td>
+            <td>
+              <input class="grade-input" value="85" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="90" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="88" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="92" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="85" onchange="calcAvg(this)" />
+            </td>
+            <td class="avg-cell">88.0</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Aisyah Putri</td>
+            <td>
+              <input class="grade-input" value="92" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="95" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="90" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="94" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="88" onchange="calcAvg(this)" />
+            </td>
+            <td class="avg-cell">91.8</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Budi Santoso</td>
+            <td>
+              <input class="grade-input" value="70" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="75" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="78" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="80" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="72" onchange="calcAvg(this)" />
+            </td>
+            <td class="avg-cell">75.0</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Dewi Rahmawati</td>
+            <td>
+              <input class="grade-input" value="88" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="92" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="85" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="90" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="87" onchange="calcAvg(this)" />
+            </td>
+            <td class="avg-cell">88.4</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Farhan Hakim</td>
+            <td>
+              <input class="grade-input" value="65" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="70" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="68" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="72" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input
+                class="grade-input"
+                value=""
+                placeholder="—"
+                onchange="calcAvg(this)"
+              />
+            </td>
+            <td class="avg-cell">68.8</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Fatimah Azzahra</td>
+            <td>
+              <input class="grade-input" value="95" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="93" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="97" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="96" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input
+                class="grade-input"
+                value=""
+                placeholder="—"
+                onchange="calcAvg(this)"
+              />
+            </td>
+            <td class="avg-cell">95.3</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Hasan Abdullah</td>
+            <td>
+              <input class="grade-input" value="82" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="85" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="80" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="88" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input
+                class="grade-input"
+                value=""
+                placeholder="—"
+                onchange="calcAvg(this)"
+              />
+            </td>
+            <td class="avg-cell">83.8</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Khadijah Nur</td>
+            <td>
+              <input class="grade-input" value="90" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="88" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="92" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input class="grade-input" value="91" onchange="calcAvg(this)" />
+            </td>
+            <td>
+              <input
+                class="grade-input"
+                value=""
+                placeholder="—"
+                onchange="calcAvg(this)"
+              />
+            </td>
+            <td class="avg-cell">90.3</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="action-bar">
+        <button
+          class="btn-primary"
+          onclick="showToast('Nilai berhasil disimpan! ✅')"
+        >
+          💾 Simpan Nilai
+        </button>
+        <button
+          class="btn-secondary"
+          onclick="showToast('Mengekspor ke Excel...')"
+        >
+          📥 Export Excel
+        </button>
+        <button
+          class="btn-secondary"
+          onclick="showToast('Import dari file Excel...')"
+        >
+          📤 Import Excel
+        </button>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-nilai.js"></script>
+  </body>
+</html>

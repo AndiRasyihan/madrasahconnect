@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesan Guru – Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ortu-pesan.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-ortu.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="ortu-nilai.html"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a class="sidebar-link" href="ortu-jadwal.html"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a class="sidebar-link" href="ortu-pembayaran.html"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a
+          class="sidebar-link active"
+          href="ortu-pesan.html"
+          aria-current="page"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ortu-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="chat-contacts">
+        <div class="chat-contacts-header">
+          <h2>💬 Pesan</h2>
+          <input
+            class="chat-search"
+            placeholder="Cari guru..."
+            aria-label="Cari guru"
+          />
+        </div>
+        <div class="contact-list">
+          <div class="contact-item active" onclick="selectChat(0)">
+            <div
+              class="contact-av"
+              style="background: linear-gradient(135deg, #3b82f6, #06b6d4)"
+            >
+              SR
+            </div>
+            <div class="contact-info">
+              <div class="contact-name">Siti Rahma, S.Pd</div>
+              <div class="contact-preview">
+                Terima kasih Bu, saya akan sampaikan...
+              </div>
+            </div>
+            <div style="text-align: right">
+              <div class="contact-time">10:30</div>
+              <div class="contact-unread">2</div>
+            </div>
+          </div>
+          <div class="contact-item" onclick="selectChat(1)">
+            <div
+              class="contact-av"
+              style="background: linear-gradient(135deg, #f59e0b, #ef4444)"
+            >
+              AH
+            </div>
+            <div class="contact-info">
+              <div class="contact-name">Andi Hermawan, M.Pd</div>
+              <div class="contact-preview">
+                Nilai fisika Ahmad sudah diperbaiki
+              </div>
+            </div>
+            <div style="text-align: right">
+              <div class="contact-time">Kemarin</div>
+              <div class="contact-unread">1</div>
+            </div>
+          </div>
+          <div class="contact-item" onclick="selectChat(2)">
+            <div
+              class="contact-av"
+              style="background: linear-gradient(135deg, #10b981, #34d399)"
+            >
+              DS
+            </div>
+            <div class="contact-info">
+              <div class="contact-name">Dewi Safitri, S.Pd</div>
+              <div class="contact-preview">Baik Pak, akan saya perhatikan</div>
+            </div>
+            <div style="text-align: right">
+              <div class="contact-time">2 hari lalu</div>
+            </div>
+          </div>
+          <div class="contact-item" onclick="selectChat(3)">
+            <div
+              class="contact-av"
+              style="background: linear-gradient(135deg, #8b5cf6, #a78bfa)"
+            >
+              MR
+            </div>
+            <div class="contact-info">
+              <div class="contact-name">Muhammad Rizki, S.Pd</div>
+              <div class="contact-preview">Jadwal ekskul sudah diperbarui</div>
+            </div>
+            <div style="text-align: right">
+              <div class="contact-time">3 hari lalu</div>
+            </div>
+          </div>
+          <div class="contact-item" onclick="selectChat(4)">
+            <div
+              class="contact-av"
+              style="background: linear-gradient(135deg, #ec4899, #f472b6)"
+            >
+              NF
+            </div>
+            <div class="contact-info">
+              <div class="contact-name">Nur Fadilah, S.Ag</div>
+              <div class="contact-preview">Hafalan Ahmad sudah sangat baik</div>
+            </div>
+            <div style="text-align: right">
+              <div class="contact-time">1 minggu lalu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-area">
+        <div class="chat-header">
+          <div
+            class="contact-av"
+            style="
+              background: linear-gradient(135deg, #3b82f6, #06b6d4);
+              width: 40px;
+              height: 40px;
+              font-size: 14px;
+            "
+          >
+            SR
+          </div>
+          <div>
+            <div class="chat-header-name">
+              Siti Rahma, S.Pd <span class="online-dot"></span>
+            </div>
+            <div class="chat-header-role">
+              Wali Kelas 10 IPA · Guru Matematika
+            </div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg msg-in">
+            <div>
+              Assalamu'alaikum Pak Fauzi, saya ingin menyampaikan bahwa Ahmad
+              mendapatkan nilai yang sangat baik di UTS Matematika.
+              Alhamdulillah nilainya 92.
+            </div>
+            <div class="msg-time">09:15</div>
+          </div>
+          <div class="msg msg-out">
+            <div>
+              Wa'alaikumussalam Bu Siti. Alhamdulillah, terima kasih banyak atas
+              informasinya. Kami sangat senang mendengar kabar ini.
+            </div>
+            <div class="msg-time">09:20</div>
+          </div>
+          <div class="msg msg-in">
+            <div>
+              Iya Pak, Ahmad juga aktif di kelas dan sering membantu
+              teman-temannya. Untuk tugas integral yang kemarin, Ahmad sudah
+              mengumpulkan tepat waktu.
+            </div>
+            <div class="msg-time">09:45</div>
+          </div>
+          <div class="msg msg-out">
+            <div>
+              Alhamdulillah, kami selalu memantau tugas-tugasnya di rumah.
+              Apakah ada hal yang perlu kami perhatikan di rumah, Bu?
+            </div>
+            <div class="msg-time">10:02</div>
+          </div>
+          <div class="msg msg-in">
+            <div>
+              Mungkin untuk persiapan UAS nanti, Ahmad perlu lebih banyak
+              latihan soal terutama bab kalkulus diferensial. Saya sudah upload
+              materi tambahan di portal.
+            </div>
+            <div class="msg-time">10:15</div>
+          </div>
+          <div class="msg msg-out">
+            <div>
+              Terima kasih Bu, saya akan sampaikan ke Ahmad untuk belajar lebih
+              giat lagi. Jazakallah khairan.
+            </div>
+            <div class="msg-time">10:30</div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input
+            class="chat-input"
+            id="chatInput"
+            placeholder="Tulis pesan..."
+            aria-label="Tulis pesan"
+            onkeydown="if (event.key === 'Enter') sendMsg();"
+          />
+          <button class="send-btn" onclick="sendMsg()" aria-label="Kirim pesan">
+            ➤
+          </button>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/ortu-pesan.js"></script>
+  </body>
+</html>

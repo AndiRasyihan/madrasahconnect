@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nilai Anak – Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ortu-nilai.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-ortu.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a
+          class="sidebar-link active"
+          href="ortu-nilai.html"
+          aria-current="page"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a class="sidebar-link" href="ortu-jadwal.html"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a class="sidebar-link" href="ortu-pembayaran.html"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="ortu-pesan.html"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ortu-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📊 Nilai Anak</h1>
+          <p>Rekap nilai akademik Ahmad Fauzi</p>
+        </div>
+      </div>
+      <div class="child-tag">
+        <span class="av">AF</span> Ahmad Fauzi – Kelas 10 IPA
+      </div>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">88.5</div>
+          <div class="stat-label">Rata-rata Umum</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color: #059669">A</div>
+          <div class="stat-label">Predikat</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Peringkat</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Mata Pelajaran</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Nilai Per Mata Pelajaran</span
+          ><select class="ctrl-select">
+            <option>Semester Genap 2025/2026</option>
+            <option>Semester Ganjil 2025/2026</option>
+          </select>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Mata Pelajaran</th>
+              <th>Guru</th>
+              <th>UH 1</th>
+              <th>UH 2</th>
+              <th>UH 3</th>
+              <th>UTS</th>
+              <th>Rata-rata</th>
+              <th>Predikat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td style="font-weight: 600">Matematika</td>
+              <td>Siti Rahma, S.Pd</td>
+              <td>90</td>
+              <td>85</td>
+              <td>92</td>
+              <td>88</td>
+              <td><span class="grade grade-a">88.8</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td style="font-weight: 600">Fisika</td>
+              <td>Dr. Ahmad, M.Pd</td>
+              <td>82</td>
+              <td>88</td>
+              <td>85</td>
+              <td>90</td>
+              <td><span class="grade grade-a">86.3</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td style="font-weight: 600">Kimia</td>
+              <td>Hj. Fatimah, S.Pd</td>
+              <td>78</td>
+              <td>82</td>
+              <td>80</td>
+              <td>85</td>
+              <td><span class="grade grade-b">81.3</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td style="font-weight: 600">Biologi</td>
+              <td>Nurul Hidayah, M.Si</td>
+              <td>88</td>
+              <td>90</td>
+              <td>92</td>
+              <td>94</td>
+              <td><span class="grade grade-a">91.0</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td style="font-weight: 600">Bahasa Indonesia</td>
+              <td>Drs. Wahyudi</td>
+              <td>85</td>
+              <td>88</td>
+              <td>82</td>
+              <td>86</td>
+              <td><span class="grade grade-a">85.3</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td style="font-weight: 600">Bahasa Inggris</td>
+              <td>Linda, S.Pd</td>
+              <td>90</td>
+              <td>92</td>
+              <td>88</td>
+              <td>95</td>
+              <td><span class="grade grade-a">91.3</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td style="font-weight: 600">PAI</td>
+              <td>Ustadz Hamid, Lc</td>
+              <td>95</td>
+              <td>92</td>
+              <td>90</td>
+              <td>98</td>
+              <td><span class="grade grade-a">93.8</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td style="font-weight: 600">PKN</td>
+              <td>Dra. Sulistyawati</td>
+              <td>82</td>
+              <td>85</td>
+              <td>80</td>
+              <td>88</td>
+              <td><span class="grade grade-b">83.8</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td style="font-weight: 600">Sejarah</td>
+              <td>Arif Santoso, M.Hum</td>
+              <td>88</td>
+              <td>85</td>
+              <td>90</td>
+              <td>92</td>
+              <td><span class="grade grade-a">88.8</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td style="font-weight: 600">Informatika</td>
+              <td>Rizky, S.Kom</td>
+              <td>92</td>
+              <td>95</td>
+              <td>90</td>
+              <td>88</td>
+              <td><span class="grade grade-a">91.3</span></td>
+              <td><span class="badge badge-green">A</span></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td style="font-weight: 600">PJOK</td>
+              <td>Bambang, S.Pd</td>
+              <td>85</td>
+              <td>82</td>
+              <td>88</td>
+              <td>80</td>
+              <td><span class="grade grade-b">83.8</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td style="font-weight: 600">Seni Budaya</td>
+              <td>Maya, S.Sn</td>
+              <td>80</td>
+              <td>85</td>
+              <td>82</td>
+              <td>88</td>
+              <td><span class="grade grade-b">83.8</span></td>
+              <td><span class="badge badge-blue">B+</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

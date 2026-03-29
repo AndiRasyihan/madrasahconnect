@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard-ortu.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a
+          class="sidebar-link active"
+          href="dashboard-ortu.html"
+          aria-current="page"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="ortu-nilai.html"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a class="sidebar-link" href="ortu-jadwal.html"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a class="sidebar-link" href="ortu-pembayaran.html"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="ortu-pesan.html"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ortu-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>Assalamu'alaikum, Pak Fauzi 👋</h1>
+          <p>Sabtu, 28 Maret 2026 · Semester Genap 2025/2026</p>
+        </div>
+      </div>
+
+      <div class="child-banner">
+        <div class="child-av">AF</div>
+        <div>
+          <div class="child-name">Ahmad Fauzi</div>
+          <div class="child-desc">
+            Kelas 10 IPA · SMAN Muhammadiyah 1 Surabaya · NIS: 2024100042
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--green-50)">📊</div>
+          <div>
+            <div class="stat-num">87.4</div>
+            <div class="stat-label">Rata-rata Nilai</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #dbeafe">🏆</div>
+          <div>
+            <div class="stat-num">#4</div>
+            <div class="stat-label">Peringkat Kelas</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fef3c7">✅</div>
+          <div>
+            <div class="stat-num">96%</div>
+            <div class="stat-label">Kehadiran</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fce7f3">📋</div>
+          <div>
+            <div class="stat-num">3</div>
+            <div class="stat-label">Tugas Belum Selesai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3>📊 Nilai Terbaru</h3>
+            <a href="ortu-nilai.html">Lihat Semua</a>
+          </div>
+          <div class="card-body">
+            <div class="grade-row">
+              <span class="grade-subject">Matematika</span
+              ><span
+                class="grade-score"
+                style="background: var(--green-50); color: var(--green-600)"
+                >92</span
+              >
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Bahasa Indonesia</span
+              ><span
+                class="grade-score"
+                style="background: var(--green-50); color: var(--green-600)"
+                >88</span
+              >
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Fisika</span
+              ><span
+                class="grade-score"
+                style="background: var(--green-50); color: var(--green-600)"
+                >85</span
+              >
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">PAI</span
+              ><span
+                class="grade-score"
+                style="background: var(--green-50); color: var(--green-600)"
+                >90</span
+              >
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Bahasa Inggris</span
+              ><span
+                class="grade-score"
+                style="background: #fef3c7; color: #d97706"
+                >78</span
+              >
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Kimia</span
+              ><span
+                class="grade-score"
+                style="background: var(--green-50); color: var(--green-600)"
+                >83</span
+              >
+            </div>
+            <div style="margin-top: 12px; text-align: center">
+              <strong style="font-size: 13px; color: var(--gray-600)"
+                >Rata-rata Semester:
+              </strong>
+              <strong style="font-size: 16px; color: var(--green-600)"
+                >87.4</strong
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>✅ Rekap Kehadiran</h3>
+            <a href="ortu-absensi.html">Detail</a>
+          </div>
+          <div class="card-body">
+            <div class="att-row">
+              <span class="att-label">Total Hari Efektif</span
+              ><span class="att-val">120 hari</span>
+            </div>
+            <div class="att-row">
+              <span class="att-label" style="color: var(--green-600)"
+                >✅ Hadir</span
+              ><span class="att-val">115 hari</span>
+            </div>
+            <div class="att-row">
+              <span class="att-label" style="color: #d97706">📋 Izin</span
+              ><span class="att-val">2 hari</span>
+            </div>
+            <div class="att-row">
+              <span class="att-label" style="color: #2563eb">🤒 Sakit</span
+              ><span class="att-val">3 hari</span>
+            </div>
+            <div class="att-row">
+              <span class="att-label" style="color: #dc2626">❌ Alpha</span
+              ><span class="att-val">0 hari</span>
+            </div>
+            <div style="margin-top: 12px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 11px;
+                  color: var(--gray-400);
+                  margin-bottom: 4px;
+                "
+              >
+                <span>Persentase Kehadiran</span
+                ><span style="font-weight: 700; color: var(--green-600)"
+                  >96%</span
+                >
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  style="width: 96%; background: var(--green-600)"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>💰 Pembayaran SPP</h3>
+            <a href="ortu-pembayaran.html">Riwayat</a>
+          </div>
+          <div class="card-body">
+            <div class="payment-item">
+              <div class="pay-icon" style="background: var(--green-50)">💵</div>
+              <div class="pay-info">
+                <div class="pay-name">SPP Maret 2026</div>
+                <div class="pay-desc">
+                  Rp 850.000 · Jatuh tempo: 10 Mar 2026
+                </div>
+              </div>
+              <span class="pay-badge pay-lunas">✅ Lunas</span>
+            </div>
+            <div class="payment-item">
+              <div class="pay-icon" style="background: #fef3c7">💵</div>
+              <div class="pay-info">
+                <div class="pay-name">SPP April 2026</div>
+                <div class="pay-desc">
+                  Rp 850.000 · Jatuh tempo: 10 Apr 2026
+                </div>
+              </div>
+              <span class="pay-badge pay-pending">⏳ Belum Bayar</span>
+            </div>
+            <div class="payment-item">
+              <div class="pay-icon" style="background: var(--green-50)">📚</div>
+              <div class="pay-info">
+                <div class="pay-name">Buku Pelajaran Sem. 2</div>
+                <div class="pay-desc">Rp 450.000 · Dibayar: 15 Jan 2026</div>
+              </div>
+              <span class="pay-badge pay-lunas">✅ Lunas</span>
+            </div>
+            <div class="payment-item">
+              <div class="pay-icon" style="background: var(--green-50)">🎓</div>
+              <div class="pay-info">
+                <div class="pay-name">Kegiatan Ekskul</div>
+                <div class="pay-desc">Rp 200.000 · Dibayar: 20 Jan 2026</div>
+              </div>
+              <span class="pay-badge pay-lunas">✅ Lunas</span>
+            </div>
+            <button
+              class="btn-pay"
+              onclick="window.location.href = 'ortu-pembayaran.html'"
+            >
+              💳 Bayar SPP April
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>🔔 Notifikasi & Pengumuman</h3></div>
+          <div class="card-body">
+            <div class="notif-item">
+              <div class="notif-icon">📨</div>
+              <div>
+                <div class="notif-text">
+                  Bu Siti Rahma mengirim pesan tentang persiapan UTS Ahmad
+                </div>
+                <div class="notif-time">30 menit lalu</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">📊</div>
+              <div>
+                <div class="notif-text">
+                  Nilai Ulangan Harian Matematika: Ahmad mendapat
+                  <strong>92</strong>
+                </div>
+                <div class="notif-time">Kemarin</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">📋</div>
+              <div>
+                <div class="notif-text">
+                  Ahmad belum mengumpulkan tugas Fisika (deadline besok)
+                </div>
+                <div class="notif-time">Kemarin</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">📢</div>
+              <div>
+                <div class="notif-text">
+                  Rapat wali murid tanggal 5 April 2026 pukul 09:00 di Aula
+                </div>
+                <div class="notif-time">18 Mar</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon">💰</div>
+              <div>
+                <div class="notif-text">
+                  Pembayaran SPP Maret 2026 telah diterima. Terima kasih.
+                </div>
+                <div class="notif-time">10 Mar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px">
+        <div class="card-header"><h3>📅 Jadwal Anak Hari Ini</h3></div>
+        <div class="card-body">
+          <div class="schedule-item">
+            <div class="schedule-time">07:00</div>
+            <div>
+              <div class="schedule-class">☪️ Sholat Dhuha Berjamaah</div>
+              <div class="schedule-room">Masjid Sekolah</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">07:30</div>
+            <div>
+              <div class="schedule-class">📐 Matematika</div>
+              <div class="schedule-room">Bu Siti Rahma · Ruang 3A</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">09:15</div>
+            <div>
+              <div class="schedule-class">📖 Bahasa Indonesia</div>
+              <div class="schedule-room">Pak Ahmad · Ruang 3A</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">13:00</div>
+            <div>
+              <div class="schedule-class">⚗️ Fisika</div>
+              <div class="schedule-room">Bu Dewi · Lab Fisika</div>
+            </div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">14:45</div>
+            <div>
+              <div class="schedule-class">☪️ Pendidikan Agama Islam</div>
+              <div class="schedule-room">Ustaz Hamid · Ruang 3A</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

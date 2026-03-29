@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumuman – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-pengumuman.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a
+          class="sidebar-link active"
+          href="guru-pengumuman.html"
+          aria-current="page"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📢 Pengumuman</h1>
+          <p>Kelola pengumuman untuk siswa dan orang tua</p>
+        </div>
+        <button class="btn-primary" onclick="openModal()">
+          + Buat Pengumuman
+        </button>
+      </div>
+      <div class="ann-list">
+        <div class="ann-card">
+          <div class="ann-header">
+            <div class="ann-title">📌 Jadwal UTS Semester Genap 2025/2026</div>
+            <span
+              class="ann-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Terpublikasi</span
+            >
+          </div>
+          <div class="ann-meta">
+            <span>📅 6 Apr 2026</span><span>👁️ 145 dilihat</span
+            ><span>oleh: Siti Rahma, S.Pd</span>
+          </div>
+          <div class="ann-body">
+            Assalamualaikum Wr. Wb. Diberitahukan kepada seluruh siswa bahwa UTS
+            Semester Genap akan dilaksanakan pada tanggal 14-25 April 2026.
+            Siswa diharapkan mempersiapkan diri dengan baik. Jadwal detail per
+            kelas dapat dilihat di papan pengumuman atau halaman Jadwal.
+          </div>
+          <div class="ann-footer">
+            <div class="ann-target">
+              <span class="ann-target-tag">Semua Kelas</span
+              ><span class="ann-target-tag">Siswa</span
+              ><span class="ann-target-tag">Orang Tua</span>
+            </div>
+            <div class="ann-actions">
+              <button class="a-btn" onclick="showToast('Edit pengumuman...')">
+                ✏️ Edit</button
+              ><button class="a-btn" onclick="showToast('Hapus pengumuman...')">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="ann-card">
+          <div class="ann-header">
+            <div class="ann-title">📝 Pengumpulan Tugas Matematika Bab 5</div>
+            <span
+              class="ann-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Terpublikasi</span
+            >
+          </div>
+          <div class="ann-meta">
+            <span>📅 4 Apr 2026</span><span>👁️ 89 dilihat</span
+            ><span>oleh: Siti Rahma, S.Pd</span>
+          </div>
+          <div class="ann-body">
+            Kepada siswa kelas 10 IPA dan 10 IPS, pengumpulan tugas Matematika
+            Bab 5 (Integral) adalah paling lambat hari Rabu, 9 April 2026 pukul
+            23:59 WIB melalui portal MadrasahConnect. Tugas yang terlambat akan
+            dikenakan pengurangan nilai.
+          </div>
+          <div class="ann-footer">
+            <div class="ann-target">
+              <span class="ann-target-tag">10 IPA</span
+              ><span class="ann-target-tag">10 IPS</span>
+            </div>
+            <div class="ann-actions">
+              <button class="a-btn" onclick="showToast('Edit pengumuman...')">
+                ✏️ Edit</button
+              ><button class="a-btn" onclick="showToast('Hapus pengumuman...')">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="ann-card">
+          <div class="ann-header">
+            <div class="ann-title">🏆 Hasil Lomba Matematika Antar Sekolah</div>
+            <span
+              class="ann-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Terpublikasi</span
+            >
+          </div>
+          <div class="ann-meta">
+            <span>📅 1 Apr 2026</span><span>👁️ 203 dilihat</span
+            ><span>oleh: Siti Rahma, S.Pd</span>
+          </div>
+          <div class="ann-body">
+            Alhamdulillah, tim Matematika SMAN Muhammadiyah 1 berhasil meraih
+            Juara 2 dalam Lomba Matematika Tingkat Provinsi. Selamat kepada
+            Ahmad Fauzi (10 IPA) dan Indah Lestari (10 IPA) yang telah
+            membanggakan sekolah! 🎉
+          </div>
+          <div class="ann-footer">
+            <div class="ann-target">
+              <span class="ann-target-tag">Semua Kelas</span>
+            </div>
+            <div class="ann-actions">
+              <button class="a-btn" onclick="showToast('Edit pengumuman...')">
+                ✏️ Edit</button
+              ><button class="a-btn" onclick="showToast('Hapus pengumuman...')">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="ann-card">
+          <div class="ann-header">
+            <div class="ann-title">📋 Remedial UH 3 – Kelas 11 IPA</div>
+            <span class="ann-badge" style="background: #fef3c7; color: #d97706"
+              >Draft</span
+            >
+          </div>
+          <div class="ann-meta">
+            <span>📅 31 Mar 2026</span><span>Belum terpublikasi</span>
+          </div>
+          <div class="ann-body">
+            Remedial Ulangan Harian 3 untuk kelas 11 IPA akan dilaksanakan pada
+            hari Sabtu, 5 April 2026 pukul 08:00 di Ruang 301. Siswa yang wajib
+            remedial akan dihubungi secara personal.
+          </div>
+          <div class="ann-footer">
+            <div class="ann-target">
+              <span class="ann-target-tag">11 IPA</span>
+            </div>
+            <div class="ann-actions">
+              <button
+                class="a-btn"
+                onclick="showToast('Publish pengumuman...')"
+              >
+                🚀 Publish</button
+              ><button class="a-btn" onclick="showToast('Edit pengumuman...')">
+                ✏️ Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="if (event.target === this) closeModal();"
+    >
+      <div class="modal">
+        <h2>📢 Buat Pengumuman Baru</h2>
+        <div class="form-group">
+          <label class="form-label">Judul Pengumuman</label
+          ><input
+            type="text"
+            class="form-input"
+            placeholder="Masukkan judul pengumuman"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Isi Pengumuman</label
+          ><textarea
+            class="form-textarea"
+            placeholder="Tulis isi pengumuman..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Target Penerima</label>
+          <label class="form-check"
+            ><input type="checkbox" checked /> Semua Kelas</label
+          >
+          <label class="form-check"><input type="checkbox" /> 10 IPA</label>
+          <label class="form-check"><input type="checkbox" /> 10 IPS</label>
+          <label class="form-check"><input type="checkbox" /> 11 IPA</label>
+          <label class="form-check"><input type="checkbox" /> 11 IPS</label>
+          <label class="form-check"><input type="checkbox" /> 12 IPA</label>
+          <label class="form-check"><input type="checkbox" /> 12 IPS</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kirim ke</label>
+          <label class="form-check"
+            ><input type="checkbox" checked /> Siswa</label
+          >
+          <label class="form-check"
+            ><input type="checkbox" checked /> Orang Tua</label
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lampiran (opsional)</label
+          ><input type="file" class="form-input" />
+        </div>
+        <div class="modal-btns">
+          <button class="btn-cancel" onclick="closeModal()">Batal</button
+          ><button
+            class="btn-primary"
+            onclick="
+              closeModal();
+              showToast('Pengumuman berhasil dipublikasikan!', '📢');
+            "
+          >
+            Publikasikan
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-pengumuman.js"></script>
+  </body>
+</html>

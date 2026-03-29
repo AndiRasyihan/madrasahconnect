@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/tugas.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+
+    <aside class="sidebar" id="sidebar" aria-label="Menu samping">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Menu dashboard">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link active" href="tugas.html" aria-current="page"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>📋 Tugas Saya</h1>
+          <p>Kelola semua tugas dan pengumpulan</p>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-mini">
+          <div class="s-num" style="color: var(--coral-400)">3</div>
+          <div class="s-lbl">Belum Selesai</div>
+        </div>
+        <div class="stat-mini">
+          <div class="s-num" style="color: var(--amber-800)">2</div>
+          <div class="s-lbl">Hampir Deadline</div>
+        </div>
+        <div class="stat-mini">
+          <div class="s-num" style="color: var(--green-600)">18</div>
+          <div class="s-lbl">Sudah Selesai</div>
+        </div>
+        <div class="stat-mini">
+          <div class="s-num">21</div>
+          <div class="s-lbl">Total Tugas</div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterTasks(this, 'all')">
+          Semua
+        </button>
+        <button class="filter-btn" onclick="filterTasks(this, 'pending')">
+          Belum Selesai
+        </button>
+        <button class="filter-btn" onclick="filterTasks(this, 'done')">
+          Selesai
+        </button>
+        <button class="filter-btn" onclick="filterTasks(this, 'overdue')">
+          Terlambat
+        </button>
+      </div>
+
+      <div id="taskList">
+        <!-- Overdue -->
+        <div class="task-card overdue" data-status="pending overdue">
+          <div
+            class="task-check"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+          ></div>
+          <div
+            class="task-body"
+            onclick="
+              showToast('Membuka detail tugas: Laporan Praktikum Fisika')
+            "
+          >
+            <div class="task-title">
+              Laporan Praktikum Fisika – Gelombang Bunyi
+            </div>
+            <div class="task-desc">
+              Buat laporan praktikum lengkap dengan data pengamatan, analisis,
+              dan kesimpulan. Minimal 5 halaman.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">⚗️ Fisika</span>
+              <span class="task-tag tag-deadline">⏰ Terlambat 2 jam</span>
+              <span class="task-tag tag-type">📄 Laporan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming -->
+        <div class="task-card upcoming" data-status="pending">
+          <div
+            class="task-check"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+          ></div>
+          <div
+            class="task-body"
+            onclick="showToast('Membuka detail tugas: Essay Narrative Text')"
+          >
+            <div class="task-title">Essay Narrative Text 500 Kata</div>
+            <div class="task-desc">
+              Tulis essay narrative text dalam bahasa Indonesia dengan tema
+              bebas. Perhatikan struktur: orientasi, komplikasi, resolusi.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">📖 B. Indonesia</span>
+              <span class="task-tag tag-deadline">⏰ Besok 23:59</span>
+              <span class="task-tag tag-type">✍️ Essay</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card upcoming" data-status="pending">
+          <div
+            class="task-check"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+          ></div>
+          <div
+            class="task-body"
+            onclick="showToast('Membuka detail tugas: Soal Latihan Integral')"
+          >
+            <div class="task-title">Soal Latihan Integral Tentu Hal. 48</div>
+            <div class="task-desc">
+              Kerjakan soal nomor 1–20 di buku paket halaman 48. Tulis langkah
+              penyelesaian secara lengkap.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">📐 Matematika</span>
+              <span class="task-tag tag-deadline">⏰ Senin 08:00</span>
+              <span class="task-tag tag-type">📝 Latihan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card upcoming" data-status="pending">
+          <div
+            class="task-check"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+          ></div>
+          <div
+            class="task-body"
+            onclick="showToast('Membuka detail tugas: Presentasi Kimia')"
+          >
+            <div class="task-title">Presentasi Kelompok – Reaksi Redoks</div>
+            <div class="task-desc">
+              Buat slide presentasi tentang reaksi oksidasi-reduksi. Kelompok 3:
+              Ahmad, Budi, Citra, Dina.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">🧪 Kimia</span>
+              <span class="task-tag tag-deadline">⏰ Rabu 10:00</span>
+              <span class="task-tag tag-type">🎤 Presentasi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed -->
+        <div class="task-card done" data-status="done">
+          <div
+            class="task-check checked"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="true"
+            tabindex="0"
+          >
+            ✓
+          </div>
+          <div class="task-body">
+            <div class="task-title completed">
+              Hapalan Surah Al-Mulk Ayat 1–10
+            </div>
+            <div class="task-desc">
+              Hapalkan dan setorkan ke ustaz di waktu pelajaran PAI.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">☪️ PAI</span>
+              <span class="task-tag tag-deadline-ok">✅ Selesai 26 Mar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card done" data-status="done">
+          <div
+            class="task-check checked"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="true"
+            tabindex="0"
+          >
+            ✓
+          </div>
+          <div class="task-body">
+            <div class="task-title completed">Resume Bab 5 – Kemagnetan</div>
+            <div class="task-desc">
+              Buat resume materi kemagnetan dengan peta konsep.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">⚗️ Fisika</span>
+              <span class="task-tag tag-deadline-ok">✅ Selesai 25 Mar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-card done" data-status="done">
+          <div
+            class="task-check checked"
+            onclick="toggleTaskCheck(this)"
+            role="checkbox"
+            aria-checked="true"
+            tabindex="0"
+          >
+            ✓
+          </div>
+          <div class="task-body">
+            <div class="task-title completed">
+              Reading Comprehension – Chapter 7
+            </div>
+            <div class="task-desc">
+              Answer questions from textbook page 112-115.
+            </div>
+            <div class="task-tags">
+              <span class="task-tag tag-subject">🌐 B. Inggris</span>
+              <span class="task-tag tag-deadline-ok">✅ Selesai 24 Mar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="card">
+        <div class="card-header"><h3>📤 Kumpulkan Tugas</h3></div>
+        <div class="card-body">
+          <div
+            class="upload-area"
+            onclick="showToast('Pilih file untuk diunggah...')"
+          >
+            <div class="upload-icon">📁</div>
+            <p><strong>Klik atau seret file ke sini</strong></p>
+            <p style="font-size: 11px; margin-top: 4px; color: var(--gray-400)">
+              Format: PDF, DOCX, JPG, PNG · Maks. 10MB
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/tugas.js"></script>
+  </body>
+</html>

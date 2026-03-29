@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jadwal – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jadwal.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link active" href="jadwal.html" aria-current="page"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>📅 Jadwal Pelajaran</h1>
+          <p>Minggu ke-13, Semester Genap 2025/2026</p>
+        </div>
+      </div>
+
+      <div class="day-tabs">
+        <button class="day-tab" onclick="selectDay(this)">
+          <span class="day-name">Senin</span
+          ><span class="day-date">23 Mar</span>
+        </button>
+        <button class="day-tab" onclick="selectDay(this)">
+          <span class="day-name">Selasa</span
+          ><span class="day-date">24 Mar</span>
+        </button>
+        <button class="day-tab" onclick="selectDay(this)">
+          <span class="day-name">Rabu</span><span class="day-date">25 Mar</span>
+        </button>
+        <button class="day-tab" onclick="selectDay(this)">
+          <span class="day-name">Kamis</span
+          ><span class="day-date">26 Mar</span>
+        </button>
+        <button class="day-tab" onclick="selectDay(this)">
+          <span class="day-name">Jumat</span
+          ><span class="day-date">27 Mar</span>
+        </button>
+        <button class="day-tab active">
+          <span class="day-name">Sabtu</span
+          ><span class="day-date">28 Mar</span>
+        </button>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="time-slot">
+          <div class="time-label">07:00</div>
+          <div class="slot-content">
+            <div class="schedule-item">
+              <div
+                class="schedule-dot"
+                style="background: var(--teal-400)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">☪️ Sholat Dhuha Berjamaah</div>
+                <div class="schedule-meta">Masjid Sekolah · 07:00–07:25</div>
+              </div>
+              <span
+                class="schedule-badge"
+                style="background: var(--teal-50); color: var(--teal-600)"
+                >Wajib</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">07:30</div>
+          <div class="slot-content">
+            <div class="schedule-item now">
+              <div
+                class="schedule-dot"
+                style="background: var(--green-400)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">📐 Matematika</div>
+                <div class="schedule-meta">
+                  Bu Siti Rahma · Ruang 3A · 07:30–09:00
+                </div>
+              </div>
+              <span
+                class="schedule-badge"
+                style="background: var(--green-50); color: var(--green-600)"
+                >Berlangsung</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">09:15</div>
+          <div class="slot-content">
+            <div class="schedule-item">
+              <div
+                class="schedule-dot"
+                style="background: var(--blue-400)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">📖 Bahasa Indonesia</div>
+                <div class="schedule-meta">
+                  Pak Ahmad · Ruang 3A · 09:15–10:45
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">10:45</div>
+          <div class="slot-content">
+            <div class="empty-slot">🍽️ Istirahat 1 (10:45–11:15)</div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">11:15</div>
+          <div class="slot-content">
+            <div class="schedule-item">
+              <div
+                class="schedule-dot"
+                style="background: var(--teal-400)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">☪️ Sholat Dzuhur Berjamaah</div>
+                <div class="schedule-meta">Masjid Sekolah · 11:15–11:45</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">13:00</div>
+          <div class="slot-content">
+            <div class="schedule-item">
+              <div
+                class="schedule-dot"
+                style="background: var(--amber-200)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">⚗️ Fisika</div>
+                <div class="schedule-meta">
+                  Bu Dewi · Lab Fisika · 13:00–14:30
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot">
+          <div class="time-label">14:45</div>
+          <div class="slot-content">
+            <div class="schedule-item">
+              <div
+                class="schedule-dot"
+                style="background: var(--teal-600)"
+              ></div>
+              <div class="schedule-info">
+                <div class="schedule-name">☪️ Pendidikan Agama Islam</div>
+                <div class="schedule-meta">
+                  Ustaz Hamid · Ruang 3A · 14:45–16:00
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px">
+        <div class="card-header"><h3>📌 Kegiatan Mendatang</h3></div>
+        <div class="card-body">
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-date-num">30</div>
+              <div class="event-date-month">Mar</div>
+            </div>
+            <div>
+              <div class="event-title">UTS Fisika</div>
+              <div class="event-desc">
+                09:45–11:45 · Lab Fisika · Bab Gelombang & Kemagnetan
+              </div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-date-num">31</div>
+              <div class="event-date-month">Mar</div>
+            </div>
+            <div>
+              <div class="event-title">UTS Pendidikan Agama Islam</div>
+              <div class="event-desc">
+                07:30–09:00 · Ruang 3A · Al-Mulk & Fiqh Ibadah
+              </div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-date-num">1</div>
+              <div class="event-date-month">Apr</div>
+            </div>
+            <div>
+              <div class="event-title">UTS Kimia</div>
+              <div class="event-desc">
+                09:45–11:45 · Lab Kimia · Reaksi Redoks & Elektrokimia
+              </div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-date-num">6</div>
+              <div class="event-date-month">Apr</div>
+            </div>
+            <div>
+              <div class="event-title">Pengumuman 10 Besar Kelas</div>
+              <div class="event-desc">Aula Sekolah · 09:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/jadwal.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MadrasahConnect – Platform digital inklusif untuk sekolah Muhammadiyah & Aisyiyah. Dirancang untuk siswa, guru, dan orang tua dengan fitur aksesibilitas penuh WCAG 2.1 AA."
+    />
+    <meta name="theme-color" content="#3B6D11" />
+    <title>MadrasahConnect – Inclusive Digital School</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Favicon SVG inline -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%233B6D11'/><path d='M16 4L6 10v12l10 6 10-6V10L16 4zm0 3l7 4.3v8.4L16 24l-7-4.3V11.3L16 7z' fill='white'/></svg>"
+    />
+  </head>
+  <body>
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Langsung ke Konten Utama</a>
+
+    <!-- Scroll Progress -->
+    <div
+      id="scrollProgress"
+      role="progressbar"
+      aria-label="Progres halaman"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+
+    <!-- ══════════ ACCESSIBILITY TOOLBAR ══════════ -->
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Aktifkan mode kontras tinggi"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar ukuran teks"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+      <button
+        id="btnDys"
+        class="a11y-btn"
+        onclick="toggleDyslexia()"
+        aria-label="Font ramah disleksia"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Font Disleksia</span>Aa
+      </button>
+    </aside>
+
+    <!-- ══════════ MOBILE NAV ══════════ -->
+    <nav
+      id="mobileNav"
+      class="mobile-nav"
+      aria-label="Menu Mobile"
+      aria-hidden="true"
+    >
+      <a href="#hero">🏠 Beranda <span>›</span></a>
+      <a href="#features">✨ Fitur <span>›</span></a>
+      <a href="#roles">👤 Portal Pengguna <span>›</span></a>
+      <a href="#accessibility">♿ Aksesibilitas <span>›</span></a>
+      <a href="#announcements">📢 Pengumuman <span>›</span></a>
+      <a href="pages/ppdb.html" data-action="ppdb"
+        >🎓 Daftar PPDB <span>›</span></a
+      >
+      <a
+        href="#"
+        class="mobile-cta"
+        onclick="
+          openLogin();
+          return false;
+        "
+        >Masuk ke Portal →</a
+      >
+    </nav>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Navigasi utama">
+        <a
+          href="index.html"
+          class="nav-logo"
+          aria-label="MadrasahConnect – Halaman Utama"
+        >
+          <div class="nav-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="nav-logo-text">
+            <strong>MadrasahConnect</strong>
+            <span>SD · SMP · SMA Muhammadiyah</span>
+          </div>
+        </a>
+        <ul class="nav-links" role="list">
+          <li>
+            <a href="#hero" class="active" aria-current="page">Beranda</a>
+          </li>
+          <li><a href="#features">Fitur</a></li>
+          <li><a href="#roles">Portal</a></li>
+          <li><a href="#accessibility">Aksesibilitas</a></li>
+          <li><a href="#announcements">Pengumuman</a></li>
+          <li><a href="pages/ppdb.html">PPDB</a></li>
+          <li>
+            <a
+              href="#"
+              class="nav-cta"
+              onclick="
+                openLogin();
+                return false;
+              "
+              >Masuk →</a
+            >
+          </li>
+        </ul>
+        <button
+          id="hamburger"
+          class="hamburger"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ══════════ ANNOUNCEMENT STRIP ══════════ -->
+    <div
+      id="announceStrip"
+      class="announce-strip"
+      role="alert"
+      aria-live="polite"
+    >
+      <span class="strip-badge">BARU</span>
+      <span
+        >🎉 Pendaftaran PPDB 2026/2027 resmi dibuka — daftar sebelum 15 April
+        2026!</span
+      >
+      <a href="pages/ppdb.html" class="strip-link">Daftar Sekarang →</a>
+      <button
+        id="stripClose"
+        aria-label="Tutup pengumuman"
+        style="
+          background: rgba(255, 255, 255, 0.15);
+          border: none;
+          color: #fff;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════ -->
+    <main id="main">
+      <!-- ═══ HERO ═══ -->
+      <section id="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <div
+            class="hero-eyebrow"
+            aria-label="Platform inklusif untuk Sekolah Muhammadiyah"
+          >
+            <span class="pulse" aria-hidden="true"></span>
+            Platform Inklusif Digital · APSI-PTMA 2026
+          </div>
+          <h1 id="hero-title">
+            Sekolah Muhammadiyah<br />
+            <em>Digital &amp; Inklusif</em><br />
+            untuk Semua
+          </h1>
+          <span
+            class="hero-arabic"
+            lang="ar"
+            aria-label="Bismillahirrahmanirrahim"
+            >بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span
+          >
+          <p class="hero-desc">
+            Portal sekolah responsive yang memudahkan akses informasi bagi
+            siswa, guru, dan orang tua — lengkap dengan fitur inklusivitas penuh
+            untuk penyandang disabilitas. Dibangun di atas nilai Islam
+            Berkemajuan.
+          </p>
+          <div class="hero-actions" role="group" aria-label="Aksi utama">
+            <button
+              class="btn btn-primary"
+              onclick="openLogin()"
+              aria-label="Masuk ke portal sekolah"
+            >
+              Masuk ke Portal
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+            <a
+              href="pages/ppdb.html"
+              class="btn btn-outline"
+              aria-label="Daftar PPDB Online 2026"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              Daftar PPDB Online
+            </a>
+          </div>
+          <div class="hero-stats" role="group" aria-label="Statistik platform">
+            <div class="hero-stat">
+              <div class="hero-stat-num" aria-label="Lebih dari 500 sekolah">
+                500+
+              </div>
+              <div class="hero-stat-label">Sekolah</div>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat">
+              <div
+                class="hero-stat-num"
+                aria-label="Lebih dari 120 ribu pengguna"
+              >
+                120rb+
+              </div>
+              <div class="hero-stat-label">Pengguna</div>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">WCAG</div>
+              <div class="hero-stat-label">2.1 AA Certified</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Device Mockup -->
+        <div class="hero-visual" aria-hidden="true" role="presentation">
+          <div class="device-wrap">
+            <div class="device-bar">
+              <div class="device-dot" style="background: #ff5f57"></div>
+              <div class="device-dot" style="background: #ffbd2e"></div>
+              <div class="device-dot" style="background: #28c840"></div>
+              <div class="device-url">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0110 0v4" />
+                </svg>
+                madrasahconnect.id/dashboard
+              </div>
+            </div>
+            <div class="device-screen">
+              <div class="mock-topbar">
+                <div class="mock-logo">
+                  <div class="mock-logo-dot">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M12 2L4 7v10l8 5 8-5V7L12 2z" />
+                    </svg>
+                  </div>
+                  MadrasahConnect
+                </div>
+                <div class="mock-nav">
+                  <span>Beranda</span><span>Pelajaran</span><span>Jadwal</span
+                  ><span>Nilai</span>
+                </div>
+              </div>
+              <div class="mock-banner">
+                <h3>Portal Inklusif Sekolah Muhammadiyah</h3>
+                <p>Akses informasi sekolah kapan saja, di mana saja</p>
+                <div class="mock-btn">Mulai Belajar →</div>
+              </div>
+              <div class="mock-cards">
+                <div class="mock-card">
+                  <div class="icon">📚</div>
+                  <p>Materi</p>
+                </div>
+                <div class="mock-card">
+                  <div class="icon">📅</div>
+                  <p>Jadwal</p>
+                </div>
+                <div class="mock-card">
+                  <div class="icon">📊</div>
+                  <p>Nilai</p>
+                </div>
+              </div>
+              <div class="mock-notice">
+                <span class="mock-notice-dot"></span>
+                📢 PPDB 2026/2027: Pendaftaran Online 1 Maret – 15 April 2026
+              </div>
+              <div
+                class="mock-notice"
+                style="
+                  background: var(--teal-50);
+                  border-left-color: var(--teal-200);
+                  color: var(--teal-800);
+                "
+              >
+                <span
+                  class="mock-notice-dot"
+                  style="background: var(--teal-200)"
+                ></span>
+                🏆 Ahmad Fauzi meraih Juara 1 Olimpiade Matematika Nasional
+              </div>
+            </div>
+          </div>
+          <!-- Phone -->
+          <div class="phone-device">
+            <div class="phone-notch"><div class="phone-pill"></div></div>
+            <div class="phone-screen">
+              <div class="phone-topbar">
+                <span class="phone-logo">MC</span>
+                <div class="phone-ham">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="phone-banner">
+                <p>Portal Inklusif Muhammadiyah</p>
+                <span class="pb-btn">Masuk →</span>
+              </div>
+              <div class="phone-grid">
+                <div class="phone-item">
+                  <div class="pi">📚</div>
+                  <p>Pelajaran</p>
+                </div>
+                <div class="phone-item">
+                  <div class="pi">📅</div>
+                  <p>Jadwal</p>
+                </div>
+                <div class="phone-item">
+                  <div class="pi">📊</div>
+                  <p>Nilai</p>
+                </div>
+                <div class="phone-item">
+                  <div class="pi">💬</div>
+                  <p>Pesan</p>
+                </div>
+              </div>
+              <div class="phone-notice">📢 PPDB: 1 Mar – 15 Apr 2026</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FEATURES ═══ -->
+      <section id="features" aria-labelledby="features-title">
+        <div class="container" style="padding: 0">
+          <div class="section-label" aria-hidden="true">Fitur Unggulan</div>
+          <h2 class="section-title" id="features-title">
+            Semua yang Dibutuhkan<br />Komunitas Sekolah
+          </h2>
+          <p class="section-sub">
+            Platform terintegrasi dengan fitur lengkap untuk mendukung proses
+            belajar mengajar yang inklusif, efektif, dan modern.
+          </p>
+          <div class="features-grid">
+            <article class="feat-card" tabindex="0">
+              <div class="feat-icon icon-green" aria-hidden="true">📚</div>
+              <h3>Manajemen Materi Pelajaran</h3>
+              <p>
+                Akses modul pelajaran, tugas, dan video pembelajaran secara
+                terpusat. Tersedia dalam format teks, audio, dan visual.
+              </p>
+              <span class="feat-tag tag-green">Siswa &amp; Guru</span>
+            </article>
+            <article class="feat-card" tabindex="0">
+              <div class="feat-icon icon-teal" aria-hidden="true">📊</div>
+              <h3>Laporan Nilai &amp; Progres</h3>
+              <p>
+                Dashboard real-time untuk memantau perkembangan akademik. Orang
+                tua dapat melihat laporan lengkap kapan saja.
+              </p>
+              <span class="feat-tag tag-teal">Real-time</span>
+            </article>
+            <article class="feat-card featured" tabindex="0">
+              <div class="feat-icon icon-white" aria-hidden="true">♿</div>
+              <h3>Inklusivitas Penuh WCAG 2.1</h3>
+              <p>
+                Screen reader, kontras tinggi, teks-ke-suara, navigasi keyboard,
+                dan font ramah disleksia. Untuk semua kemampuan.
+              </p>
+              <span class="feat-tag tag-white">WCAG 2.1 AA</span>
+            </article>
+            <article class="feat-card" tabindex="0">
+              <div class="feat-icon icon-amber" aria-hidden="true">📅</div>
+              <h3>Jadwal &amp; Kalender Akademik</h3>
+              <p>
+                Jadwal pelajaran otomatis, pengingat ujian, dan kalender
+                kegiatan sekolah yang sinkron antar perangkat.
+              </p>
+              <span class="feat-tag tag-green">Multi-perangkat</span>
+            </article>
+            <article class="feat-card" tabindex="0">
+              <div class="feat-icon icon-blue" aria-hidden="true">💬</div>
+              <h3>Komunikasi Guru–Orang Tua</h3>
+              <p>
+                Sistem pesan terenkripsi, notifikasi kehadiran, dan konsultasi
+                online antara guru dan wali murid.
+              </p>
+              <span class="feat-tag tag-teal">Aman &amp; Privat</span>
+            </article>
+            <article class="feat-card" tabindex="0">
+              <div class="feat-icon icon-coral" aria-hidden="true">🎓</div>
+              <h3>PPDB Online</h3>
+              <p>
+                Pendaftaran peserta didik baru secara online, lengkap dengan
+                seleksi, pengumuman, dan daftar ulang digital.
+              </p>
+              <span class="feat-tag tag-green">Online</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ROLES ═══ -->
+      <section id="roles" aria-labelledby="roles-title">
+        <div class="section-label" aria-hidden="true">Portal Pengguna</div>
+        <h2 class="section-title" id="roles-title">
+          Dirancang untuk<br />Setiap Peran
+        </h2>
+        <p class="section-sub">
+          Antarmuka yang disesuaikan untuk kebutuhan spesifik siswa, guru, dan
+          orang tua — dalam satu platform terintegrasi.
+        </p>
+        <div class="roles-grid">
+          <article class="role-card student" aria-labelledby="role-siswa">
+            <span class="role-badge badge-s">Siswa</span>
+            <h3 id="role-siswa">Portal Belajar<br />Interaktif</h3>
+            <ul class="role-feats" aria-label="Fitur portal siswa">
+              <li>Akses materi &amp; modul pelajaran</li>
+              <li>Pengumpulan tugas online</li>
+              <li>Jadwal kelas &amp; ujian</li>
+              <li>Hasil nilai &amp; rapor digital</li>
+              <li>Forum diskusi kelas</li>
+              <li>Mode baca ramah difabel</li>
+            </ul>
+            <button
+              class="btn btn-teal"
+              data-action="login"
+              aria-label="Masuk ke portal siswa"
+            >
+              Masuk Sebagai Siswa
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </article>
+          <article class="role-card teacher" aria-labelledby="role-guru">
+            <span class="role-badge badge-t">Guru</span>
+            <h3 id="role-guru">Ruang Kelola<br />Pembelajaran</h3>
+            <ul class="role-feats" aria-label="Fitur portal guru">
+              <li>Upload materi &amp; video pelajaran</li>
+              <li>Buat &amp; nilai tugas / ujian</li>
+              <li>Absensi digital otomatis</li>
+              <li>Laporan progres per siswa</li>
+              <li>Komunikasi wali murid</li>
+              <li>Kalender mengajar personal</li>
+            </ul>
+            <button
+              class="btn btn-green-light"
+              data-action="login"
+              aria-label="Masuk ke portal guru"
+            >
+              Masuk Sebagai Guru
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </article>
+          <article class="role-card parent" aria-labelledby="role-ortu">
+            <span class="role-badge badge-p">Orang Tua</span>
+            <h3 id="role-ortu">Pantau Perkembangan<br />Anak</h3>
+            <ul class="role-feats" aria-label="Fitur portal orang tua">
+              <li>Laporan nilai &amp; kehadiran</li>
+              <li>Notifikasi real-time aktivitas</li>
+              <li>Chat langsung dengan guru</li>
+              <li>Tagihan SPP &amp; pembayaran</li>
+              <li>Kalender kegiatan sekolah</li>
+              <li>Download rapor digital</li>
+            </ul>
+            <button
+              class="btn btn-amber"
+              data-action="login"
+              aria-label="Masuk ke portal orang tua"
+            >
+              Masuk Sebagai Orang Tua
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══ DASHBOARD PREVIEW ═══ -->
+      <section id="dashboard-section" aria-labelledby="dash-title">
+        <div class="section-label" aria-hidden="true">Tampilan Dashboard</div>
+        <h2 class="section-title" id="dash-title">
+          Antarmuka Bersih &amp;<br />Mudah Digunakan
+        </h2>
+        <p class="section-sub">
+          Dashboard intuitif dengan informasi yang relevan, dapat diakses oleh
+          semua pengguna.
+        </p>
+        <div
+          class="dash-wrap"
+          role="region"
+          aria-label="Preview dashboard siswa"
+        >
+          <div class="dash-topbar">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div class="dash-dots" aria-hidden="true">
+                <span style="background: #ff5f57"></span>
+                <span style="background: #ffbd2e"></span>
+                <span style="background: #28c840"></span>
+              </div>
+              <span class="dash-title-text"
+                >Dashboard Siswa – Ahmad Fauzi, Kelas 10 IPA</span
+              >
+            </div>
+            <div class="dash-tabs" role="tablist" aria-label="Tab dashboard">
+              <button class="dash-tab active" role="tab" aria-selected="true">
+                Ringkasan
+              </button>
+              <button class="dash-tab" role="tab" aria-selected="false">
+                Pelajaran
+              </button>
+              <button class="dash-tab" role="tab" aria-selected="false">
+                Nilai
+              </button>
+              <button class="dash-tab" role="tab" aria-selected="false">
+                Jadwal
+              </button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <!-- Sidebar -->
+            <aside class="dash-sidebar" aria-label="Menu samping">
+              <div class="dash-user">
+                <div class="user-av" aria-label="Avatar Ahmad Fauzi">AF</div>
+                <div class="user-name">Ahmad Fauzi</div>
+                <div class="user-role-tag">Siswa · Kelas 10 IPA</div>
+              </div>
+              <nav class="dash-menu" aria-label="Menu dashboard">
+                <a href="#" class="active" aria-current="page"
+                  ><span class="mi">🏠</span> Beranda</a
+                >
+                <a href="#"><span class="mi">📚</span> Pelajaran</a>
+                <a href="#"
+                  ><span class="mi">📋</span> Tugas
+                  <span class="menu-badge">3</span></a
+                >
+                <a href="#"><span class="mi">📊</span> Nilai</a>
+                <a href="#"><span class="mi">📅</span> Jadwal</a>
+                <a href="#"
+                  ><span class="mi">💬</span> Pesan
+                  <span class="menu-badge">2</span></a
+                >
+                <a href="#"><span class="mi">⚙️</span> Pengaturan</a>
+              </nav>
+            </aside>
+            <!-- Main Content -->
+            <div class="dash-content">
+              <div class="dash-welcome">
+                <div>
+                  <h3>Selamat Pagi, Ahmad! ☀️</h3>
+                  <p>Kamu punya 3 tugas yang perlu dikumpulkan hari ini.</p>
+                </div>
+                <button
+                  class="wbtn"
+                  onclick="showToast('Membuka daftar tugas...')"
+                >
+                  Lihat Tugas →
+                </button>
+              </div>
+              <div
+                class="stats-row"
+                role="group"
+                aria-label="Statistik akademik"
+              >
+                <div class="stat-card">
+                  <div class="lbl">Kehadiran</div>
+                  <div class="val">94%</div>
+                  <div class="chg chg-up">↑ +2% dari bulan lalu</div>
+                </div>
+                <div class="stat-card">
+                  <div class="lbl">Rata-rata Nilai</div>
+                  <div class="val">87.4</div>
+                  <div class="chg chg-up">↑ +3.2 poin</div>
+                </div>
+                <div class="stat-card">
+                  <div class="lbl">Tugas Selesai</div>
+                  <div class="val">18/21</div>
+                  <div class="chg chg-dn">3 belum selesai</div>
+                </div>
+              </div>
+              <div class="content-grid">
+                <div class="panel" role="region" aria-labelledby="panel-prog">
+                  <div class="panel-hd">
+                    <span id="panel-prog">Progres Pelajaran</span
+                    ><a
+                      href="#"
+                      onclick="
+                        showToast('Membuka semua pelajaran');
+                        return false;
+                      "
+                      >Lihat Semua</a
+                    >
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-lbl">
+                      <span>Matematika</span><span>85%</span>
+                    </div>
+                    <div class="prog-bar">
+                      <div
+                        class="prog-fill"
+                        style="background: var(--green-400)"
+                        data-width="85%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-lbl">
+                      <span>Bahasa Indonesia</span><span>92%</span>
+                    </div>
+                    <div class="prog-bar">
+                      <div
+                        class="prog-fill"
+                        style="background: var(--teal-400)"
+                        data-width="92%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-lbl">
+                      <span>Fisika</span><span>68%</span>
+                    </div>
+                    <div class="prog-bar">
+                      <div
+                        class="prog-fill"
+                        style="background: var(--amber-200)"
+                        data-width="68%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-lbl">
+                      <span>Pendidikan Agama Islam</span><span>100%</span>
+                    </div>
+                    <div class="prog-bar">
+                      <div
+                        class="prog-fill"
+                        style="background: var(--green-600)"
+                        data-width="100%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel" role="region" aria-labelledby="panel-agenda">
+                  <div class="panel-hd">
+                    <span id="panel-agenda">Agenda Hari Ini</span
+                    ><a
+                      href="#"
+                      onclick="
+                        showToast('Membuka kalender');
+                        return false;
+                      "
+                      >Kalender</a
+                    >
+                  </div>
+                  <div class="agenda-item">
+                    <span class="ag-time">07:30</span>
+                    <div
+                      class="ag-dot"
+                      style="background: var(--green-400)"
+                    ></div>
+                    <div>
+                      <div class="ag-title">Matematika – Bu Siti</div>
+                      <div class="ag-sub">Ruang 3A · Integral</div>
+                    </div>
+                  </div>
+                  <div class="agenda-item">
+                    <span class="ag-time">09:00</span>
+                    <div
+                      class="ag-dot"
+                      style="background: var(--teal-400)"
+                    ></div>
+                    <div>
+                      <div class="ag-title">Bahasa Indonesia</div>
+                      <div class="ag-sub">Ruang 3A · Presentasi Essay</div>
+                    </div>
+                  </div>
+                  <div class="agenda-item">
+                    <span class="ag-time">11:00</span>
+                    <div
+                      class="ag-dot"
+                      style="background: var(--amber-200)"
+                    ></div>
+                    <div>
+                      <div class="ag-title">Deadline: Tugas Fisika</div>
+                      <div class="ag-sub">Kumpulkan sebelum jam 11</div>
+                    </div>
+                  </div>
+                  <div class="agenda-item">
+                    <span class="ag-time">14:00</span>
+                    <div
+                      class="ag-dot"
+                      style="background: var(--coral-400)"
+                    ></div>
+                    <div>
+                      <div class="ag-title">Ekskul Robotika</div>
+                      <div class="ag-sub">Lab Komputer · Wajib hadir</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ACCESSIBILITY ═══ -->
+      <section id="accessibility" aria-labelledby="a11y-title">
+        <div class="section-label">Inklusivitas &amp; Aksesibilitas</div>
+        <h2 class="section-title" id="a11y-title">
+          Dirancang untuk<br />Semua Kemampuan
+        </h2>
+        <p class="section-sub">
+          Kami percaya pendidikan adalah hak semua orang. Platform ini memenuhi
+          standar internasional WCAG 2.1 Level AA untuk akses yang setara.
+        </p>
+        <div class="a11y-grid">
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">🔊</div>
+            <h4>Screen Reader Support</h4>
+            <p>
+              Kompatibel penuh dengan NVDA, JAWS, dan VoiceOver. Semua elemen
+              memiliki label ARIA yang tepat.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 1.3.1</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">◑</div>
+            <h4>Mode Kontras Tinggi</h4>
+            <p>
+              Tombol aksesibilitas di sisi kanan layar. Rasio kontras minimum
+              4.5:1 di semua elemen teks.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 1.4.3</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">⌨️</div>
+            <h4>Navigasi Keyboard Penuh</h4>
+            <p>
+              Seluruh antarmuka dapat dijelajahi hanya dengan keyboard. Focus
+              indicator yang jelas dan konsisten.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 2.1.1</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">Aa</div>
+            <h4>Ukuran Teks Fleksibel</h4>
+            <p>
+              Teks dapat diperbesar hingga 200% tanpa kehilangan fungsionalitas.
+              Font khusus ramah disleksia tersedia.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 1.4.4</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">🖼️</div>
+            <h4>Alt Text &amp; Deskripsi Visual</h4>
+            <p>
+              Semua gambar dan ikon memiliki deskripsi alternatif yang bermakna
+              untuk pengguna screen reader.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 1.1.1</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">⏸️</div>
+            <h4>Kurangi Gerakan Animasi</h4>
+            <p>
+              Menghormati preferensi sistem "prefers-reduced-motion". Animasi
+              dapat diminimalkan otomatis.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 2.3.3</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">⏭️</div>
+            <h4>Skip Navigation Link</h4>
+            <p>
+              Tautan "Langsung ke Konten Utama" memungkinkan pengguna melewati
+              navigasi yang berulang.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 2.4.1</span
+            >
+          </article>
+          <article class="a11y-card" tabindex="0">
+            <div class="a11y-icon">🌐</div>
+            <h4>Bahasa &amp; Isyarat</h4>
+            <p>
+              Konten tersedia dalam Bahasa Indonesia dengan panduan bahasa
+              isyarat BISINDO untuk konten penting.
+            </p>
+            <span class="wcag-pill"
+              ><span class="wcag-dot"></span>WCAG 3.1.1</span
+            >
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══ ANNOUNCEMENTS ═══ -->
+      <section id="announcements" aria-labelledby="ann-title">
+        <div class="section-label" aria-hidden="true">Informasi Sekolah</div>
+        <h2 class="section-title" id="ann-title">
+          Pengumuman &amp;<br />Kegiatan Terbaru
+        </h2>
+        <p class="section-sub">
+          Selalu update dengan informasi terkini dari sekolah — dari akademik,
+          kegiatan, hingga pengumuman penting.
+        </p>
+        <div class="ann-layout">
+          <!-- Announcements List -->
+          <div class="ann-list" role="list" aria-label="Daftar pengumuman">
+            <article
+              class="ann-card"
+              role="listitem"
+              tabindex="0"
+              aria-labelledby="ann1"
+            >
+              <div class="ann-icon ev" aria-hidden="true">🎓</div>
+              <div class="ann-info">
+                <h4 id="ann1">
+                  Pendaftaran PPDB Online 2026/2027 Resmi Dibuka
+                </h4>
+                <p>
+                  Sekolah Muhammadiyah membuka pendaftaran peserta didik baru
+                  secara online untuk semua jenjang SD, SMP, dan SMA. Daftarkan
+                  putra-putri Anda sekarang.
+                </p>
+                <div class="ann-meta">
+                  <span class="ann-date">📅 1 Maret 2026</span>
+                  <span class="ann-pill pill-urgent">Segera</span>
+                </div>
+              </div>
+            </article>
+            <article
+              class="ann-card"
+              role="listitem"
+              tabindex="0"
+              aria-labelledby="ann2"
+            >
+              <div class="ann-icon ac" aria-hidden="true">🏆</div>
+              <div class="ann-info">
+                <h4 id="ann2">
+                  Siswa SMA Muhammadiyah Raih Juara 1 Olimpiade Matematika
+                  Nasional
+                </h4>
+                <p>
+                  Ahmad Fauzi dari kelas 12 IPA berhasil meraih medali emas di
+                  Olimpiade Matematika Tingkat Nasional yang diselenggarakan di
+                  Jakarta.
+                </p>
+                <div class="ann-meta">
+                  <span class="ann-date">📅 28 Februari 2026</span>
+                  <span class="ann-pill pill-new">Baru</span>
+                </div>
+              </div>
+            </article>
+            <article
+              class="ann-card"
+              role="listitem"
+              tabindex="0"
+              aria-labelledby="ann3"
+            >
+              <div class="ann-icon he" aria-hidden="true">🩺</div>
+              <div class="ann-info">
+                <h4 id="ann3">
+                  Jadwal Pemeriksaan Kesehatan Berkala Siswa Semester Genap
+                </h4>
+                <p>
+                  UKS bekerja sama dengan Puskesmas setempat mengadakan
+                  pemeriksaan kesehatan rutin. Semua siswa diwajibkan hadir
+                  sesuai jadwal kelas masing-masing.
+                </p>
+                <div class="ann-meta">
+                  <span class="ann-date">📅 5 Maret 2026</span>
+                  <span class="ann-pill pill-info">Info</span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Sidebar -->
+          <aside aria-label="Widget samping">
+            <div class="widget">
+              <div class="widget-hd">
+                Kalender Akademik
+                <a
+                  href="#"
+                  onclick="
+                    showToast('Membuka kalender');
+                    return false;
+                  "
+                  >Lihat Semua →</a
+                >
+              </div>
+              <div class="cal-inner">
+                <div class="cal-hd">
+                  <button class="cal-nav-btn" aria-label="Bulan sebelumnya">
+                    ‹
+                  </button>
+                  <span>Maret 2026</span>
+                  <button class="cal-nav-btn" aria-label="Bulan selanjutnya">
+                    ›
+                  </button>
+                </div>
+                <div
+                  class="cal-grid"
+                  role="grid"
+                  aria-label="Kalender Maret 2026"
+                >
+                  <div class="cal-dh">Min</div>
+                  <div class="cal-dh">Sen</div>
+                  <div class="cal-dh">Sel</div>
+                  <div class="cal-dh">Rab</div>
+                  <div class="cal-dh">Kam</div>
+                  <div class="cal-dh">Jum</div>
+                  <div class="cal-dh">Sab</div>
+                  <div class="cal-d other">23</div>
+                  <div class="cal-d other">24</div>
+                  <div class="cal-d other">25</div>
+                  <div class="cal-d other">26</div>
+                  <div class="cal-d other">27</div>
+                  <div class="cal-d other">28</div>
+                  <div class="cal-d">1</div>
+                  <div class="cal-d has-event">2</div>
+                  <div class="cal-d">3</div>
+                  <div class="cal-d has-event">4</div>
+                  <div class="cal-d">5</div>
+                  <div class="cal-d has-event">6</div>
+                  <div class="cal-d">7</div>
+                  <div class="cal-d">8</div>
+                  <div class="cal-d">9</div>
+                  <div class="cal-d">10</div>
+                  <div class="cal-d has-event">11</div>
+                  <div class="cal-d">12</div>
+                  <div class="cal-d">13</div>
+                  <div class="cal-d">14</div>
+                  <div class="cal-d has-event">15</div>
+                  <div class="cal-d">16</div>
+                  <div class="cal-d">17</div>
+                  <div class="cal-d">18</div>
+                  <div class="cal-d">19</div>
+                  <div class="cal-d">20</div>
+                  <div class="cal-d">21</div>
+                  <div class="cal-d">22</div>
+                  <div class="cal-d has-event">23</div>
+                  <div class="cal-d">24</div>
+                  <div class="cal-d">25</div>
+                  <div class="cal-d">26</div>
+                  <div class="cal-d">27</div>
+                  <div
+                    class="cal-d today"
+                    aria-current="date"
+                    aria-label="Hari ini, 28 Maret"
+                  >
+                    28
+                  </div>
+                  <div class="cal-d">29</div>
+                  <div class="cal-d">30</div>
+                  <div class="cal-d has-event">31</div>
+                </div>
+              </div>
+            </div>
+            <div class="widget">
+              <div class="widget-hd">Akses Cepat</div>
+              <div class="quick-list" role="list">
+                <div
+                  class="quick-item"
+                  role="listitem"
+                  tabindex="0"
+                  onclick="window.location.href = 'pages/ppdb.html'"
+                  aria-label="Daftar PPDB Online"
+                >
+                  <div class="quick-ic" style="background: var(--green-50)">
+                    🎓
+                  </div>
+                  <span class="quick-lbl">Daftar PPDB Online</span
+                  ><span class="quick-arr">›</span>
+                </div>
+                <div
+                  class="quick-item"
+                  role="listitem"
+                  tabindex="0"
+                  onclick="openLogin()"
+                  aria-label="Masuk Dashboard"
+                >
+                  <div class="quick-ic" style="background: var(--blue-50)">
+                    📊
+                  </div>
+                  <span class="quick-lbl">Dashboard Saya</span
+                  ><span class="quick-arr">›</span>
+                </div>
+                <div
+                  class="quick-item"
+                  role="listitem"
+                  tabindex="0"
+                  onclick="openLogin()"
+                  aria-label="Download Rapor Digital"
+                >
+                  <div class="quick-ic" style="background: var(--teal-50)">
+                    📋
+                  </div>
+                  <span class="quick-lbl">Download Rapor Digital</span
+                  ><span class="quick-arr">›</span>
+                </div>
+                <div
+                  class="quick-item"
+                  role="listitem"
+                  tabindex="0"
+                  onclick="openLogin()"
+                  aria-label="Hubungi Guru"
+                >
+                  <div class="quick-ic" style="background: var(--amber-50)">
+                    💬
+                  </div>
+                  <span class="quick-lbl">Hubungi Guru</span
+                  ><span class="quick-arr">›</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══ DESIGN SYSTEM ═══ -->
+      <section id="design-system" aria-labelledby="ds-title">
+        <div class="section-label" aria-hidden="true">Design System</div>
+        <h2 class="section-title" id="ds-title">
+          Panduan Visual &amp;<br />Komponen UI
+        </h2>
+        <p class="section-sub">
+          Sistem desain yang konsisten mencerminkan identitas visual
+          Muhammadiyah — bersih, modern, dan inklusif.
+        </p>
+        <div class="ds-grid">
+          <div class="ds-card">
+            <h4>Palet Warna Identitas</h4>
+            <div class="swatches" role="list">
+              <div
+                class="swatch"
+                style="background: #3b6d11"
+                title="Hijau Primer"
+                role="listitem"
+                tabindex="0"
+                aria-label="Hijau Primer"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #639922"
+                title="Hijau Aksen"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #1d9e75"
+                title="Teal"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #0f6e56"
+                title="Teal Gelap"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #ef9f27"
+                title="Kuning"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #f7f5ef; border: 1px solid #ddd"
+                title="Background"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #2c2c2a"
+                title="Teks Utama"
+                role="listitem"
+                tabindex="0"
+              ></div>
+              <div
+                class="swatch"
+                style="background: #888780"
+                title="Teks Sekunder"
+                role="listitem"
+                tabindex="0"
+              ></div>
+            </div>
+            <div style="margin-top: 28px">
+              <p
+                style="
+                  font-size: 11px;
+                  color: var(--gray-400);
+                  margin-bottom: 8px;
+                "
+              >
+                Rasio Kontras (WCAG AA)
+              </p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap">
+                <span
+                  style="
+                    background: var(--green-50);
+                    color: var(--green-800);
+                    font-size: 10px;
+                    padding: 4px 9px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                  "
+                  >7.2:1 ✓ AA</span
+                >
+                <span
+                  style="
+                    background: var(--teal-50);
+                    color: var(--teal-800);
+                    font-size: 10px;
+                    padding: 4px 9px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                  "
+                  >6.8:1 ✓ AA</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="ds-card">
+            <h4>Tipografi</h4>
+            <div class="type-rows">
+              <div class="type-row">
+                <span class="type-lbl">H1 · 800</span
+                ><span
+                  style="
+                    font-size: 24px;
+                    font-weight: 800;
+                    color: var(--gray-900);
+                  "
+                  >Madrasah</span
+                >
+              </div>
+              <div class="type-row">
+                <span class="type-lbl">H2 · 700</span
+                ><span
+                  style="
+                    font-size: 19px;
+                    font-weight: 700;
+                    color: var(--gray-900);
+                  "
+                  >Inklusif Digital</span
+                >
+              </div>
+              <div class="type-row">
+                <span class="type-lbl">Body · 400</span
+                ><span style="font-size: 14px; color: var(--gray-600)"
+                  >Untuk semua pengguna</span
+                >
+              </div>
+              <div class="type-row">
+                <span class="type-lbl">Arabic</span
+                ><span
+                  style="
+                    font-family: var(--font-arabic);
+                    font-size: 18px;
+                    color: var(--teal-600);
+                  "
+                  lang="ar"
+                  >بِسْمِ اللَّهِ</span
+                >
+              </div>
+              <div class="type-row">
+                <span class="type-lbl">Caption</span
+                ><span
+                  style="
+                    font-size: 11px;
+                    color: var(--gray-400);
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                  >Plus Jakarta Sans</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="ds-card">
+            <h4>Komponen UI</h4>
+            <div class="comp-rows">
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <button
+                  class="btn btn-primary"
+                  style="padding: 8px 16px; font-size: 12px"
+                  onclick="showToast('Tombol diklik!')"
+                >
+                  Masuk
+                </button>
+                <button
+                  class="btn btn-outline"
+                  style="padding: 7px 16px; font-size: 12px"
+                  onclick="showToast('Tombol sekunder!')"
+                >
+                  Daftar
+                </button>
+              </div>
+              <div class="badge-row">
+                <span class="badge badge-green">Aktif</span>
+                <span class="badge badge-amber">Pending</span>
+                <span class="badge badge-coral">Terlambat</span>
+                <span class="badge badge-blue">Info</span>
+              </div>
+              <input
+                class="form-input"
+                type="text"
+                placeholder="Cari materi pelajaran..."
+                aria-label="Input pencarian"
+              />
+              <div class="alert-success" role="status">
+                <p>✓ Tugas berhasil dikumpulkan!</p>
+                <p>Nilai akan keluar dalam 2×24 jam.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer role="contentinfo">
+      <div class="footer-grid">
+        <div>
+          <a
+            href="index.html"
+            class="nav-logo"
+            style="display: inline-flex"
+            aria-label="MadrasahConnect"
+          >
+            <div class="nav-logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+                />
+              </svg>
+            </div>
+            <div class="nav-logo-text">
+              <strong style="color: #fff">MadrasahConnect</strong>
+              <span>SD · SMP · SMA Muhammadiyah</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Platform digital inklusif untuk komunitas sekolah Muhammadiyah &amp;
+            'Aisyiyah. Memajukan pendidikan Islam yang inklusif, modern, dan
+            berkeadilan.
+          </p>
+          <div class="footer-socials" aria-label="Media sosial">
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Instagram">in</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <a
+            href="#"
+            onclick="
+              openLogin();
+              return false;
+            "
+            >Portal Siswa</a
+          >
+          <a
+            href="#"
+            onclick="
+              openLogin();
+              return false;
+            "
+            >Portal Guru</a
+          >
+          <a
+            href="#"
+            onclick="
+              openLogin();
+              return false;
+            "
+            >Portal Orang Tua</a
+          >
+          <a href="pages/ppdb.html">PPDB Online</a>
+          <a
+            href="#"
+            onclick="
+              openLogin();
+              return false;
+            "
+            >Rapor Digital</a
+          >
+        </div>
+        <div class="footer-col">
+          <h5>Informasi</h5>
+          <a href="#">Tentang Kami</a>
+          <a href="#accessibility">Aksesibilitas</a>
+          <a href="#">Panduan Pengguna</a>
+          <a href="#">FAQ</a>
+          <a href="#">Kontak Sekolah</a>
+        </div>
+        <div class="footer-col">
+          <h5>Kebijakan</h5>
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Syarat Penggunaan</a>
+          <a href="#">Perlindungan Data</a>
+          <a href="#">Pernyataan Aksesibilitas</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 MadrasahConnect · Lomba UI/UX APSI-PTMA 2026</span>
+        <div class="footer-bottom-r">
+          <a href="#accessibility">♿ WCAG 2.1 AA</a>
+          <a href="#">Bahasa Indonesia</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══════════ LOGIN MODAL ══════════ -->
+    <div
+      id="loginOverlay"
+      class="login-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="login-title"
+    >
+      <div class="login-modal">
+        <button class="modal-close" onclick="closeLogin()" aria-label="Tutup">
+          ✕
+        </button>
+        <div class="login-logo">
+          <div class="login-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div
+              style="font-size: 15px; font-weight: 700; color: var(--gray-900)"
+            >
+              MadrasahConnect
+            </div>
+            <div style="font-size: 11px; color: var(--gray-400)">
+              Masuk ke portal Anda
+            </div>
+          </div>
+        </div>
+        <h2 class="login-title" id="login-title">Selamat Datang!</h2>
+        <p class="login-sub">
+          Pilih peran Anda untuk masuk ke portal yang sesuai.
+        </p>
+        <div class="role-tabs" role="group" aria-label="Pilih peran">
+          <button
+            class="role-tab-btn active"
+            data-role="siswa"
+            aria-pressed="true"
+          >
+            <span class="rt-icon">🎒</span>Siswa
+          </button>
+          <button class="role-tab-btn" data-role="guru" aria-pressed="false">
+            <span class="rt-icon">👩‍🏫</span>Guru
+          </button>
+          <button class="role-tab-btn" data-role="ortu" aria-pressed="false">
+            <span class="rt-icon">👨‍👩‍👧</span>Orang Tua
+          </button>
+        </div>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">NISN / Email</label>
+            <input
+              id="loginEmail"
+              type="text"
+              placeholder="NISN / Email Siswa"
+              autocomplete="username"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="loginPass"
+              >Kata Sandi
+              <a
+                href="#"
+                class="form-forgot"
+                onclick="
+                  showToast('Mengirim email reset kata sandi...');
+                  return false;
+                "
+                >Lupa kata sandi?</a
+              ></label
+            >
+            <input
+              id="loginPass"
+              type="password"
+              placeholder="Masukkan kata sandi"
+              autocomplete="current-password"
+              required
+              aria-required="true"
+            />
+          </div>
+          <button type="submit" class="login-btn">Masuk ke Portal</button>
+        </form>
+        <div class="login-divider"><span>atau</span></div>
+        <div class="login-footer">
+          Belum punya akun? <a href="pages/ppdb.html">Daftar PPDB Online →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

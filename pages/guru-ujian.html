@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Soal – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-ujian.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="guru-kelas.html"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a
+          class="sidebar-link active"
+          href="guru-ujian.html"
+          aria-current="page"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📝 Bank Soal</h1>
+          <p>Kelola koleksi soal untuk ujian dan ulangan</p>
+        </div>
+        <button
+          class="btn-primary"
+          onclick="showToast('Membuka form buat soal baru...')"
+        >
+          + Buat Soal Baru
+        </button>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">156</div>
+          <div class="stat-label">Total Soal</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Paket Ujian</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Bab/Topik</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Ujian Aktif</div>
+        </div>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterSoal(this, 'all')">
+          Semua
+        </button>
+        <button class="filter-btn" onclick="filterSoal(this, 'pg')">
+          Pilihan Ganda
+        </button>
+        <button class="filter-btn" onclick="filterSoal(this, 'essay')">
+          Essay
+        </button>
+        <button class="filter-btn" onclick="filterSoal(this, 'paket')">
+          Paket Ujian
+        </button>
+      </div>
+      <div class="soal-grid" id="soalGrid">
+        <div
+          class="soal-card"
+          data-cat="paket"
+          onclick="showToast('Membuka paket UTS Kelas 10 IPA...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📦 UTS Matematika – Kelas 10 IPA</div>
+            <span
+              class="soal-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Aktif</span
+            >
+          </div>
+          <div class="soal-meta">
+            Dibuat: 15 Mar 2026 · Terakhir diedit: 25 Mar 2026
+          </div>
+          <div class="soal-tags">
+            <span class="soal-tag">Aljabar</span
+            ><span class="soal-tag">Matriks</span
+            ><span class="soal-tag">Fungsi</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">40 soal (30 PG + 10 Essay)</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit paket');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Preview soal');
+                "
+              >
+                👁️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Cetak soal');
+                "
+              >
+                🖨️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="paket"
+          onclick="showToast('Membuka paket UTS Kelas 10 IPS...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📦 UTS Matematika – Kelas 10 IPS</div>
+            <span
+              class="soal-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Aktif</span
+            >
+          </div>
+          <div class="soal-meta">
+            Dibuat: 16 Mar 2026 · Terakhir diedit: 26 Mar 2026
+          </div>
+          <div class="soal-tags">
+            <span class="soal-tag">Statistika</span
+            ><span class="soal-tag">Peluang Dasar</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">35 soal (25 PG + 10 Essay)</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit paket');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Preview soal');
+                "
+              >
+                👁️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Cetak soal');
+                "
+              >
+                🖨️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="paket"
+          onclick="showToast('Membuka paket UTS Kelas 11...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📦 UTS Matematika – Kelas 11 IPA</div>
+            <span
+              class="soal-badge"
+              style="background: var(--green-50); color: var(--green-600)"
+              >Aktif</span
+            >
+          </div>
+          <div class="soal-meta">Dibuat: 17 Mar 2026</div>
+          <div class="soal-tags">
+            <span class="soal-tag">Trigonometri</span
+            ><span class="soal-tag">Limit</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">40 soal (30 PG + 10 Essay)</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit paket');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Preview soal');
+                "
+              >
+                👁️
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="pg"
+          onclick="showToast('Membuka bank soal PG Aljabar...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📄 PG – Aljabar Linear</div>
+            <span
+              class="soal-badge"
+              style="background: var(--gray-100); color: var(--gray-600)"
+              >Bank Soal</span
+            >
+          </div>
+          <div class="soal-meta">Kelas 10 · Bab 3</div>
+          <div class="soal-tags">
+            <span class="soal-tag">Persamaan Linear</span
+            ><span class="soal-tag">SPL</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">25 soal PG</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Duplikat');
+                "
+              >
+                📋
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="pg"
+          onclick="showToast('Membuka bank soal PG Matriks...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📄 PG – Matriks</div>
+            <span
+              class="soal-badge"
+              style="background: var(--gray-100); color: var(--gray-600)"
+              >Bank Soal</span
+            >
+          </div>
+          <div class="soal-meta">Kelas 10 · Bab 2</div>
+          <div class="soal-tags">
+            <span class="soal-tag">Operasi Matriks</span
+            ><span class="soal-tag">Determinan</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">20 soal PG</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Duplikat');
+                "
+              >
+                📋
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="essay"
+          onclick="showToast('Membuka bank soal Essay Trigonometri...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📝 Essay – Trigonometri</div>
+            <span
+              class="soal-badge"
+              style="background: var(--gray-100); color: var(--gray-600)"
+              >Bank Soal</span
+            >
+          </div>
+          <div class="soal-meta">Kelas 11 · Bab 1-3</div>
+          <div class="soal-tags">
+            <span class="soal-tag">Sin Cos Tan</span
+            ><span class="soal-tag">Identitas</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">15 soal Essay</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Duplikat');
+                "
+              >
+                📋
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="essay"
+          onclick="showToast('Membuka bank soal Essay Integral...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📝 Essay – Integral</div>
+            <span
+              class="soal-badge"
+              style="background: var(--gray-100); color: var(--gray-600)"
+              >Bank Soal</span
+            >
+          </div>
+          <div class="soal-meta">Kelas 12 · Bab 4-5</div>
+          <div class="soal-tags">
+            <span class="soal-tag">Integral Tentu</span
+            ><span class="soal-tag">Integral Tak Tentu</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">18 soal Essay</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Duplikat');
+                "
+              >
+                📋
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="soal-card"
+          data-cat="pg"
+          onclick="showToast('Membuka bank soal UTBK...')"
+        >
+          <div class="soal-header">
+            <div class="soal-title">📄 Latihan UTBK Matematika</div>
+            <span class="soal-badge" style="background: #fef3c7; color: #d97706"
+              >Draft</span
+            >
+          </div>
+          <div class="soal-meta">Kelas 12 · Campuran</div>
+          <div class="soal-tags">
+            <span class="soal-tag">UTBK</span><span class="soal-tag">SNBT</span>
+          </div>
+          <div class="soal-footer">
+            <span class="soal-count">38 soal PG</span>
+            <div class="soal-actions">
+              <button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Edit');
+                "
+              >
+                ✏️</button
+              ><button
+                class="sa-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Publish');
+                "
+              >
+                🚀
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-ujian.js"></script>
+  </body>
+</html>

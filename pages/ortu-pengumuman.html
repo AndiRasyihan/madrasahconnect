@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumuman – Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ortu-pengumuman.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-ortu.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="ortu-nilai.html"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a class="sidebar-link" href="ortu-jadwal.html"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a class="sidebar-link" href="ortu-pembayaran.html"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="ortu-pesan.html"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a
+          class="sidebar-link active"
+          href="ortu-pengumuman.html"
+          aria-current="page"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>📢 Pengumuman Sekolah</h1>
+          <p>Informasi dan pengumuman terbaru dari sekolah</p>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterAnn('all', this)">
+          Semua
+        </button>
+        <button class="filter-btn" onclick="filterAnn('akademik', this)">
+          Akademik
+        </button>
+        <button class="filter-btn" onclick="filterAnn('kegiatan', this)">
+          Kegiatan
+        </button>
+        <button class="filter-btn" onclick="filterAnn('keuangan', this)">
+          Keuangan
+        </button>
+        <button class="filter-btn" onclick="filterAnn('umum', this)">
+          Umum
+        </button>
+      </div>
+      <div class="ann-list" id="annList">
+        <div class="ann-card" data-cat="akademik">
+          <div class="ann-header">
+            <div class="ann-icon warning">📋</div>
+            <div class="ann-meta">
+              <div class="ann-category">Akademik</div>
+              <div class="ann-title">
+                Jadwal Ujian Akhir Semester Genap 2025/2026
+              </div>
+              <div class="ann-date">
+                📅 Diposting: 10 April 2026 · Oleh: Wakil Kepala Sekolah
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Assalamu'alaikum Wr. Wb.<br /><br />Diberitahukan kepada seluruh
+            orang tua/wali murid bahwa Ujian Akhir Semester (UAS) Genap Tahun
+            Ajaran 2025/2026 akan dilaksanakan pada:<br /><br /><strong
+              >Tanggal:</strong
+            >
+            1 – 10 Juni 2026<br /><strong>Waktu:</strong> 07:30 – 11:30 WIB<br /><br />Mohon
+            agar para orang tua membantu putra/putri dalam mempersiapkan diri
+            dengan baik. Jadwal lengkap per mata pelajaran dapat diunduh melalui
+            lampiran di bawah ini.
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">Penting</span
+            ><span class="ann-tag">UAS Genap</span
+            ><button
+              class="ann-attach"
+              onclick="
+                showToast('Mengunduh jadwal UAS...');
+                var a = document.createElement('a');
+                a.href = '#';
+                a.download = 'Jadwal_UAS_2026.pdf';
+                setTimeout(function () {
+                  showToast('File berhasil diunduh! 📎');
+                }, 1500);
+              "
+            >
+              📎 Jadwal_UAS_2026.pdf
+            </button>
+          </div>
+        </div>
+        <div class="ann-card" data-cat="kegiatan">
+          <div class="ann-header">
+            <div class="ann-icon event">🎓</div>
+            <div class="ann-meta">
+              <div class="ann-category">Kegiatan</div>
+              <div class="ann-title">
+                Peringatan Isra Mi'raj Nabi Muhammad SAW 1447 H
+              </div>
+              <div class="ann-date">
+                📅 Diposting: 8 April 2026 · Oleh: Bidang Keagamaan
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Dalam rangka memperingati Isra Mi'raj Nabi Muhammad SAW 1447 H,
+            sekolah akan mengadakan kegiatan:<br /><br /><strong
+              >Hari/Tanggal:</strong
+            >
+            Jumat, 17 April 2026<br /><strong>Waktu:</strong> 08:00 – 11:00
+            WIB<br /><strong>Tempat:</strong> Aula SMAN Muhammadiyah 1<br /><strong
+              >Pembicara:</strong
+            >
+            Ustadz Dr. H. Ahmad Syafii, M.Ag<br /><br />Siswa wajib menggunakan
+            seragam putih-putih dan membawa Al-Quran. Orang tua/wali
+            dipersilakan hadir.
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">Keagamaan</span
+            ><span class="ann-tag">Wajib Hadir</span>
+          </div>
+        </div>
+        <div class="ann-card" data-cat="keuangan">
+          <div class="ann-header">
+            <div class="ann-icon info">💰</div>
+            <div class="ann-meta">
+              <div class="ann-category">Keuangan</div>
+              <div class="ann-title">
+                Pemberitahuan Pembayaran SPP Bulan April 2026
+              </div>
+              <div class="ann-date">
+                📅 Diposting: 3 April 2026 · Oleh: Bagian Keuangan
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Diberitahukan kepada seluruh orang tua/wali murid bahwa pembayaran
+            SPP bulan April 2026 sudah dapat dilakukan melalui portal
+            MadrasahConnect atau transfer bank. Batas akhir pembayaran adalah
+            <strong>tanggal 15 April 2026</strong>.<br /><br />Nominal:
+            <strong>Rp 750.000</strong><br />Metode: Virtual Account
+            BCA/Mandiri/BNI, GoPay, OVO, DANA<br /><br />Mohon segera melakukan
+            pembayaran untuk menghindari keterlambatan.
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">SPP</span
+            ><span class="ann-tag">Batas 15 April</span>
+          </div>
+        </div>
+        <div class="ann-card" data-cat="umum">
+          <div class="ann-header">
+            <div class="ann-icon success">📌</div>
+            <div class="ann-meta">
+              <div class="ann-category">Umum</div>
+              <div class="ann-title">Libur Hari Raya Idul Fitri 1447 H</div>
+              <div class="ann-date">
+                📅 Diposting: 25 Maret 2026 · Oleh: Kepala Sekolah
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Assalamu'alaikum Wr. Wb.<br /><br />Diberitahukan bahwa libur Hari
+            Raya Idul Fitri 1447 H ditetapkan mulai
+            <strong>21 Maret – 4 April 2026</strong>. Kegiatan belajar mengajar
+            akan kembali aktif pada
+            <strong>Senin, 6 April 2026</strong>.<br /><br />Segenap keluarga
+            besar SMAN Muhammadiyah 1 mengucapkan:<br /><strong
+              >Taqabbalallahu minna wa minkum. Selamat Hari Raya Idul Fitri 1447
+              H. Mohon Maaf Lahir dan Batin.</strong
+            >
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">Libur</span
+            ><span class="ann-tag">Idul Fitri</span>
+          </div>
+        </div>
+        <div class="ann-card" data-cat="akademik">
+          <div class="ann-header">
+            <div class="ann-icon info">📊</div>
+            <div class="ann-meta">
+              <div class="ann-category">Akademik</div>
+              <div class="ann-title">Pembagian Rapor Tengah Semester Genap</div>
+              <div class="ann-date">
+                📅 Diposting: 15 Maret 2026 · Oleh: Wali Kelas
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Pembagian Rapor Tengah Semester (PTS) Genap 2025/2026 akan
+            dilaksanakan pada:<br /><br /><strong>Hari/Tanggal:</strong> Sabtu,
+            22 Maret 2026<br /><strong>Waktu:</strong> 08:00 – 12:00 WIB<br /><br />Orang
+            tua/wali <strong>wajib hadir</strong> untuk mengambil rapor dan
+            berkonsultasi dengan wali kelas. Rapor tidak dapat diwakilkan.
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">Rapor PTS</span
+            ><span class="ann-tag">Wajib Hadir</span>
+          </div>
+        </div>
+        <div class="ann-card" data-cat="kegiatan">
+          <div class="ann-header">
+            <div class="ann-icon event">🏆</div>
+            <div class="ann-meta">
+              <div class="ann-category">Kegiatan</div>
+              <div class="ann-title">
+                Lomba Olimpiade Matematika Tingkat Kabupaten
+              </div>
+              <div class="ann-date">
+                📅 Diposting: 10 Maret 2026 · Oleh: Koordinator Olimpiade
+              </div>
+            </div>
+          </div>
+          <div class="ann-body">
+            Alhamdulillah, 3 siswa SMAN Muhammadiyah 1 telah terpilih untuk
+            mewakili sekolah dalam Olimpiade Matematika Tingkat Kabupaten:<br /><br />1.
+            <strong>Ahmad Fauzi</strong> – Kelas 10 IPA<br />2. Rina Marlina –
+            Kelas 11 IPA<br />3. Budi Santoso – Kelas 12 IPA<br /><br />Olimpiade
+            akan dilaksanakan pada 25 Maret 2026 di Universitas Muhammadiyah.
+            Dukungan dari orang tua sangat kami harapkan.
+          </div>
+          <div class="ann-footer">
+            <span class="ann-tag">Olimpiade</span
+            ><span class="ann-tag">Prestasi</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/ortu-pengumuman.js"></script>
+  </body>
+</html>

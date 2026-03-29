@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPDB Online 2026/2027 – MadrasahConnect</title>
+  <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ppdb.css" />
+</head>
+<body>
+
+<a href="#ppdb-main" class="skip-link">Langsung ke Konten</a>
+<aside class="a11y-toolbar" aria-label="Aksesibilitas">
+  <button id="btnHC" class="a11y-btn" onclick="toggleHighContrast()" aria-label="Kontras tinggi"><span class="tooltip">Kontras Tinggi</span>◑</button>
+  <button id="btnBig" class="a11y-btn" onclick="toggleBigText()" aria-label="Perbesar teks"><span class="tooltip">Teks Lebih Besar</span>A+</button>
+</aside>
+
+<!-- Navbar -->
+<header>
+  <nav class="navbar" aria-label="Navigasi utama">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"/></svg></div>
+      <div class="nav-logo-text"><strong>MadrasahConnect</strong><span>SD · SMP · SMA Muhammadiyah</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Beranda</a></li>
+      <li><a href="../index.html#features">Fitur</a></li>
+      <li><a href="ppdb.html" class="active" aria-current="page">PPDB</a></li>
+      <li><a href="#" onclick="openLogin(); return false;" class="nav-cta">Masuk →</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<nav id="mobileNav" class="mobile-nav">
+  <a href="../index.html">🏠 Beranda <span>›</span></a>
+  <a href="../index.html#features">✨ Fitur <span>›</span></a>
+  <a href="ppdb.html">🎓 PPDB <span>›</span></a>
+  <a href="#" class="mobile-cta" onclick="openLogin(); return false;">Masuk ke Portal →</a>
+</nav>
+
+<!-- Hero -->
+<div class="ppdb-hero" style="margin-top:68px">
+  <div class="pill">PPDB 2026/2027</div>
+  <h1>Pendaftaran Peserta Didik Baru<br>Online Sekolah Muhammadiyah</h1>
+  <p>Daftarkan putra-putri Anda ke SD, SMP, atau SMA Muhammadiyah terbaik. Proses mudah, cepat, dan dapat dipantau secara online.</p>
+  <div class="countdown" aria-label="Hitung mundur waktu pendaftaran">
+    <div class="countdown-box"><div class="countdown-num" id="cd-days">18</div><div class="countdown-lbl">Hari</div></div>
+    <div class="countdown-box"><div class="countdown-num" id="cd-hours">12</div><div class="countdown-lbl">Jam</div></div>
+    <div class="countdown-box"><div class="countdown-num" id="cd-mins">34</div><div class="countdown-lbl">Menit</div></div>
+    <div class="countdown-box"><div class="countdown-num" id="cd-secs">05</div><div class="countdown-lbl">Detik</div></div>
+  </div>
+  <p style="font-size:13px;color:rgba(255,255,255,.7)">Pendaftaran berakhir: <strong style="color:#fff">15 April 2026</strong></p>
+</div>
+
+<!-- Main Content -->
+<main id="ppdb-main" class="ppdb-content">
+
+  <!-- Success Banner (hidden until submit) -->
+  <div class="success-banner" id="successBanner" role="alert" aria-live="assertive">
+    <div style="font-size:48px;margin-bottom:8px">🎉</div>
+    <h2>Pendaftaran Berhasil Dikirim!</h2>
+    <p>Terima kasih telah mendaftarkan putra/putri Anda. Tim kami akan menghubungi Anda dalam 1×24 jam.</p>
+    <div class="ref" id="refNumber">No. Referensi: PPDB-2026-XXXX</div>
+    <p style="font-size:12px;margin-top:8px">Simpan nomor referensi ini untuk memantau status pendaftaran.</p>
+    <button class="w-btn primary" style="margin-top:16px" onclick="window.location.href='../index.html'">← Kembali ke Beranda</button>
+  </div>
+
+  <div class="ppdb-grid" id="ppdbForm">
+    <!-- Left: Form -->
+    <div>
+      <!-- Step indicator -->
+      <div class="steps-card">
+        <div class="steps-header">
+          <h2>Formulir Pendaftaran PPDB Online</h2>
+          <p>Isi semua data dengan lengkap dan benar. Tandai (*) wajib diisi.</p>
+        </div>
+        <div class="step-progress" aria-label="Langkah pendaftaran">
+          <div class="step-dot done" aria-label="Langkah 1 selesai">1</div>
+          <div class="step-line done"></div>
+          <div class="step-dot active" aria-label="Langkah 2 aktif">2</div>
+          <div class="step-line"></div>
+          <div class="step-dot pending" aria-label="Langkah 3 belum">3</div>
+          <div class="step-line"></div>
+          <div class="step-dot pending" aria-label="Langkah 4 belum">4</div>
+        </div>
+        <div style="display:flex;gap:0;padding:0 24px 16px">
+          <div style="flex:1;font-size:9px;color:var(--green-600);font-weight:600;text-align:center">Pilih Jenjang</div>
+          <div style="flex:1;font-size:9px;color:var(--teal-600);font-weight:600;text-align:center">Data Calon Siswa</div>
+          <div style="flex:1;font-size:9px;color:var(--gray-400);text-align:center">Data Orang Tua</div>
+          <div style="flex:1;font-size:9px;color:var(--gray-400);text-align:center">Unggah Dokumen</div>
+        </div>
+      </div>
+
+      <form id="ppdbFormEl" novalidate>
+        <!-- Pilih jenjang -->
+        <div class="form-card" style="margin-bottom:16px">
+          <div class="form-section-title">🏫 Pilih Jenjang Sekolah <span class="badge">Step 1 – Selesai</span></div>
+          <div class="form-body">
+            <div class="jenjang-grid" role="group" aria-label="Pilih jenjang sekolah">
+              <div class="jenjang-card" onclick="selectJenjang(this,'SD')" role="radio" aria-checked="false" tabindex="0">
+                <div class="j-icon">🏫</div>
+                <div class="j-name">SD / MI</div>
+                <div class="j-sub">Kelas 1 – 6</div>
+              </div>
+              <div class="jenjang-card selected" onclick="selectJenjang(this,'SMP')" role="radio" aria-checked="true" tabindex="0">
+                <div class="j-icon">🏛️</div>
+                <div class="j-name">SMP / MTs</div>
+                <div class="j-sub">Kelas 7 – 9</div>
+              </div>
+              <div class="jenjang-card" onclick="selectJenjang(this,'SMA')" role="radio" aria-checked="false" tabindex="0">
+                <div class="j-icon">🎓</div>
+                <div class="j-name">SMA / MA</div>
+                <div class="j-sub">Kelas 10 – 12</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data calon siswa -->
+        <div class="form-card" style="margin-bottom:16px">
+          <div class="form-section-title">👤 Data Calon Siswa <span class="badge">Step 2 – Sedang Diisi</span></div>
+          <div class="form-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="namaLengkap">Nama Lengkap <span class="req">*</span></label>
+                <input class="form-control" id="namaLengkap" type="text" placeholder="Nama sesuai akta kelahiran" required aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="nisn">NISN (jika ada)</label>
+                <input class="form-control" id="nisn" type="text" placeholder="Nomor Induk Siswa Nasional">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tempatLahir">Tempat Lahir <span class="req">*</span></label>
+                <input class="form-control" id="tempatLahir" type="text" placeholder="Kota / Kabupaten" required>
+              </div>
+              <div class="form-group">
+                <label for="tglLahir">Tanggal Lahir <span class="req">*</span></label>
+                <input class="form-control" id="tglLahir" type="date" required aria-required="true">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="jenisKelamin">Jenis Kelamin <span class="req">*</span></label>
+                <select class="form-control" id="jenisKelamin" required>
+                  <option value="">-- Pilih --</option>
+                  <option>Laki-laki</option>
+                  <option>Perempuan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="agama">Agama <span class="req">*</span></label>
+                <select class="form-control" id="agama" required>
+                  <option value="">-- Pilih --</option>
+                  <option selected>Islam</option>
+                  <option>Kristen</option>
+                  <option>Katolik</option>
+                  <option>Hindu</option>
+                  <option>Budha</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat Lengkap <span class="req">*</span></label>
+              <input class="form-control" id="alamat" type="text" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="asalSekolah">Asal Sekolah Sebelumnya</label>
+                <input class="form-control" id="asalSekolah" type="text" placeholder="Nama sekolah asal">
+              </div>
+              <div class="form-group">
+                <label for="nilaiRata">Nilai Rata-rata (jika ada)</label>
+                <input class="form-control" id="nilaiRata" type="number" placeholder="Contoh: 85.5" min="0" max="100" step="0.1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="kebutuhan">Kebutuhan Khusus / Disabilitas</label>
+              <select class="form-control" id="kebutuhan" aria-describedby="kebutuhan-hint">
+                <option value="">Tidak ada</option>
+                <option>Tunanetra (gangguan penglihatan)</option>
+                <option>Tunarungu (gangguan pendengaran)</option>
+                <option>Tunadaksa (gangguan fisik)</option>
+                <option>Tunagrahita (gangguan intelektual)</option>
+                <option>Disleksia</option>
+                <option>ADHD</option>
+                <option>Autisme</option>
+                <option>Lainnya</option>
+              </select>
+              <p id="kebutuhan-hint" style="font-size:11px;color:var(--green-600);margin-top:4px">ℹ️ Sekolah kami menyediakan fasilitas inklusif lengkap untuk semua kebutuhan khusus.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data orang tua -->
+        <div class="form-card" style="margin-bottom:16px">
+          <div class="form-section-title">👨‍👩‍👧 Data Orang Tua / Wali <span class="badge" style="background:var(--gray-50);color:var(--gray-600)">Step 3</span></div>
+          <div class="form-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="namaAyah">Nama Ayah / Wali <span class="req">*</span></label>
+                <input class="form-control" id="namaAyah" type="text" placeholder="Nama lengkap" required>
+              </div>
+              <div class="form-group">
+                <label for="namaIbu">Nama Ibu</label>
+                <input class="form-control" id="namaIbu" type="text" placeholder="Nama lengkap">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="noHp">Nomor HP / WhatsApp <span class="req">*</span></label>
+                <input class="form-control" id="noHp" type="tel" placeholder="08xxxxxxxxxx" required>
+              </div>
+              <div class="form-group">
+                <label for="emailOrtu">Email <span class="req">*</span></label>
+                <input class="form-control" id="emailOrtu" type="email" placeholder="email@contoh.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pekerjaan">Pekerjaan Orang Tua</label>
+              <select class="form-control" id="pekerjaan">
+                <option value="">-- Pilih --</option>
+                <option>PNS / ASN</option>
+                <option>Karyawan Swasta</option>
+                <option>Wiraswasta / Pengusaha</option>
+                <option>TNI / Polri</option>
+                <option>Guru / Dosen</option>
+                <option>Petani / Nelayan</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-divider"></div>
+          <div class="form-footer">
+            <button type="button" class="btn btn-outline" onclick="showToast('Formulir direset'); document.getElementById('ppdbFormEl').reset();">Reset Form</button>
+            <button type="submit" class="btn btn-primary" id="ppdbSubmitBtn">
+              Kirim Pendaftaran
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right: Sidebar Info -->
+    <aside class="side-info" aria-label="Informasi PPDB">
+      <div class="info-card">
+        <div class="info-hd">📅 Timeline Pendaftaran</div>
+        <div class="info-body">
+          <div class="timeline-item">
+            <div class="tl-dot-wrap"><div class="tl-dot" style="background:var(--green-600)"></div><div class="tl-line"></div></div>
+            <div class="tl-info"><div class="tl-title">Buka Pendaftaran Online</div><div class="tl-date">1 Maret 2026</div><span class="tl-badge tl-now">Sedang Berlangsung</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot-wrap"><div class="tl-dot" style="background:var(--amber-200)"></div><div class="tl-line"></div></div>
+            <div class="tl-info"><div class="tl-title">Batas Pengumpulan Berkas</div><div class="tl-date">15 April 2026</div><span class="tl-badge tl-soon">18 hari lagi</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot-wrap"><div class="tl-dot" style="background:var(--gray-200)"></div><div class="tl-line"></div></div>
+            <div class="tl-info"><div class="tl-title">Pengumuman Hasil Seleksi</div><div class="tl-date">25 April 2026</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot-wrap"><div class="tl-dot" style="background:var(--gray-200)"></div></div>
+            <div class="tl-info"><div class="tl-title">Daftar Ulang &amp; Orientasi</div><div class="tl-date">1–5 Mei 2026</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-hd">📋 Dokumen yang Dibutuhkan</div>
+        <div class="info-body">
+          <div class="req-item"><div class="req-check">✓</div><span>Akta Kelahiran (scan / foto)</span></div>
+          <div class="req-item"><div class="req-check">✓</div><span>Kartu Keluarga (scan / foto)</span></div>
+          <div class="req-item"><div class="req-check">✓</div><span>Rapor / Ijazah terakhir</span></div>
+          <div class="req-item"><div class="req-check">✓</div><span>Foto terbaru 3×4 (file .jpg)</span></div>
+          <div class="req-item"><div class="req-check">✓</div><span>Surat Keterangan Pindah (jika pindah sekolah)</span></div>
+          <div class="req-item" style="color:var(--green-600);"><div class="req-check" style="background:var(--teal-50);color:var(--teal-600)">+</div><span><strong>Khusus kebutuhan khusus:</strong> Surat keterangan dokter / psikolog (opsional)</span></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-hd">📞 Butuh Bantuan?</div>
+        <div class="info-body">
+          <p style="font-size:13px;color:var(--gray-600);line-height:1.65;margin-bottom:12px">Tim kami siap membantu proses pendaftaran Anda. Hubungi kami melalui:</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="tel:+62411123456" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--green-600);font-weight:600">📱 (0411) 123-456</a>
+            <a href="https://wa.me/628119999999" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--green-600);font-weight:600">💬 WhatsApp Panitia PPDB</a>
+            <a href="mailto:ppdb@madrasahconnect.id" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--green-600);font-weight:600">✉️ ppdb@madrasahconnect.id</a>
+          </div>
+          <div style="margin-top:12px;background:var(--green-50);border-radius:var(--radius-md);padding:10px 12px;font-size:12px;color:var(--green-800)">
+            ♿ <strong>Layanan Aksesibilitas:</strong> Tersedia pendampingan khusus untuk keluarga penyandang disabilitas. Hubungi kami untuk pengaturan khusus.
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <a href="../index.html" class="nav-logo" style="display:inline-flex">
+        <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"/></svg></div>
+        <div class="nav-logo-text"><strong style="color:#fff">MadrasahConnect</strong><span>PPDB 2026/2027</span></div>
+      </a>
+      <p class="footer-desc">Platform PPDB Online Sekolah Muhammadiyah yang inklusif dan mudah digunakan.</p>
+    </div>
+    <div class="footer-col"><h5>PPDB</h5><a href="#">Panduan Pendaftaran</a><a href="#">FAQ PPDB</a><a href="#">Cek Status</a></div>
+    <div class="footer-col"><h5>Sekolah</h5><a href="#">SD Muhammadiyah</a><a href="#">SMP Muhammadiyah</a><a href="#">SMA Muhammadiyah</a></div>
+    <div class="footer-col"><h5>Bantuan</h5><a href="#">Hubungi Kami</a><a href="#">Aksesibilitas</a><a href="../index.html">Beranda</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MadrasahConnect · PPDB Online</span>
+    <a href="../index.html#accessibility">♿ WCAG 2.1 AA</a>
+  </div>
+</footer>
+
+<div id="loginOverlay" class="login-overlay" role="dialog" aria-modal="true" aria-labelledby="login-title2">
+  <div class="login-modal">
+    <button class="modal-close" onclick="closeLogin()" aria-label="Tutup">✕</button>
+    <h2 class="login-title" id="login-title2">Masuk ke Portal</h2>
+    <p class="login-sub">Akses dashboard pendaftaran Anda.</p>
+    <form id="loginForm" novalidate>
+      <div class="form-group"><label for="loginEmail">Email / NISN</label><input id="loginEmail" type="text" placeholder="email@contoh.com" class="form-control"></div>
+      <div class="form-group"><label for="loginPass">Kata Sandi</label><input id="loginPass" type="password" placeholder="••••••••" class="form-control"></div>
+      <button type="submit" class="login-btn">Masuk</button>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+<script src="../js/main.js"></script>
+    <script src="../js/ppdb.js"></script>
+  </body>
+</html>

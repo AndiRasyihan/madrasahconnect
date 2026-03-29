@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ekstrakurikuler – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ekskul.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link active" href="ekskul.html" aria-current="page"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>⚽ Ekstrakurikuler</h1>
+          <p>Kegiatan pengembangan diri di luar jam pelajaran</p>
+        </div>
+      </div>
+
+      <div class="my-ekskul">
+        <h2>📌 Ekskul Saya</h2>
+        <div class="my-card">
+          <div class="my-card-icon">🤖</div>
+          <div class="my-card-info">
+            <div class="my-card-name">Robotika</div>
+            <div class="my-card-detail">
+              Pembina: Pak Rudi · Setiap Rabu 15:30–17:00 · Lab Komputer
+            </div>
+          </div>
+          <span class="my-card-badge">Anggota Aktif</span>
+        </div>
+        <div class="my-card">
+          <div class="my-card-icon">🏸</div>
+          <div class="my-card-info">
+            <div class="my-card-name">Badminton</div>
+            <div class="my-card-detail">
+              Pembina: Pak Deni · Setiap Jumat 15:30–17:00 · GOR Sekolah
+            </div>
+          </div>
+          <span class="my-card-badge">Anggota Aktif</span>
+        </div>
+      </div>
+
+      <div class="schedule-mini">
+        <h3>📅 Jadwal Ekskul Minggu Ini</h3>
+        <div class="schedule-row">
+          <span style="font-weight: 600; color: var(--gray-900)"
+            >Rabu, 26 Mar</span
+          ><span>🤖 Robotika – 15:30–17:00 – Lab Komputer</span>
+        </div>
+        <div class="schedule-row">
+          <span style="font-weight: 600; color: var(--gray-900)"
+            >Jumat, 28 Mar</span
+          ><span>🏸 Badminton – 15:30–17:00 – GOR Sekolah</span>
+        </div>
+      </div>
+
+      <h2
+        style="
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--gray-900);
+          margin-bottom: 14px;
+        "
+      >
+        🔍 Semua Ekstrakurikuler
+      </h2>
+      <div class="ekskul-tabs">
+        <button class="ekskul-tab active" onclick="filterEkskul(this, 'all')">
+          Semua
+        </button>
+        <button class="ekskul-tab" onclick="filterEkskul(this, 'sains')">
+          Sains & Teknologi
+        </button>
+        <button class="ekskul-tab" onclick="filterEkskul(this, 'olahraga')">
+          Olahraga
+        </button>
+        <button class="ekskul-tab" onclick="filterEkskul(this, 'seni')">
+          Seni & Budaya
+        </button>
+        <button class="ekskul-tab" onclick="filterEkskul(this, 'keagamaan')">
+          Keagamaan
+        </button>
+      </div>
+
+      <div class="ekskul-grid" id="ekskulGrid">
+        <div class="ekskul-card joined" data-cat="sains">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #3b82f6, #06b6d4)"
+          >
+            🤖
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Robotika</div>
+            <div class="ekskul-desc">
+              Belajar merancang, membangun, dan memprogram robot. Persiapan
+              kompetisi robotika nasional.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Lab Komputer</span
+              ><span class="ekskul-meta-item">📅 Rabu, 15:30</span
+              ><span class="ekskul-meta-item">👤 Pak Rudi</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 18/25 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-joined"
+              onclick="toggleEkskul(this, 'Robotika', event)"
+            >
+              ✓ Bergabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card joined" data-cat="olahraga">
+          <div
+            class="ekskul-banner"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--green-400),
+                var(--teal-400)
+              );
+            "
+          >
+            🏸
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Badminton</div>
+            <div class="ekskul-desc">
+              Latihan teknik dan strategi badminton. Persiapan PORSENI tingkat
+              kota.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 GOR Sekolah</span
+              ><span class="ekskul-meta-item">📅 Jumat, 15:30</span
+              ><span class="ekskul-meta-item">👤 Pak Deni</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 22/30 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-joined"
+              onclick="toggleEkskul(this, 'Badminton', event)"
+            >
+              ✓ Bergabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="sains">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #8b5cf6, #ec4899)"
+          >
+            🔬
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Klub Sains</div>
+            <div class="ekskul-desc">
+              Eksperimen dan penelitian ilmiah. Project-based learning untuk
+              kompetisi KIR.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Lab IPA</span
+              ><span class="ekskul-meta-item">📅 Selasa, 15:30</span
+              ><span class="ekskul-meta-item">👤 Bu Dewi</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 15/20 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Klub Sains', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="seni">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #f59e0b, #ef4444)"
+          >
+            🎤
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Nasyid</div>
+            <div class="ekskul-desc">
+              Paduan suara Islami dan seni musik religi. Tampil di acara sekolah
+              dan lomba nasyid.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Ruang Seni</span
+              ><span class="ekskul-meta-item">📅 Kamis, 15:30</span
+              ><span class="ekskul-meta-item">👤 Ustaz Yusuf</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 12/20 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Nasyid', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="olahraga">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #10b981, #059669)"
+          >
+            ⚽
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Futsal</div>
+            <div class="ekskul-desc">
+              Latihan rutin dan pertandingan persahabatan antar kelas dan
+              sekolah.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Lapangan Futsal</span
+              ><span class="ekskul-meta-item">📅 Senin, 15:30</span
+              ><span class="ekskul-meta-item">👤 Pak Hasan</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 28/30 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Futsal', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="keagamaan">
+          <div
+            class="ekskul-banner"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--teal-400),
+                var(--teal-600)
+              );
+            "
+          >
+            📖
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Tahfidz Quran</div>
+            <div class="ekskul-desc">
+              Program menghafal Al-Quran dengan metode talaqqi. Target 5 juz per
+              tahun.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Masjid Sekolah</span
+              ><span class="ekskul-meta-item">📅 Senin-Kamis, 06:30</span
+              ><span class="ekskul-meta-item">👤 Ustaz Hamid</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 35/40 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Tahfidz Quran', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="seni">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #d97706, #92400e)"
+          >
+            ✒️
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Kaligrafi</div>
+            <div class="ekskul-desc">
+              Seni menulis indah huruf Arab. Lomba kaligrafi tingkat kota dan
+              provinsi.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Ruang Seni</span
+              ><span class="ekskul-meta-item">📅 Sabtu, 09:00</span
+              ><span class="ekskul-meta-item">👤 Ustaz Salim</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 10/15 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Kaligrafi', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="sains">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #6366f1, #8b5cf6)"
+          >
+            🌍
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">English Club</div>
+            <div class="ekskul-desc">
+              Conversation, debat, dan public speaking dalam bahasa Inggris.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Ruang Bahasa</span
+              ><span class="ekskul-meta-item">📅 Selasa, 15:30</span
+              ><span class="ekskul-meta-item">👤 Ms. Diana</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 20/20 anggota</span
+            ><button class="ekskul-btn ekskul-btn-full">Penuh</button>
+          </div>
+        </div>
+
+        <div class="ekskul-card" data-cat="olahraga">
+          <div
+            class="ekskul-banner"
+            style="background: linear-gradient(135deg, #dc2626, #991b1b)"
+          >
+            🥋
+          </div>
+          <div class="ekskul-body">
+            <div class="ekskul-name">Pencak Silat</div>
+            <div class="ekskul-desc">
+              Bela diri tradisional Muhammadiyah. Persiapan kejuaraan Tapak
+              Suci.
+            </div>
+            <div class="ekskul-meta">
+              <span class="ekskul-meta-item">📍 Aula Sekolah</span
+              ><span class="ekskul-meta-item">📅 Rabu & Jumat, 15:30</span
+              ><span class="ekskul-meta-item">👤 Kang Asep</span>
+            </div>
+          </div>
+          <div class="ekskul-footer">
+            <span class="ekskul-members">👥 16/25 anggota</span
+            ><button
+              class="ekskul-btn ekskul-btn-join"
+              onclick="toggleEkskul(this, 'Pencak Silat', event)"
+            >
+              Gabung
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/ekskul.js"></script>
+  </body>
+</html>

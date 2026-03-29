@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelas Saya – Guru – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/guru-kelas.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Guru</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">SR</div>
+          <div>
+            <div class="sidebar-uname">Siti Rahma, S.Pd</div>
+            <div class="sidebar-urole">Guru Matematika · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-guru.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a
+          class="sidebar-link active"
+          href="guru-kelas.html"
+          aria-current="page"
+          ><span class="si">🏫</span> Kelas Saya</a
+        >
+        <a class="sidebar-link" href="guru-tugas.html"
+          ><span class="si">📋</span> Kelola Tugas
+          <span class="sidebar-badge">12</span></a
+        >
+        <a class="sidebar-link" href="guru-nilai.html"
+          ><span class="si">📊</span> Input Nilai</a
+        >
+        <a class="sidebar-link" href="guru-ujian.html"
+          ><span class="si">📝</span> Bank Soal</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akademik</div>
+        <a class="sidebar-link" href="guru-absensi.html"
+          ><span class="si">✅</span> Absensi</a
+        >
+        <a class="sidebar-link" href="guru-jadwal.html"
+          ><span class="si">📅</span> Jadwal Mengajar</a
+        >
+        <a class="sidebar-link" href="guru-rapor.html"
+          ><span class="si">📄</span> Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="guru-pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">5</span></a
+        >
+        <a class="sidebar-link" href="guru-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="guru-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="guru-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div>
+          <h1>🏫 Kelas Saya</h1>
+          <p>Kelola 6 kelas yang Anda ampu</p>
+        </div>
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Cari kelas atau siswa..."
+          onkeyup="showToast('Mencari: ' + this.value)"
+        />
+      </div>
+
+      <div class="class-grid">
+        <div class="class-card" onclick="showToast('Detail Kelas 10 IPA')">
+          <div
+            class="class-banner"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--green-600),
+                var(--teal-400)
+              );
+            "
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 10 IPA</div>
+              <div class="class-sub">Matematika Wajib · Ruang 3A</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">32</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">87.4</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">96%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 10 IPA');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 10 IPA');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 10 IPA');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="class-card" onclick="showToast('Detail Kelas 10 IPS')">
+          <div
+            class="class-banner"
+            style="background: linear-gradient(135deg, #3b82f6, #06b6d4)"
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 10 IPS</div>
+              <div class="class-sub">Matematika Wajib · Ruang 4B</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">30</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">78.6</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">93%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 10 IPS');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 10 IPS');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 10 IPS');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="class-card" onclick="showToast('Detail Kelas 11 IPA')">
+          <div
+            class="class-banner"
+            style="background: linear-gradient(135deg, #8b5cf6, #ec4899)"
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 11 IPA</div>
+              <div class="class-sub">Matematika Peminatan · Ruang 5A</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">34</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">82.1</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">95%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 11 IPA');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 11 IPA');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 11 IPA');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="class-card" onclick="showToast('Detail Kelas 11 IPS')">
+          <div
+            class="class-banner"
+            style="background: linear-gradient(135deg, #f59e0b, #ef4444)"
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 11 IPS</div>
+              <div class="class-sub">Matematika Wajib · Ruang 5B</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">28</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">75.3</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">91%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 11 IPS');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 11 IPS');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 11 IPS');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="class-card" onclick="showToast('Detail Kelas 12 IPA')">
+          <div
+            class="class-banner"
+            style="background: linear-gradient(135deg, #10b981, #059669)"
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 12 IPA</div>
+              <div class="class-sub">Matematika Peminatan · Ruang 6A</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">36</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">84.5</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">97%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 12 IPA');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 12 IPA');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 12 IPA');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="class-card" onclick="showToast('Detail Kelas 12 IPS')">
+          <div
+            class="class-banner"
+            style="background: linear-gradient(135deg, #dc2626, #991b1b)"
+          >
+            <div class="class-icon-lg">📐</div>
+            <div>
+              <div class="class-title">Kelas 12 IPS</div>
+              <div class="class-sub">Matematika Wajib · Ruang 6B</div>
+            </div>
+          </div>
+          <div class="class-body">
+            <div class="class-stats">
+              <div class="cs-item">
+                <div class="cs-num">32</div>
+                <div class="cs-label">Siswa</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">73.8</div>
+                <div class="cs-label">Rata-rata</div>
+              </div>
+              <div class="cs-item">
+                <div class="cs-num">89%</div>
+                <div class="cs-label">Kehadiran</div>
+              </div>
+            </div>
+            <div class="class-actions">
+              <button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka absensi 12 IPS');
+                "
+              >
+                ✅ Absensi</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka input nilai 12 IPS');
+                "
+              >
+                📊 Input Nilai</button
+              ><button
+                class="ca-btn"
+                onclick="
+                  event.stopPropagation();
+                  showToast('Membuka tugas 12 IPS');
+                "
+              >
+                📋 Tugas
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>📋 Daftar Siswa – Kelas 10 IPA (32 siswa)</h3>
+        </div>
+        <div class="card-body">
+          <table class="student-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Siswa</th>
+                <th>NIS</th>
+                <th>Rata-rata</th>
+                <th>Kehadiran</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Ahmad Fauzi</td>
+                <td>2024100042</td>
+                <td><strong style="color: var(--green-600)">87.4</strong></td>
+                <td>96%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Aisyah Putri</td>
+                <td>2024100043</td>
+                <td><strong style="color: var(--green-600)">91.2</strong></td>
+                <td>98%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Budi Santoso</td>
+                <td>2024100044</td>
+                <td><strong>79.5</strong></td>
+                <td>90%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Dewi Rahmawati</td>
+                <td>2024100045</td>
+                <td><strong style="color: var(--green-600)">88.7</strong></td>
+                <td>94%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Farhan Hakim</td>
+                <td>2024100046</td>
+                <td><strong style="color: #d97706">72.3</strong></td>
+                <td>85%</td>
+                <td>
+                  <span style="color: #d97706; font-weight: 600"
+                    >⚠️ Perlu Perhatian</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Fatimah Azzahra</td>
+                <td>2024100047</td>
+                <td><strong style="color: var(--green-600)">92.8</strong></td>
+                <td>99%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Hasan Abdullah</td>
+                <td>2024100048</td>
+                <td><strong style="color: var(--green-600)">85.1</strong></td>
+                <td>95%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Khadijah Nur</td>
+                <td>2024100049</td>
+                <td><strong style="color: var(--green-600)">90.4</strong></td>
+                <td>97%</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >✅ Aktif</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p
+            style="
+              text-align: center;
+              margin-top: 14px;
+              font-size: 12px;
+              color: var(--gray-400);
+            "
+          >
+            Menampilkan 8 dari 32 siswa ·
+            <a
+              href="#"
+              onclick="showToast('Muat semua siswa')"
+              style="color: var(--green-600); font-weight: 600"
+              >Lihat Semua</a
+            >
+          </p>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/guru-kelas.js"></script>
+  </body>
+</html>

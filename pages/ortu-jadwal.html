@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jadwal Anak – Orang Tua – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ortu-jadwal.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑</button
+      ><button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Orang Tua</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">MF</div>
+          <div>
+            <div class="sidebar-uname">H. Muhammad Fauzi</div>
+            <div class="sidebar-urole">Orang Tua · Ahmad Fauzi</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-ortu.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="ortu-nilai.html"
+          ><span class="si">📊</span> Nilai Anak</a
+        >
+        <a class="sidebar-link" href="ortu-absensi.html"
+          ><span class="si">✅</span> Kehadiran</a
+        >
+        <a
+          class="sidebar-link active"
+          href="ortu-jadwal.html"
+          aria-current="page"
+          ><span class="si">📅</span> Jadwal Anak</a
+        >
+        <a class="sidebar-link" href="ortu-tugas.html"
+          ><span class="si">📋</span> Tugas Anak</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Keuangan</div>
+        <a class="sidebar-link" href="ortu-pembayaran.html"
+          ><span class="si">💰</span> Pembayaran
+          <span class="sidebar-badge">1</span></a
+        >
+        <a class="sidebar-link" href="ortu-riwayat.html"
+          ><span class="si">📃</span> Riwayat Transaksi</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">
+          Komunikasi
+        </div>
+        <a class="sidebar-link" href="ortu-pesan.html"
+          ><span class="si">💬</span> Pesan Guru
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ortu-pengumuman.html"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="ortu-profil.html"
+          ><span class="si">👤</span> Profil</a
+        >
+        <a class="sidebar-link" href="ortu-pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <h1>📅 Jadwal Anak</h1>
+        <p>Jadwal pelajaran Ahmad Fauzi – Kelas 10 IPA</p>
+      </div>
+      <div class="child-tag">
+        <span class="av">AF</span> Ahmad Fauzi – Kelas 10 IPA
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"
+            >Jadwal Mingguan – Semester Genap 2025/2026</span
+          >
+        </div>
+        <div class="schedule-grid">
+          <div class="sch-header">Waktu</div>
+          <div class="sch-header">Senin</div>
+          <div class="sch-header">Selasa</div>
+          <div class="sch-header">Rabu</div>
+          <div class="sch-header">Kamis</div>
+          <div class="sch-header">Jumat</div>
+          <div class="sch-time">07:30<br />08:15</div>
+          <div class="sch-cell">
+            <div class="sch-item mat">
+              <div class="subj">Matematika</div>
+              <div class="teacher">Siti Rahma, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item fis">
+              <div class="subj">Fisika</div>
+              <div class="teacher">Dr. Ahmad, M.Pd</div>
+              <div class="room">Lab Fisika</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pai">
+              <div class="subj">PAI</div>
+              <div class="teacher">Ust. Hamid, Lc</div>
+              <div class="room">Musholla</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item bio">
+              <div class="subj">Biologi</div>
+              <div class="teacher">Nurul H., M.Si</div>
+              <div class="room">Lab Bio</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item ind">
+              <div class="subj">B. Indonesia</div>
+              <div class="teacher">Drs. Wahyudi</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-time">08:15<br />09:00</div>
+          <div class="sch-cell">
+            <div class="sch-item mat">
+              <div class="subj">Matematika</div>
+              <div class="teacher">Siti Rahma, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item fis">
+              <div class="subj">Fisika</div>
+              <div class="teacher">Dr. Ahmad, M.Pd</div>
+              <div class="room">Lab Fisika</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pai">
+              <div class="subj">PAI</div>
+              <div class="teacher">Ust. Hamid, Lc</div>
+              <div class="room">Musholla</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item bio">
+              <div class="subj">Biologi</div>
+              <div class="teacher">Nurul H., M.Si</div>
+              <div class="room">Lab Bio</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item ind">
+              <div class="subj">B. Indonesia</div>
+              <div class="teacher">Drs. Wahyudi</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-time">09:00<br />09:45</div>
+          <div class="sch-cell">
+            <div class="sch-item eng">
+              <div class="subj">B. Inggris</div>
+              <div class="teacher">Linda, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item kim">
+              <div class="subj">Kimia</div>
+              <div class="teacher">Hj. Fatimah, S.Pd</div>
+              <div class="room">Lab Kimia</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item inf">
+              <div class="subj">Informatika</div>
+              <div class="teacher">Rizky, S.Kom</div>
+              <div class="room">Lab Komputer</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pkn">
+              <div class="subj">PKN</div>
+              <div class="teacher">Dra. Sulistyawati</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pjok">
+              <div class="subj">PJOK</div>
+              <div class="teacher">Bambang, S.Pd</div>
+              <div class="room">Lapangan</div>
+            </div>
+          </div>
+          <div class="sch-time">09:45<br />10:30</div>
+          <div class="sch-cell">
+            <div class="sch-item eng">
+              <div class="subj">B. Inggris</div>
+              <div class="teacher">Linda, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item kim">
+              <div class="subj">Kimia</div>
+              <div class="teacher">Hj. Fatimah, S.Pd</div>
+              <div class="room">Lab Kimia</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item inf">
+              <div class="subj">Informatika</div>
+              <div class="teacher">Rizky, S.Kom</div>
+              <div class="room">Lab Komputer</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item sej">
+              <div class="subj">Sejarah</div>
+              <div class="teacher">Arif S., M.Hum</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pjok">
+              <div class="subj">PJOK</div>
+              <div class="teacher">Bambang, S.Pd</div>
+              <div class="room">Lapangan</div>
+            </div>
+          </div>
+          <div class="sch-time">10:30<br />11:15</div>
+          <div class="sch-cell">
+            <div class="sch-item seni">
+              <div class="subj">Seni Budaya</div>
+              <div class="teacher">Maya, S.Sn</div>
+              <div class="room">R.Seni</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item sej">
+              <div class="subj">Sejarah</div>
+              <div class="teacher">Arif S., M.Hum</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item bio">
+              <div class="subj">Biologi</div>
+              <div class="teacher">Nurul H., M.Si</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item ind">
+              <div class="subj">B. Indonesia</div>
+              <div class="teacher">Drs. Wahyudi</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell"><div class="sch-empty">–</div></div>
+          <div class="sch-time">11:15<br />12:00</div>
+          <div class="sch-cell">
+            <div class="sch-item seni">
+              <div class="subj">Seni Budaya</div>
+              <div class="teacher">Maya, S.Sn</div>
+              <div class="room">R.Seni</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item pkn">
+              <div class="subj">PKN</div>
+              <div class="teacher">Dra. Sulistyawati</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item mat">
+              <div class="subj">Matematika</div>
+              <div class="teacher">Siti Rahma, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell">
+            <div class="sch-item eng">
+              <div class="subj">B. Inggris</div>
+              <div class="teacher">Linda, S.Pd</div>
+              <div class="room">R.201</div>
+            </div>
+          </div>
+          <div class="sch-cell"><div class="sch-empty">–</div></div>
+        </div>
+      </div>
+      <div class="today-note">
+        📌 <strong>Senin (hari ini):</strong>&nbsp; 6 jam pelajaran —
+        Matematika, B. Inggris, Seni Budaya
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

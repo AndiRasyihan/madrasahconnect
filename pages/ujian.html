@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ujian – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ujian.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link active" href="ujian.html" aria-current="page"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link" href="pesan.html"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>📝 Ujian & Ulangan</h1>
+          <p>Jadwal ujian dan hasil ulangan semester ini</p>
+        </div>
+      </div>
+
+      <div class="uts-banner">
+        <div>
+          <h2>📅 UTS Semester Genap 2026</h2>
+          <p>
+            Ujian Tengah Semester dimulai 23 Maret – 4 April 2026. Persiapkan
+            dirimu!
+          </p>
+        </div>
+        <button
+          class="uts-btn"
+          onclick="
+            mcModal(
+              '📅 Jadwal UTS Lengkap',
+              '<div style=font-size:13px><p><strong>📐 Matematika</strong> — 23 Mar, 07:30–09:30</p><p><strong>📖 B. Indonesia</strong> — 24 Mar, 07:30–09:30</p><p><strong>⚗️ Fisika</strong> — 30 Mar, 09:45–11:45</p><p><strong>☪️ PAI</strong> — 31 Mar, 07:30–09:00</p><p><strong>🧪 Kimia</strong> — 1 Apr, 09:45–11:45</p><p><strong>🌐 B. Inggris</strong> — 2 Apr, 07:30–09:30</p></div>',
+            )
+          "
+        >
+          Lihat Jadwal UTS →
+        </button>
+      </div>
+
+      <div class="exam-grid">
+        <div class="exam-card active-exam">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--green-50)">📐</div>
+            <div>
+              <div class="exam-title">UTS Matematika</div>
+              <div class="exam-subject">Bu Siti Rahma, S.Pd.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>23 Maret 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>07:30 – 09:30 (120 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>40 PG + 5 Essay</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Bab 1–5 (SPLV, Integral)</strong>
+            </div>
+          </div>
+          <span class="exam-status status-done">✅ Sudah Dikerjakan</span>
+          <div class="exam-result">
+            <div class="result-score" style="color: var(--green-600)">92</div>
+            <div class="result-info">
+              Peringkat 3 dari 32 siswa<br />KKM: 75 ·
+              <strong style="color: var(--green-600)">Tuntas</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--blue-50)">📖</div>
+            <div>
+              <div class="exam-title">UTS Bahasa Indonesia</div>
+              <div class="exam-subject">Pak Ahmad Hidayat, M.Pd.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>24 Maret 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>07:30 – 09:30 (120 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>35 PG + 3 Essay</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Teks Narasi & Argumentasi</strong>
+            </div>
+          </div>
+          <span class="exam-status status-done">✅ Sudah Dikerjakan</span>
+          <div class="exam-result">
+            <div class="result-score" style="color: var(--green-600)">88</div>
+            <div class="result-info">
+              Peringkat 5 dari 32 siswa<br />KKM: 75 ·
+              <strong style="color: var(--green-600)">Tuntas</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--amber-50)">⚗️</div>
+            <div>
+              <div class="exam-title">UTS Fisika</div>
+              <div class="exam-subject">Bu Dewi Sartika, S.Si.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>30 Maret 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>09:45 – 11:45 (120 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>30 PG + 5 Essay</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Gelombang & Kemagnetan</strong>
+            </div>
+          </div>
+          <span class="exam-status status-upcoming">📅 2 hari lagi</span>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--teal-50)">☪️</div>
+            <div>
+              <div class="exam-title">UTS Pendidikan Agama Islam</div>
+              <div class="exam-subject">Ustaz Hamid Faisal, Lc.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>31 Maret 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>07:30 – 09:00 (90 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>25 PG + 5 Essay + Hafalan</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Al-Mulk & Fiqh Ibadah</strong>
+            </div>
+          </div>
+          <span class="exam-status status-upcoming">📅 3 hari lagi</span>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--coral-50)">🧪</div>
+            <div>
+              <div class="exam-title">UTS Kimia</div>
+              <div class="exam-subject">Pak Rizky Maulana, S.Si.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>1 April 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>09:45 – 11:45 (120 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>35 PG + 4 Essay</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Reaksi Redoks & Elektrokimia</strong>
+            </div>
+          </div>
+          <span class="exam-status status-scheduled">📋 Dijadwalkan</span>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div class="exam-icon" style="background: var(--blue-50)">🌐</div>
+            <div>
+              <div class="exam-title">UTS Bahasa Inggris</div>
+              <div class="exam-subject">Mrs. Diana Putri, M.Hum.</div>
+            </div>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail">
+              📅 Tanggal: <strong>2 April 2026</strong>
+            </div>
+            <div class="exam-detail">
+              ⏰ Waktu: <strong>07:30 – 09:30 (120 menit)</strong>
+            </div>
+            <div class="exam-detail">
+              📄 Soal: <strong>40 PG + 3 Essay + Listening</strong>
+            </div>
+            <div class="exam-detail">
+              📖 Materi: <strong>Tenses & Reading Comprehension</strong>
+            </div>
+          </div>
+          <span class="exam-status status-scheduled">📋 Dijadwalkan</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>📊 Riwayat Ulangan Harian</h3></div>
+        <div class="card-body" style="padding: 0; overflow-x: auto">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Mata Pelajaran</th>
+                <th>Tanggal</th>
+                <th>Jenis</th>
+                <th>Nilai</th>
+                <th>KKM</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>📐 Matematika</td>
+                <td>15 Mar 2026</td>
+                <td>UH Bab 4</td>
+                <td><strong>92</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >Tuntas</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>📖 B. Indonesia</td>
+                <td>12 Mar 2026</td>
+                <td>UH Bab 3</td>
+                <td><strong>88</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >Tuntas</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>⚗️ Fisika</td>
+                <td>10 Mar 2026</td>
+                <td>UH Bab 5</td>
+                <td><strong>74</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--coral-400); font-weight: 600"
+                    >Remidi</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>🧪 Kimia</td>
+                <td>8 Mar 2026</td>
+                <td>UH Bab 4</td>
+                <td><strong>81</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >Tuntas</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>🌐 B. Inggris</td>
+                <td>5 Mar 2026</td>
+                <td>UH Chapter 6</td>
+                <td><strong>85</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >Tuntas</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>☪️ PAI</td>
+                <td>3 Mar 2026</td>
+                <td>UH + Hafalan</td>
+                <td><strong>95</strong></td>
+                <td>75</td>
+                <td>
+                  <span style="color: var(--green-600); font-weight: 600"
+                    >Tuntas</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/ujian.js"></script>
+  </body>
+</html>

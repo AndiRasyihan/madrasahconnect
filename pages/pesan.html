@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesan – MadrasahConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pesan.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Kontras tinggi"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar teks"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+    </aside>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MadrasahConnect</strong><span>Portal Siswa</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AF</div>
+          <div>
+            <div class="sidebar-uname">Ahmad Fauzi</div>
+            <div class="sidebar-urole">Kelas 10 IPA · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link" href="pelajaran.html"
+          ><span class="si">📚</span> Pelajaran</a
+        >
+        <a class="sidebar-link" href="tugas.html"
+          ><span class="si">📋</span> Tugas
+          <span class="sidebar-badge">3</span></a
+        >
+        <a class="sidebar-link" href="ujian.html"
+          ><span class="si">📝</span> Ujian</a
+        >
+        <a class="sidebar-link" href="nilai.html"
+          ><span class="si">📊</span> Nilai &amp; Rapor</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Informasi</div>
+        <a class="sidebar-link" href="jadwal.html"
+          ><span class="si">📅</span> Jadwal</a
+        >
+        <a class="sidebar-link active" href="pesan.html" aria-current="page"
+          ><span class="si">💬</span> Pesan
+          <span class="sidebar-badge">2</span></a
+        >
+        <a class="sidebar-link" href="../index.html#announcements"
+          ><span class="si">📢</span> Pengumuman</a
+        >
+        <a class="sidebar-link" href="ekskul.html"
+          ><span class="si">⚽</span> Ekstrakurikuler</a
+        >
+        <div class="sidebar-group-label" style="margin-top: 8px">Akun</div>
+        <a class="sidebar-link" href="profil.html"
+          ><span class="si">👤</span> Profil Saya</a
+        >
+        <a class="sidebar-link" href="pengaturan.html"
+          ><span class="si">⚙️</span> Pengaturan</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+
+    <div class="main-area" id="main-content">
+      <div class="chat-sidebar">
+        <div class="chat-sidebar-top">
+          <h2>💬 Pesan</h2>
+          <input
+            type="text"
+            class="chat-search"
+            placeholder="Cari percakapan..."
+            onkeyup="filterChats(this.value)"
+          />
+        </div>
+        <div class="chat-list" id="chatList">
+          <div
+            class="chat-item active"
+            onclick="selectChat(this, 'siti')"
+            data-name="bu siti rahma"
+          >
+            <div
+              class="chat-av"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--green-400),
+                  var(--teal-400)
+                );
+              "
+            >
+              SR
+            </div>
+            <div class="chat-av-text">
+              <div class="chat-av-name">Bu Siti Rahma</div>
+              <div class="chat-av-preview">Tugas aljabar dikumpul besok ya</div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">10:42</div>
+              <div class="chat-unread">1</div>
+            </div>
+          </div>
+          <div
+            class="chat-item"
+            onclick="selectChat(this, 'ahmad')"
+            data-name="pak ahmad"
+          >
+            <div
+              class="chat-av"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--blue-400),
+                  var(--green-400)
+                );
+              "
+            >
+              AH
+            </div>
+            <div class="chat-av-text">
+              <div class="chat-av-name">Pak Ahmad</div>
+              <div class="chat-av-preview">
+                Seperti yang saya bilang di kelas...
+              </div>
+            </div>
+            <div class="chat-meta">
+              <div class="chat-time">Kemarin</div>
+              <div class="chat-unread">1</div>
+            </div>
+          </div>
+          <div
+            class="chat-item"
+            onclick="selectChat(this, 'dewi')"
+            data-name="bu dewi"
+          >
+            <div
+              class="chat-av"
+              style="
+                background: linear-gradient(135deg, #f59e0b, var(--coral-400));
+              "
+            >
+              DW
+            </div>
+            <div class="chat-av-text">
+              <div class="chat-av-name">Bu Dewi (Fisika)</div>
+              <div class="chat-av-preview">
+                Laporan praktikum sudah saya periksa
+              </div>
+            </div>
+            <div class="chat-meta"><div class="chat-time">22 Mar</div></div>
+          </div>
+          <div
+            class="chat-item"
+            onclick="selectChat(this, 'hamid')"
+            data-name="ustaz hamid"
+          >
+            <div
+              class="chat-av"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--teal-400),
+                  var(--teal-600)
+                );
+              "
+            >
+              HM
+            </div>
+            <div class="chat-av-text">
+              <div class="chat-av-name">Ustaz Hamid (PAI)</div>
+              <div class="chat-av-preview">
+                Jangan lupa hafalan surat Al-Mulk
+              </div>
+            </div>
+            <div class="chat-meta"><div class="chat-time">20 Mar</div></div>
+          </div>
+          <div
+            class="chat-item"
+            onclick="selectChat(this, 'wali')"
+            data-name="wali kelas"
+          >
+            <div
+              class="chat-av"
+              style="
+                background: linear-gradient(135deg, #8b5cf6, var(--blue-400));
+              "
+            >
+              WK
+            </div>
+            <div class="chat-av-text">
+              <div class="chat-av-name">Wali Kelas (Bu Ani)</div>
+              <div class="chat-av-preview">Rapat orang tua tanggal 5 April</div>
+            </div>
+            <div class="chat-meta"><div class="chat-time">18 Mar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-main" id="chatMain">
+        <div class="chat-header">
+          <div
+            class="chat-av"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--green-400),
+                var(--teal-400)
+              );
+              width: 36px;
+              height: 36px;
+              font-size: 11px;
+            "
+          >
+            SR
+          </div>
+          <div>
+            <div class="chat-header-name" id="chatHeaderName">
+              Bu Siti Rahma
+            </div>
+            <div class="chat-header-status" id="chatHeaderStatus">
+              Guru Matematika · Online
+            </div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg-date">— Hari Ini —</div>
+          <div class="msg msg-in">
+            Assalamu'alaikum Ahmad, bagaimana persiapan UTS Matematika-nya?<span
+              class="msg-time"
+              >09:15</span
+            >
+          </div>
+          <div class="msg msg-out">
+            Wa'alaikumussalam Bu, alhamdulillah sudah review materi Bab 3 dan
+            4.<span class="msg-time">09:20</span>
+          </div>
+          <div class="msg msg-in">
+            Bagus, jangan lupa kerjakan latihan soal di halaman 87-92 ya. Itu
+            cakupan UTS.<span class="msg-time">09:22</span>
+          </div>
+          <div class="msg msg-out">
+            Baik Bu, insya Allah saya kerjakan malam ini 🤲<span
+              class="msg-time"
+              >09:25</span
+            >
+          </div>
+          <div class="msg msg-in">
+            Oh iya, tugas aljabar yang kemarin dikumpul besok ya, jangan sampai
+            lupa.<span class="msg-time">10:42</span>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Ketik pesan..."
+            onkeydown="if (event.key === 'Enter') sendMessage();"
+          />
+          <button
+            class="chat-send"
+            onclick="sendMessage()"
+            aria-label="Kirim pesan"
+          >
+            ➤
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/main.js"></script>
+      <script src="../js/pesan.js"></script>
+  </body>
+</html>
