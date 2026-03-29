@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="MadrasahConnect – Platform digital inklusif untuk sekolah Muhammadiyah & Aisyiyah. Dirancang untuk siswa, guru, dan orang tua dengan fitur aksesibilitas penuh WCAG 2.1 AA."
+      content="MaConnect – Platform digital inklusif untuk sekolah Muhammadiyah & Aisyiyah. Dirancang untuk siswa, guru, dan orang tua dengan fitur aksesibilitas penuh WCAG 2.1 AA."
     />
     <meta name="theme-color" content="#3B6D11" />
-    <title>MadrasahConnect – Inclusive Digital School</title>
+    <title>MaConnect – Inclusive Digital School</title>
     <link rel="stylesheet" href="css/style.css" />
     <!-- Favicon SVG inline -->
     <link
@@ -349,17 +349,17 @@
         <a
           href="index.html"
           class="nav-logo"
-          aria-label="MadrasahConnect – Halaman Utama"
+          aria-label="MaConnect – Halaman Utama"
         >
-          <div class="nav-logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
-              />
-            </svg>
-          </div>
+          <img
+            src="assets/logo.png"
+            alt="Logo Muhammadiyah"
+            class="nav-logo-img"
+            width="38"
+            height="38"
+          />
           <div class="nav-logo-text">
-            <strong>MadrasahConnect</strong>
+            <strong>MaConnect</strong>
             <span>SD · SMP · SMA Muhammadiyah</span>
           </div>
         </a>
@@ -436,34 +436,25 @@
     <main id="main">
       <!-- ═══ HERO ═══ -->
       <section id="hero" aria-labelledby="hero-title">
-        <div class="hero-content">
-          <div
-            class="hero-eyebrow"
-            aria-label="Platform inklusif untuk Sekolah Muhammadiyah"
-          >
-            <span class="pulse" aria-hidden="true"></span>
-            Platform Inklusif Digital · APSI-PTMA 2026
-          </div>
-          <h1 id="hero-title">
-            Sekolah Muhammadiyah<br />
-            <em>Digital &amp; Inklusif</em><br />
-            untuk Semua
-          </h1>
-          <span
-            class="hero-arabic"
-            lang="ar"
-            aria-label="Bismillahirrahmanirrahim"
-            >بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span
-          >
+        <div class="hero-bg-pattern" aria-hidden="true"></div>
+        <div class="hero-center">
+          <img
+            src="assets/logo.png"
+            alt="Logo Muhammadiyah"
+            class="hero-logo"
+            width="140"
+            height="140"
+          />
+          <h1 id="hero-title">MADRASAH CONNECT</h1>
+          <div class="hero-divider" aria-hidden="true"></div>
+          <p class="hero-subtitle">Platform Digital Sekolah Muhammadiyah</p>
           <p class="hero-desc">
-            Portal sekolah responsive yang memudahkan akses informasi bagi
-            siswa, guru, dan orang tua — lengkap dengan fitur inklusivitas penuh
-            untuk penyandang disabilitas. Dibangun di atas nilai Islam
-            Berkemajuan.
+            Portal resmi tautan informasi dan media sosial seluruh unit
+            pendidikan di bawah naungan Muhammadiyah &amp; 'Aisyiyah.
           </p>
           <div class="hero-actions" role="group" aria-label="Aksi utama">
             <button
-              class="btn btn-primary"
+              class="btn hero-btn-primary"
               onclick="openLogin()"
               aria-label="Masuk ke portal sekolah"
             >
@@ -480,18 +471,9 @@
             </button>
             <a
               href="pages/ppdb.html"
-              class="btn btn-outline"
+              class="btn hero-btn-outline"
               aria-label="Daftar PPDB Online 2026"
             >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path d="M12 5v14M5 12h14" />
-              </svg>
               Daftar PPDB Online
             </a>
           </div>
@@ -516,119 +498,6 @@
             <div class="hero-stat">
               <div class="hero-stat-num">WCAG</div>
               <div class="hero-stat-label">2.1 AA Certified</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Device Mockup -->
-        <div class="hero-visual" aria-hidden="true" role="presentation">
-          <div class="device-wrap">
-            <div class="device-bar">
-              <div class="device-dot" style="background: #ff5f57"></div>
-              <div class="device-dot" style="background: #ffbd2e"></div>
-              <div class="device-dot" style="background: #28c840"></div>
-              <div class="device-url">
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <rect x="3" y="11" width="18" height="11" rx="2" />
-                  <path d="M7 11V7a5 5 0 0110 0v4" />
-                </svg>
-                madrasahconnect.id/dashboard
-              </div>
-            </div>
-            <div class="device-screen">
-              <div class="mock-topbar">
-                <div class="mock-logo">
-                  <div class="mock-logo-dot">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M12 2L4 7v10l8 5 8-5V7L12 2z" />
-                    </svg>
-                  </div>
-                  MadrasahConnect
-                </div>
-                <div class="mock-nav">
-                  <span>Beranda</span><span>Pelajaran</span><span>Jadwal</span
-                  ><span>Nilai</span>
-                </div>
-              </div>
-              <div class="mock-banner">
-                <h3>Portal Inklusif Sekolah Muhammadiyah</h3>
-                <p>Akses informasi sekolah kapan saja, di mana saja</p>
-                <div class="mock-btn">Mulai Belajar →</div>
-              </div>
-              <div class="mock-cards">
-                <div class="mock-card">
-                  <div class="icon">📚</div>
-                  <p>Materi</p>
-                </div>
-                <div class="mock-card">
-                  <div class="icon">📅</div>
-                  <p>Jadwal</p>
-                </div>
-                <div class="mock-card">
-                  <div class="icon">📊</div>
-                  <p>Nilai</p>
-                </div>
-              </div>
-              <div class="mock-notice">
-                <span class="mock-notice-dot"></span>
-                📢 PPDB 2026/2027: Pendaftaran Online 1 Maret – 15 April 2026
-              </div>
-              <div
-                class="mock-notice"
-                style="
-                  background: var(--teal-50);
-                  border-left-color: var(--teal-200);
-                  color: var(--teal-800);
-                "
-              >
-                <span
-                  class="mock-notice-dot"
-                  style="background: var(--teal-200)"
-                ></span>
-                🏆 Ahmad Fauzi meraih Juara 1 Olimpiade Matematika Nasional
-              </div>
-            </div>
-          </div>
-          <!-- Phone -->
-          <div class="phone-device">
-            <div class="phone-notch"><div class="phone-pill"></div></div>
-            <div class="phone-screen">
-              <div class="phone-topbar">
-                <span class="phone-logo">MC</span>
-                <div class="phone-ham">
-                  <span></span><span></span><span></span>
-                </div>
-              </div>
-              <div class="phone-banner">
-                <p>Portal Inklusif Muhammadiyah</p>
-                <span class="pb-btn">Masuk →</span>
-              </div>
-              <div class="phone-grid">
-                <div class="phone-item">
-                  <div class="pi">📚</div>
-                  <p>Pelajaran</p>
-                </div>
-                <div class="phone-item">
-                  <div class="pi">📅</div>
-                  <p>Jadwal</p>
-                </div>
-                <div class="phone-item">
-                  <div class="pi">📊</div>
-                  <p>Nilai</p>
-                </div>
-                <div class="phone-item">
-                  <div class="pi">💬</div>
-                  <p>Pesan</p>
-                </div>
-              </div>
-              <div class="phone-notice">📢 PPDB: 1 Mar – 15 Apr 2026</div>
             </div>
           </div>
         </div>
@@ -1364,17 +1233,17 @@
             href="index.html"
             class="nav-logo"
             style="display: inline-flex"
-            aria-label="MadrasahConnect"
+            aria-label="MaConnect"
           >
-            <div class="nav-logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
-                />
-              </svg>
-            </div>
+            <img
+              src="assets/logo.png"
+              alt="Logo Muhammadiyah"
+              class="nav-logo-img"
+              width="38"
+              height="38"
+            />
             <div class="nav-logo-text">
-              <strong style="color: #fff">MadrasahConnect</strong>
+              <strong style="color: #fff">MaConnect</strong>
               <span>SD · SMP · SMA Muhammadiyah</span>
             </div>
           </a>
@@ -1443,7 +1312,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 MadrasahConnect · Lomba UI/UX APSI-PTMA 2026</span>
+        <span>© 2026 MaConnect · Lomba UI/UX APSI-PTMA 2026</span>
         <div class="footer-bottom-r">
           <a href="#accessibility">♿ WCAG 2.1 AA</a>
           <a href="#">Bahasa Indonesia</a>
@@ -1464,18 +1333,18 @@
           ✕
         </button>
         <div class="login-logo">
-          <div class="login-logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
-              />
-            </svg>
-          </div>
+          <img
+            src="assets/logo.png"
+            alt="Logo Muhammadiyah"
+            class="login-logo-img"
+            width="38"
+            height="38"
+          />
           <div>
             <div
               style="font-size: 15px; font-weight: 700; color: var(--gray-900)"
             >
-              MadrasahConnect
+              MaConnect
             </div>
             <div style="font-size: 11px; color: var(--gray-400)">
               Masuk ke portal Anda

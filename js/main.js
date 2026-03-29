@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════
-//  MadrasahConnect – Main JavaScript
+//  MaConnect – Main JavaScript
 // ═══════════════════════════════════════════
 
 document.addEventListener("DOMContentLoaded", () => {
