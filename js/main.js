@@ -506,8 +506,11 @@ document.addEventListener("DOMContentLoaded", () => {
         showToast("Selamat datang! Menuju dashboard...", "success");
         // Redirect ke halaman dashboard sesuai role
         setTimeout(() => {
-          window.location.href =
-            dashboardMap[activeRole] || "pages/dashboard.html";
+          const isInPagesFolder = window.location.pathname.includes("/pages/");
+          const redirectPath = isInPagesFolder
+            ? dashboardMap[activeRole].replace(/^pages\//, "")
+            : dashboardMap[activeRole];
+          window.location.href = redirectPath;
         }, 1200);
       }, 1800);
     });
