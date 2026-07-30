@@ -152,13 +152,38 @@ const semData = {
     ],
   },
 };
-function switchSemester(btn, sem) {
-  btn.parentElement
-    .querySelectorAll(".sem-tab")
-    .forEach((b) => b.classList.remove("active"));
-  btn.classList.add("active");
+// Gabungkan nilai Matematika dari input guru (MCDB) — sinkron guru → siswa
+function gradeLetter(avg) {
+  if (avg >= 95) return "A+";
+  if (avg >= 85) return "A";
+  if (avg >= 80) return "A-";
+  if (avg >= 75) return "B+";
+  if (avg >= 70) return "B";
+  if (avg >= 60) return "C";
+  return "D";
+}
+function mergeGuruNilai() {
+  if (typeof MCDB === "undefined") return;
+  const g = MCDB.getNilaiSiswa("10001");
+  if (!g) return;
+  const row = semData.genap.rows.find((r) => r.sub.includes("Matematika"));
+  if (!row) return;
+  ["uh1", "uh2", "uh3", "uts"].forEach((f) => {
+    if (g[f] !== undefined && g[f] !== null) row[f] = g[f];
+  });
+  const vals = [row.uh1, row.uh2, row.uh3, row.uts, g.tugas]
+    .map(parseFloat)
+    .filter((v) => !isNaN(v));
+  if (vals.length) {
+    row.avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+    row.grade = gradeLetter(row.avg);
+    row.color = row.avg >= 80 ? "var(--green-600)" : "var(--amber-800)";
+  }
+}
+function renderSemester(sem) {
   const data = semData[sem];
   const tbody = document.querySelector(".grade-table tbody");
+  if (!tbody) return;
   tbody.innerHTML = data.rows
     .map(
       (r) =>
@@ -189,11 +214,22 @@ function switchSemester(btn, sem) {
         "</strong></td></tr>",
     )
     .join("");
+}
+function switchSemester(btn, sem) {
+  btn.parentElement
+    .querySelectorAll(".sem-tab")
+    .forEach((b) => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderSemester(sem);
   showToast(
     "Menampilkan " +
       (sem === "ganjil" ? "Semester Ganjil" : "Semester Genap"),
   );
 }
+document.addEventListener("DOMContentLoaded", () => {
+  mergeGuruNilai();
+  renderSemester("genap");
+});
 // Download rapor
 document
   .querySelector(".card-header")
@@ -203,13 +239,13 @@ document
   );
 function downloadRapor() {
   const rows = document.querySelectorAll(".grade-table tbody tr");
-  let csv = "Mata Pelajaran,UH1,UH2,UH3,UTS,UAS,Rata-rata,Predikat\\n";
+  let csv = "Mata Pelajaran,UH1,UH2,UH3,UTS,UAS,Rata-rata,Predikat\n";
   rows.forEach((r) => {
     const cells = r.querySelectorAll("td");
     csv +=
       Array.from(cells)
-        .map((c) => c.textContent.trim().replace(/\\n/g, ""))
-        .join(",") + "\\n";
+        .map((c) => c.textContent.trim().replace(/\n/g, " "))
+        .join(",") + "\n";
   });
   const blob = new Blob([csv], { type: "text/csv" });
   const a = document.createElement("a");

@@ -125,6 +125,42 @@ const chatNames = {
   },
 };
 
+// Peta kontak → thread MCDB (pesan tersinkron lintas peran)
+const THREAD_MAP = {
+  siti: "th_siswa_guru",
+  ahmad: "th_s1_ahmad",
+  dewi: "th_s1_dewi",
+  hamid: "th_s1_hamid",
+  wali: "th_s1_wali",
+};
+const MY_ID = "s1";
+let currentKey = "siti";
+
+function fmtDateSep(iso) {
+  if (iso === MCDB.todayISO()) return "— Hari Ini —";
+  const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+  const p = iso.split("-");
+  return "— " + parseInt(p[2], 10) + " " + bulan[parseInt(p[1], 10) - 1] + " —";
+}
+
+function renderThread(key) {
+  const th = MCDB.getThread(THREAD_MAP[key]);
+  const mc = document.getElementById("chatMessages");
+  if (!th || !mc) return;
+  mc.innerHTML = "";
+  let lastDate = null;
+  th.messages.forEach((m) => {
+    if (m.date !== lastDate) {
+      mc.innerHTML += `<div class="msg-date">${fmtDateSep(m.date)}</div>`;
+      lastDate = m.date;
+    }
+    const dir = m.from === MY_ID ? "out" : "in";
+    const safe = m.text.replace(/</g, "&lt;");
+    mc.innerHTML += `<div class="msg msg-${dir}">${safe}<span class="msg-time">${m.time}</span></div>`;
+  });
+  mc.scrollTop = mc.scrollHeight;
+}
+
 function selectChat(el, key) {
   document
     .querySelectorAll(".chat-item")
@@ -133,40 +169,24 @@ function selectChat(el, key) {
   const u = el.querySelector(".chat-unread");
   if (u) u.remove();
   const info = chatNames[key];
+  currentKey = key;
   document.getElementById("chatHeaderName").textContent = info.name;
   document.getElementById("chatHeaderStatus").textContent = info.role;
   document.querySelector(".chat-header .chat-av").textContent = info.av;
   document.querySelector(".chat-header .chat-av").style.background =
     info.bg;
-  const mc = document.getElementById("chatMessages");
-  mc.innerHTML = "";
-  chats[key].forEach((m) => {
-    if (m.t === "msg-date") {
-      mc.innerHTML += `<div class="msg-date">${m.c}</div>`;
-    } else {
-      mc.innerHTML += `<div class="msg msg-${m.t}">${m.c}<span class="msg-time">${m.time}</span></div>`;
-    }
-  });
-  mc.scrollTop = mc.scrollHeight;
+  renderThread(key);
   document.getElementById("chatMain").classList.add("show");
 }
 function sendMessage() {
   const inp = document.getElementById("chatInput");
   const txt = inp.value.trim();
   if (!txt) return;
-  const mc = document.getElementById("chatMessages");
-  const now = new Date();
-  const time =
-    now.getHours().toString().padStart(2, "0") +
-    ":" +
-    now.getMinutes().toString().padStart(2, "0");
-  mc.innerHTML += `<div class="msg msg-out">${txt}<span class="msg-time">${time}</span></div>`;
+  MCDB.sendMessage(THREAD_MAP[currentKey], MY_ID, txt);
+  if (currentKey === "siti") MCDB.notify("guru", "Pesan baru dari Ahmad Fauzi");
   inp.value = "";
-  mc.scrollTop = mc.scrollHeight;
-  setTimeout(() => {
-    mc.innerHTML += `<div class="msg msg-in">Terima kasih atas pesannya, akan saya tindak lanjuti 🤲<span class="msg-time">${time}</span></div>`;
-    mc.scrollTop = mc.scrollHeight;
-  }, 1200);
+  renderThread(currentKey);
+  showToast("Pesan terkirim");
 }
 function filterChats(q) {
   q = q.toLowerCase();
@@ -174,3 +194,5 @@ function filterChats(q) {
     i.style.display = i.dataset.name.includes(q) ? "flex" : "none";
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => renderThread(currentKey));

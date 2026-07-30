@@ -1365,6 +1365,24 @@
             <span class="rt-icon">👨‍👩‍👧</span>Orang Tua
           </button>
         </div>
+        <div
+          id="loginHint"
+          style="
+            background: var(--gray-50, #f7f8f9);
+            border: 1px solid var(--gray-200, #e3e6ea);
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            font-size: 12px;
+            line-height: 1.7;
+          "
+        >
+          <strong>Akun demo:</strong><br />
+          🎒 Siswa: <code>0051234567</code> / <code>siswa123</code><br />
+          👩‍🏫 Guru: <code>196812052001</code> / <code>guru123</code><br />
+          👨‍👩‍👧 Ortu: <code>fauzi@ortu.maconnect.sch.id</code> /
+          <code>ortu123</code>
+        </div>
         <form id="loginForm" novalidate>
           <div class="form-group">
             <label for="loginEmail">NISN / Email</label>
@@ -1411,6 +1429,8 @@
     <!-- Toast -->
     <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
 
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

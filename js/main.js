@@ -454,6 +454,11 @@ document.addEventListener("DOMContentLoaded", () => {
       closeLogin();
   });
 
+  // Buka modal login otomatis jika diarahkan oleh route guard
+  if (new URLSearchParams(window.location.search).has("login")) {
+    setTimeout(() => window.openLogin(), 300);
+  }
+
   // Role tabs in modal
   const roleTabs = document.querySelectorAll(".role-tab-btn");
   roleTabs.forEach((btn) => {
@@ -492,27 +497,36 @@ document.addEventListener("DOMContentLoaded", () => {
         ortu: "pages/dashboard-ortu.html",
       };
 
-      // Simulate loading
+      // Validasi kredensial nyata via MCAuth
       if (btn) {
-        btn.textContent = "Masuk...";
+        btn.textContent = "Memeriksa...";
         btn.disabled = true;
       }
       setTimeout(() => {
-        if (btn) {
-          btn.textContent = "Masuk ke Portal";
-          btn.disabled = false;
+        const user =
+          typeof MCAuth !== "undefined"
+            ? MCAuth.login(email, pass, activeRole)
+            : null;
+        if (!user) {
+          if (btn) {
+            btn.textContent = "Masuk ke Portal";
+            btn.disabled = false;
+          }
+          showToast("Email/NISN atau kata sandi salah untuk peran ini", "error");
+          const hint = document.getElementById("loginHint");
+          if (hint) hint.style.display = "block";
+          return;
         }
         closeLogin();
-        showToast("Selamat datang! Menuju dashboard...", "success");
-        // Redirect ke halaman dashboard sesuai role
+        showToast("Selamat datang, " + user.name + "!", "success");
         setTimeout(() => {
           const isInPagesFolder = window.location.pathname.includes("/pages/");
           const redirectPath = isInPagesFolder
             ? dashboardMap[activeRole].replace(/^pages\//, "")
             : dashboardMap[activeRole];
           window.location.href = redirectPath;
-        }, 1200);
-      }, 1800);
+        }, 700);
+      }, 500);
     });
   }
 
@@ -836,27 +850,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── NOTIF BUTTON ──────────────────────────
+  // ── NOTIF BUTTON (data nyata dari MCDB) ───
+  function currentRoleFromPath() {
+    const path = window.location.pathname;
+    const file = path.split("/").pop() || "";
+    if (!path.includes("/pages/")) return null;
+    if (file.startsWith("guru-") || file === "dashboard-guru.html")
+      return "guru";
+    if (file.startsWith("ortu-") || file === "dashboard-ortu.html")
+      return "ortu";
+    return "siswa";
+  }
+
   document.querySelectorAll(".notif-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const dot = btn.querySelector(".notif-dot");
       if (dot) dot.style.display = "none";
-      mcModal(
-        "🔔 Notifikasi",
-        `
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--green-50,#f0fdf4);border-radius:8px">
-            <span>📊</span><div><strong style="font-size:13px">Nilai UH Matematika</strong><p style="font-size:12px;color:var(--gray-500,#6b7280);margin-top:2px">Nilai Ulangan Harian Matematika: 92/100</p><span style="font-size:10px;color:var(--gray-400,#9ca3af)">30 menit lalu</span></div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:8px;border:1px solid var(--gray-100,#f3f4f6)">
-            <span>💬</span><div><strong style="font-size:13px">Pesan Baru</strong><p style="font-size:12px;color:var(--gray-500,#6b7280);margin-top:2px">Bu Siti Rahma mengirim komentar pada tugas Anda</p><span style="font-size:10px;color:var(--gray-400,#9ca3af)">1 jam lalu</span></div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:8px;border:1px solid var(--gray-100,#f3f4f6)">
-            <span>📢</span><div><strong style="font-size:13px">Jadwal UTS Berubah</strong><p style="font-size:12px;color:var(--gray-500,#6b7280);margin-top:2px">Cek kalender terbaru untuk jadwal UTS yang diperbarui</p><span style="font-size:10px;color:var(--gray-400,#9ca3af)">3 jam lalu</span></div>
-          </div>
-        </div>
-      `,
-      );
+      const role = currentRoleFromPath();
+      let items = [];
+      if (role && typeof MCDB !== "undefined") {
+        items = MCDB.getNotif(role);
+        MCDB.markNotifRead(role);
+      }
+      const bodyHTML = items.length
+        ? '<div style="display:flex;flex-direction:column;gap:14px">' +
+          items
+            .slice(0, 10)
+            .map(
+              (n) =>
+                `<div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:8px;${n.read ? "border:1px solid var(--gray-100,#f3f4f6)" : "background:var(--green-50,#f0fdf4)"}">
+            <span>🔔</span><div><p style="font-size:13px;font-weight:600">${n.text}</p><span style="font-size:10px;color:var(--gray-400,#9ca3af)">${n.date} ${n.time}</span></div>
+          </div>`,
+            )
+            .join("") +
+          "</div>"
+        : '<p style="font-size:13px;color:var(--gray-500);text-align:center;padding:16px">Belum ada notifikasi baru. Aktivitas dari peran lain (nilai, absensi, pesan, pengumuman) akan muncul di sini.</p>';
+      mcModal("🔔 Notifikasi", bodyHTML);
     });
   });
 

@@ -27,7 +27,7 @@ document.querySelectorAll('.jenjang-card').forEach(card => {
   card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
 });
 
-// PPDB Form submit
+// PPDB Form submit – pendaftaran tersimpan permanen
 document.getElementById('ppdbFormEl').addEventListener('submit', e => {
   e.preventDefault();
   const nama = document.getElementById('namaLengkap').value.trim();
@@ -40,10 +40,23 @@ document.getElementById('ppdbFormEl').addEventListener('submit', e => {
 
   setTimeout(() => {
     const ref = 'PPDB-2026-' + Math.floor(1000 + Math.random() * 9000);
+    const jenjang = document.querySelector('.jenjang-card.selected')?.textContent.trim().replace(/\s+/g, ' ') || '-';
+    MCDB.push('ppdb_pendaftar', {
+      id: MCDB.uid('ppdb'),
+      ref: ref,
+      nama: nama,
+      hp: hp,
+      email: email,
+      jenjang: jenjang,
+      date: MCDB.todayISO(),
+      time: MCDB.nowTime(),
+      status: 'Menunggu Verifikasi',
+    });
     document.getElementById('refNumber').textContent = 'No. Referensi: ' + ref;
     document.getElementById('ppdbForm').style.display = 'none';
     document.getElementById('successBanner').classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    showToast('Pendaftaran berhasil! Ref: ' + ref, 'success');
-  }, 2000);
+    showToast('Pendaftaran tersimpan! Ref: ' + ref, 'success');
+    btn.textContent = 'Kirim Pendaftaran'; btn.disabled = false;
+  }, 800);
 });
