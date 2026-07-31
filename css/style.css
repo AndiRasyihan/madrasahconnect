@@ -2488,6 +2488,24 @@ body.hc img {
   }
 }
 
+/* ── TABEL RESPONSIF (geser horizontal) ── */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+.table-scroll > table {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .table-scroll > table {
+    min-width: 600px;
+  }
+}
+
 /* ── MOBILE SIDEBAR TOGGLE (halaman dalam) ── */
 .mobile-sidebar-btn {
   display: none;
