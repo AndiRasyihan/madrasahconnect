@@ -2488,6 +2488,70 @@ body.hc img {
   }
 }
 
+/* ── MOBILE SIDEBAR TOGGLE (halaman dalam) ── */
+.mobile-sidebar-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--green-600);
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.mobile-sidebar-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition:
+    transform 0.25s,
+    opacity 0.25s;
+}
+.mobile-sidebar-btn.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.mobile-sidebar-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-sidebar-btn.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+body.hc .mobile-sidebar-btn {
+  background: #000 !important;
+  border: 2px solid #fff !important;
+}
+@media (max-width: 768px) {
+  .mobile-sidebar-btn {
+    display: flex;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+  .sidebar {
+    transition: transform 0.3s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

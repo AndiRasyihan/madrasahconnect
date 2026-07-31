@@ -183,9 +183,13 @@ body {
   border: 1px solid var(--gray-100);
   padding: 20px;
   transition: all 0.2s;
+  /* override display:flex .ann-card milik landing page (style.css) */
+  display: block;
+  cursor: default;
 }
 .ann-card:hover {
   box-shadow: var(--shadow-sm);
+  transform: none;
 }
 .ann-header {
   display: flex;

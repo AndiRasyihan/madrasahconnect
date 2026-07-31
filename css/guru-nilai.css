@@ -283,6 +283,8 @@ body {
   }
   .grade-table {
     font-size: 11px;
+    display: block;
+    overflow-x: auto;
   }
   .grade-input {
     width: 42px;

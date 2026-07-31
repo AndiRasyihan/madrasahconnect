@@ -344,5 +344,7 @@ body {
   }
   .task-table {
     font-size: 11px;
+    display: block;
+    overflow-x: auto;
   }
 }

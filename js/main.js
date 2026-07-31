@@ -707,24 +707,45 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // ── SIDEBAR MOBILE TOGGLE (for inner pages) ──
-  const sidebarToggle = document.getElementById("sidebarToggle");
   const sidebarEl = document.querySelector(".sidebar");
-  if (sidebarToggle && sidebarEl) {
-    sidebarToggle.addEventListener("click", () => {
-      sidebarEl.classList.toggle("open");
+  if (sidebarEl) {
+    let sidebarToggle = document.getElementById("sidebarToggle");
+    if (!sidebarToggle) {
+      sidebarToggle = document.createElement("button");
+      sidebarToggle.id = "sidebarToggle";
+      sidebarToggle.className = "mobile-sidebar-btn";
+      sidebarToggle.setAttribute("aria-label", "Buka menu navigasi");
+      sidebarToggle.setAttribute("aria-expanded", "false");
+      sidebarToggle.innerHTML = "<span></span><span></span><span></span>";
+      document.body.appendChild(sidebarToggle);
+    }
+    const sidebarBackdrop = document.createElement("div");
+    sidebarBackdrop.className = "sidebar-backdrop";
+    document.body.appendChild(sidebarBackdrop);
+
+    const setSidebar = (open) => {
+      sidebarEl.classList.toggle("open", open);
+      sidebarBackdrop.classList.toggle("show", open);
+      sidebarToggle.classList.toggle("open", open);
+      sidebarToggle.setAttribute("aria-expanded", String(open));
+      sidebarToggle.setAttribute(
+        "aria-label",
+        open ? "Tutup menu navigasi" : "Buka menu navigasi",
+      );
+    };
+    sidebarToggle.addEventListener("click", () =>
+      setSidebar(!sidebarEl.classList.contains("open")),
+    );
+    sidebarBackdrop.addEventListener("click", () => setSidebar(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && sidebarEl.classList.contains("open"))
+        setSidebar(false);
+    });
+    // Tutup saat memilih menu (mobile)
+    sidebarEl.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setSidebar(false);
     });
   }
-  // Close sidebar on backdrop click (mobile)
-  document.addEventListener("click", (e) => {
-    if (
-      sidebarEl &&
-      sidebarEl.classList.contains("open") &&
-      !sidebarEl.contains(e.target) &&
-      e.target.id !== "sidebarToggle"
-    ) {
-      sidebarEl.classList.remove("open");
-    }
-  });
 
   // ── TOGGLE SWITCHES GLOBAL ────────────────
   document
