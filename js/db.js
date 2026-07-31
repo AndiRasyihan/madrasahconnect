@@ -9,7 +9,7 @@
 
   const PREFIX = "mc_db_";
   const SEED_VERSION_KEY = "mc_db_version";
-  const SEED_VERSION = 4;
+  const SEED_VERSION = 5;
 
   function read(key, fallback) {
     try {
@@ -119,6 +119,115 @@
         address: "Jl. Kauman No. 1, Yogyakarta",
       },
     ],
+
+    // Tugas bersama lintas peran (guru buat → siswa kerjakan → ortu pantau)
+    tugas_list: [
+      {
+        id: "tg1",
+        judul: "Laporan Praktikum Fisika – Gelombang Bunyi",
+        mapel: "Fisika",
+        icon: "⚗️",
+        jenis: "📄 Laporan",
+        kelas: "10 IPA",
+        deadline: "2026-03-27",
+        desc: "Buat laporan praktikum lengkap dengan data pengamatan, analisis, dan kesimpulan. Minimal 5 halaman.",
+        by: "Dr. Ahmad, M.Pd",
+        terkumpul: 27,
+        total: 32,
+        status: "aktif",
+      },
+      {
+        id: "tg2",
+        judul: "Essay Narrative Text 500 Kata",
+        mapel: "B. Indonesia",
+        icon: "📖",
+        jenis: "✍️ Essay",
+        kelas: "10 IPA",
+        deadline: "2026-03-29",
+        desc: "Tulis essay narrative text dalam bahasa Indonesia dengan tema bebas. Perhatikan struktur: orientasi, komplikasi, resolusi.",
+        by: "Dewi Lestari, S.S",
+        terkumpul: 12,
+        total: 32,
+        status: "aktif",
+      },
+      {
+        id: "tg3",
+        judul: "Soal Latihan Integral Tentu Hal. 48",
+        mapel: "Matematika",
+        icon: "📐",
+        jenis: "📝 Latihan",
+        kelas: "10 IPA",
+        deadline: "2026-03-30",
+        desc: "Kerjakan soal nomor 1–20 di buku paket halaman 48. Tulis langkah penyelesaian secara lengkap.",
+        by: "Siti Rahma, S.Pd",
+        terkumpul: 8,
+        total: 32,
+        status: "aktif",
+      },
+      {
+        id: "tg4",
+        judul: "Presentasi Kelompok – Reaksi Redoks",
+        mapel: "Kimia",
+        icon: "🧪",
+        jenis: "🎤 Presentasi",
+        kelas: "10 IPA",
+        deadline: "2026-04-01",
+        desc: "Buat slide presentasi tentang reaksi oksidasi-reduksi. Kelompok 3: Ahmad, Budi, Citra, Dina.",
+        by: "Hendra Wijaya, M.Si",
+        terkumpul: 4,
+        total: 32,
+        status: "aktif",
+      },
+      {
+        id: "tg5",
+        judul: "Hapalan Surah Al-Mulk Ayat 1–10",
+        mapel: "PAI",
+        icon: "☪️",
+        jenis: "📿 Hafalan",
+        kelas: "10 IPA",
+        deadline: "2026-03-26",
+        desc: "Hapalkan dan setorkan ke ustaz di waktu pelajaran PAI.",
+        by: "Ust. Hamid, Lc",
+        terkumpul: 29,
+        total: 32,
+        status: "aktif",
+      },
+      {
+        id: "tg6",
+        judul: "Resume Bab 5 – Kemagnetan",
+        mapel: "Fisika",
+        icon: "⚗️",
+        jenis: "📄 Resume",
+        kelas: "10 IPA",
+        deadline: "2026-03-25",
+        desc: "Buat resume materi kemagnetan dengan peta konsep.",
+        by: "Dr. Ahmad, M.Pd",
+        terkumpul: 31,
+        total: 32,
+        status: "selesai",
+      },
+      {
+        id: "tg7",
+        judul: "Reading Comprehension – Chapter 7",
+        mapel: "B. Inggris",
+        icon: "🌐",
+        jenis: "📝 Latihan",
+        kelas: "10 IPA",
+        deadline: "2026-03-24",
+        desc: "Answer questions from textbook page 112–115.",
+        by: "Mr. Budi Santoso",
+        terkumpul: 31,
+        total: 32,
+        status: "selesai",
+      },
+    ],
+
+    // Status pengerjaan Ahmad (siswa s1) per tugas
+    tugas_status: {
+      tg5: { done: true, at: "2026-03-26" },
+      tg6: { done: true, at: "2026-03-25" },
+      tg7: { done: true, at: "2026-03-24" },
+    },
 
     // Siswa kelas X IPA 1 (dipakai guru: absensi, nilai)
     students: [

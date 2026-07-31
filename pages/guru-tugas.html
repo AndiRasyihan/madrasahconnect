@@ -671,13 +671,14 @@
           <label>Judul Tugas</label
           ><input
             type="text"
+            id="tgJudul"
             class="form-input"
             placeholder="Contoh: PR Aljabar Bab 4"
           />
         </div>
         <div class="form-group">
           <label>Kelas</label
-          ><select class="form-select">
+          ><select class="form-select" id="tgKelas">
             <option>Kelas 10 IPA</option>
             <option>Kelas 10 IPS</option>
             <option>Kelas 11 IPA</option>
@@ -689,25 +690,21 @@
         <div class="form-group">
           <label>Deskripsi</label
           ><textarea
+            id="tgDesc"
             class="form-textarea"
             placeholder="Instruksi tugas untuk siswa..."
           ></textarea>
         </div>
         <div class="form-group">
-          <label>Deadline</label><input type="date" class="form-input" />
+          <label>Deadline</label
+          ><input type="date" id="tgDeadline" class="form-input" />
         </div>
         <div class="form-group">
           <label>Lampiran (opsional)</label
           ><input type="file" class="form-input" />
         </div>
         <div style="display: flex; gap: 10px; margin-top: 18px">
-          <button
-            class="btn-primary"
-            onclick="
-              closeModal();
-              showToast('Tugas berhasil dibuat! ✅');
-            "
-          >
+          <button class="btn-primary" onclick="publishTask()">
             Publikasikan</button
           ><button
             class="filter-btn"

@@ -1,126 +1,141 @@
-function filterTask(btn, s) {
-  btn.parentElement
-    .querySelectorAll(".filter-btn")
-    .forEach((b) => b.classList.remove("active"));
-  btn.classList.add("active");
-  document.querySelectorAll(".task-table tbody tr").forEach((r) => {
-    r.style.display = s === "all" || r.dataset.status === s ? "" : "none";
-  });
-}
-function openModal() {
-  document.getElementById("taskModal").classList.add("open");
-}
-function closeModal() {
-  document.getElementById("taskModal").classList.remove("open");
-}
+// Kelola tugas guru – CRUD ke MCDB, sinkron dengan siswa & ortu
+(function () {
+  "use strict";
 
-/* --- Replace all showToast action-btn handlers --- */
-document
-  .querySelectorAll(".task-table .action-btn")
-  .forEach(function (btn) {
-    var txt = btn.textContent.trim();
-    var row = btn.closest("tr");
-    if (!row) return;
-    var nama = row.querySelector("td strong")
-      ? row.querySelector("td strong").textContent
-      : "";
-    var kelas = row.querySelectorAll("td")[1]
-      ? row.querySelectorAll("td")[1].textContent.trim()
-      : "";
-    var status = row.dataset.status;
+  const BULAN = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+  const MAPEL_ICON = {
+    Matematika: "📐", Fisika: "⚗️", Kimia: "🧪", Biologi: "🧬",
+    "B. Indonesia": "📖", "B. Inggris": "🌐", PAI: "☪️",
+  };
 
-    if (txt.indexOf("Nilai") !== -1) {
-      btn.onclick = function () {
-        var pengumpulan = row.querySelectorAll("td")[3]
-          ? row.querySelectorAll("td")[3].textContent.trim()
-          : "";
-        mcModal(
-          "📊 Penilaian: " + nama,
-          "<p><strong>Kelas:</strong> " +
-            kelas +
-            "</p>" +
-            "<p><strong>Pengumpulan:</strong> " +
-            pengumpulan +
-            "</p>" +
-            '<hr style="margin:12px 0">' +
-            "<p>Rata-rata sementara: <strong>78.5</strong></p>" +
-            "<p>Belum dinilai: <strong>5 siswa</strong></p>" +
-            "<button class=\"mc-btn mc-btn-primary\" onclick=\"this.closest('.mc-modal-overlay').remove();window.location.href='guru-nilai.html'\">Buka Halaman Nilai</button>",
-        );
-      };
-    } else if (txt.indexOf("Hasil") !== -1) {
-      btn.onclick = function () {
-        mcModal(
-          "📄 Hasil: " + nama,
-          "<p><strong>Kelas:</strong> " +
-            kelas +
-            "</p>" +
-            "<p><strong>Status:</strong> Selesai (100%)</p>" +
-            '<hr style="margin:12px 0">' +
-            '<table style="width:100%;font-size:13px;border-collapse:collapse">' +
-            '<tr style="border-bottom:1px solid #e5e7eb"><td style="padding:6px">Rata-rata</td><td style="padding:6px;font-weight:600">82.4</td></tr>' +
-            '<tr style="border-bottom:1px solid #e5e7eb"><td style="padding:6px">Nilai Tertinggi</td><td style="padding:6px;font-weight:600">96</td></tr>' +
-            '<tr style="border-bottom:1px solid #e5e7eb"><td style="padding:6px">Nilai Terendah</td><td style="padding:6px;font-weight:600">62</td></tr>' +
-            '<tr><td style="padding:6px">Tuntas (KKM 75)</td><td style="padding:6px;font-weight:600;color:#059669">87%</td></tr>' +
-            "</table>",
-        );
-      };
-    } else if (txt.indexOf("Publish") !== -1) {
-      btn.onclick = function () {
-        var b = btn;
-        mcConfirm(
-          "Publikasikan Tugas",
-          'Apakah Anda yakin ingin mempublikasikan "' +
-            nama +
-            '" ke siswa ' +
-            kelas +
-            "?",
-          function () {
-            var badge = row.querySelector(".status-badge");
-            if (badge) {
-              badge.textContent = "Aktif";
-              badge.className = "status-badge st-aktif";
-            }
-            row.dataset.status = "aktif";
-            b.remove();
-            showToast("Tugas berhasil dipublikasikan! ✅");
-          },
-          "Publish",
-          "mc-btn-primary",
-        );
-      };
-    } else if (txt === "✏️") {
-      btn.onclick = function () {
-        mcModal(
-          "✏️ Edit: " + nama,
-          '<div class="form-group"><label>Judul Tugas</label><input type="text" class="form-input" value="' +
-            nama +
-            '" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px"></div>' +
-            '<div class="form-group"><label>Kelas</label><input type="text" class="form-input" value="' +
-            kelas +
-            '" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px"></div>' +
-            '<div class="form-group"><label>Deskripsi</label><textarea class="form-textarea" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;min-height:80px">Instruksi tugas untuk siswa...</textarea></div>' +
-            "<button class=\"mc-btn mc-btn-primary\" onclick=\"this.closest('.mc-modal-overlay').remove();showToast('Perubahan disimpan ✅')\">Simpan Perubahan</button>",
-        );
-      };
-    }
-  });
-
-/* --- Modal publish & draft buttons --- */
-var modalBtns = document.querySelectorAll(
-  "#taskModal .btn-primary, #taskModal .filter-btn",
-);
-modalBtns.forEach(function (b) {
-  var t = b.textContent.trim();
-  if (t === "Publikasikan") {
-    b.onclick = function () {
-      closeModal();
-      showToast("Tugas berhasil dibuat dan dipublikasikan! ✅");
-    };
-  } else if (t.indexOf("Draft") !== -1) {
-    b.onclick = function () {
-      closeModal();
-      showToast("Draft berhasil disimpan 📝");
-    };
+  function esc(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/"/g, "&quot;");
   }
-});
+
+  function fmtDate(iso) {
+    if (!iso) return "-";
+    const p = iso.split("-");
+    return parseInt(p[2], 10) + " " + BULAN[parseInt(p[1], 10) - 1] + " " + p[0];
+  }
+
+  function render() {
+    const tbody = document.querySelector(".task-table tbody");
+    if (!tbody) return;
+    const list = MCDB.get("tugas_list", []);
+    const st = MCDB.get("tugas_status", {});
+    if (!list.length) {
+      tbody.innerHTML =
+        '<tr><td colspan="6" style="text-align:center;color:var(--gray-400);padding:28px">Belum ada tugas. Klik "+ Buat Tugas" untuk membuat.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = list
+      .map(function (t) {
+        const kumpul = t.terkumpul + (st[t.id] && st[t.id].done ? 1 : 0);
+        const pct = Math.round((kumpul / t.total) * 100);
+        const selesai = kumpul >= t.total;
+        const badge = selesai
+          ? '<span class="status-badge st-selesai">Selesai</span>'
+          : '<span class="status-badge st-aktif">Aktif</span>';
+        return (
+          '<tr data-status="' + (selesai ? "selesai" : "aktif") + '">' +
+          "<td><strong>" + esc(t.judul) + "</strong><br><span style='font-size:11px;color:var(--gray-400)'>" +
+          t.icon + " " + esc(t.mapel) + "</span></td>" +
+          "<td>" + esc(t.kelas) + "</td>" +
+          "<td>" + fmtDate(t.deadline) + "</td>" +
+          '<td><div class="progress-bar"><div class="progress-fill" style="width:' +
+          pct + '%;background:var(--green-600)"></div></div>' +
+          kumpul + "/" + t.total + "</td>" +
+          "<td>" + badge + "</td>" +
+          '<td><button class="action-btn" data-act="nilai">📊 Nilai</button>' +
+          '<button class="action-btn" data-act="del" data-id="' + t.id +
+          '" aria-label="Hapus tugas ' + esc(t.judul) + '">🗑️</button></td></tr>'
+        );
+      })
+      .join("");
+    wire();
+  }
+
+  function wire() {
+    document.querySelectorAll('.task-table [data-act="del"]').forEach(function (btn) {
+      btn.onclick = function () { delTask(btn.dataset.id); };
+    });
+    document.querySelectorAll('.task-table [data-act="nilai"]').forEach(function (btn) {
+      btn.onclick = function () { window.location.href = "guru-nilai.html"; };
+    });
+  }
+
+  function delTask(id) {
+    const t = MCDB.get("tugas_list", []).find(function (x) { return x.id === id; });
+    if (!t) return;
+    mcConfirm(
+      "Hapus Tugas",
+      'Hapus tugas "' + esc(t.judul) + '"? Tugas akan hilang dari halaman siswa dan orang tua.',
+      function () {
+        MCDB.removeWhere("tugas_list", function (x) { return x.id === id; });
+        MCDB.notify("siswa", "Tugas dibatalkan guru: " + t.judul);
+        MCDB.notify("ortu", "Tugas dibatalkan guru: " + t.judul);
+        render();
+        showToast("Tugas dihapus");
+      },
+      "Hapus",
+      "mc-btn-danger",
+    );
+  }
+
+  window.publishTask = function () {
+    const judul = document.getElementById("tgJudul").value.trim();
+    const kelas = document.getElementById("tgKelas").value.replace("Kelas ", "");
+    const desc = document.getElementById("tgDesc").value.trim();
+    const deadline = document.getElementById("tgDeadline").value;
+    if (!judul || !deadline) {
+      showToast("Isi judul dan deadline terlebih dahulu", "error");
+      return;
+    }
+    const me = MCAuth.currentUser() || {};
+    const mapel = me.mapel || "Umum";
+    MCDB.push("tugas_list", {
+      id: MCDB.uid("tg"),
+      judul: judul,
+      mapel: mapel,
+      icon: MAPEL_ICON[mapel] || "📚",
+      jenis: "📝 Tugas",
+      kelas: kelas,
+      deadline: deadline,
+      desc: desc || "Kerjakan sesuai instruksi guru.",
+      by: me.name || "Guru",
+      terkumpul: 0,
+      total: 32,
+      status: "aktif",
+    });
+    MCDB.notify("siswa", "Tugas baru " + mapel + ": " + judul);
+    MCDB.notify("ortu", "Tugas baru untuk ananda: " + judul);
+    closeModal();
+    document.getElementById("tgJudul").value = "";
+    document.getElementById("tgDesc").value = "";
+    document.getElementById("tgDeadline").value = "";
+    render();
+    showToast("Tugas berhasil dipublikasikan! ✅", "success");
+  };
+
+  window.filterTask = function (btn, s) {
+    btn.parentElement.querySelectorAll(".filter-btn").forEach(function (b) {
+      b.classList.remove("active");
+    });
+    btn.classList.add("active");
+    document.querySelectorAll(".task-table tbody tr").forEach(function (r) {
+      r.style.display = s === "all" || r.dataset.status === s ? "" : "none";
+    });
+  };
+
+  window.openModal = function () {
+    document.getElementById("taskModal").classList.add("open");
+  };
+  window.closeModal = function () {
+    document.getElementById("taskModal").classList.remove("open");
+  };
+
+  render();
+})();

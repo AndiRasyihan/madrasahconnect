@@ -180,6 +180,14 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  transition: transform 0.25s ease;
+}
+/* mode terlipat: hanya tombol ♯ yang tampil */
+.a11y-toolbar.collapsed .a11y-btn:not(.a11y-collapse-btn) {
+  display: none;
+}
+.a11y-collapse-btn {
+  font-size: 13px;
 }
 .a11y-btn {
   position: relative;

@@ -268,6 +268,42 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("btnA11yOpen")
     ?.addEventListener("click", openA11yPanel);
+
+  // ── TOOLBAR A11Y KOLAPSIBEL ───────────────
+  // Default terlipat di layar kecil agar tidak menutupi konten
+  (function () {
+    const toolbar = document.querySelector(".a11y-toolbar");
+    if (!toolbar) return;
+    const collapseBtn = document.createElement("button");
+    collapseBtn.className = "a11y-btn a11y-collapse-btn";
+    collapseBtn.setAttribute("aria-expanded", "true");
+    const saved = localStorage.getItem("mc_a11y_toolbar");
+    const startCollapsed =
+      saved !== null ? saved === "collapsed" : window.innerWidth <= 768;
+    const apply = (collapsed) => {
+      toolbar.classList.toggle("collapsed", collapsed);
+      collapseBtn.innerHTML = collapsed
+        ? '<span class="tooltip">Tampilkan Fitur Aksesibilitas</span>♿'
+        : '<span class="tooltip">Sembunyikan Toolbar</span>✕';
+      collapseBtn.setAttribute("aria-expanded", String(!collapsed));
+      collapseBtn.setAttribute(
+        "aria-label",
+        collapsed
+          ? "Tampilkan toolbar aksesibilitas"
+          : "Sembunyikan toolbar aksesibilitas",
+      );
+      localStorage.setItem(
+        "mc_a11y_toolbar",
+        collapsed ? "collapsed" : "expanded",
+      );
+    };
+    collapseBtn.addEventListener("click", () =>
+      apply(!toolbar.classList.contains("collapsed")),
+    );
+    toolbar.appendChild(collapseBtn);
+    apply(startCollapsed);
+  })();
+
   document
     .getElementById("a11yPanelOverlay")
     ?.addEventListener("click", closeA11yPanel);
