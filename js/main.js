@@ -470,6 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
         siswa: "NISN / Email Siswa",
         guru: "NIP / Email Guru",
         ortu: "Email Orang Tua",
+        admin: "Username Admin",
       };
       const emailInput = document.getElementById("loginEmail");
       if (emailInput) emailInput.placeholder = placeholders[role] || "Email";
@@ -495,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
         siswa: "pages/dashboard.html",
         guru: "pages/dashboard-guru.html",
         ortu: "pages/dashboard-ortu.html",
+        admin: "pages/dashboard-admin.html",
       };
 
       // Validasi kredensial nyata via MCAuth
@@ -880,6 +882,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return "guru";
     if (file.startsWith("ortu-") || file === "dashboard-ortu.html")
       return "ortu";
+    if (file.startsWith("admin-") || file === "dashboard-admin.html")
+      return "admin";
     return "siswa";
   }
 

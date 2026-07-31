@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verifikasi PPDB – Admin – MaConnect</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke Konten Utama</a>
+    <!-- Accessibility Toolbar -->
+    <aside class="a11y-toolbar" aria-label="Fitur Aksesibilitas Cepat">
+      <button
+        id="btnHC"
+        class="a11y-btn"
+        onclick="toggleHighContrast()"
+        aria-label="Mode kontras tinggi"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Kontras Tinggi</span>◑
+      </button>
+      <button
+        id="btnBig"
+        class="a11y-btn"
+        onclick="toggleBigText()"
+        aria-label="Perbesar ukuran teks"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Teks Lebih Besar</span>A+
+      </button>
+      <button
+        id="btnDys"
+        class="a11y-btn"
+        onclick="toggleDyslexia()"
+        aria-label="Font ramah disleksia"
+        aria-pressed="false"
+      >
+        <span class="tooltip">Font Disleksia</span>Aa
+      </button>
+      <button
+        id="btnA11yOpen"
+        class="a11y-btn"
+        aria-label="Buka panel aksesibilitas lengkap"
+      >
+        <span class="tooltip">Semua Fitur</span>♿
+      </button>
+    </aside>
+
+    <!-- Accessibility Panel -->
+    <div
+      id="a11yPanelOverlay"
+      class="a11y-panel-overlay"
+      aria-hidden="true"
+    ></div>
+    <div
+      id="a11yPanel"
+      class="a11y-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Panel Aksesibilitas Lengkap"
+    >
+      <div class="a11y-panel-header">
+        <h2>♿ Aksesibilitas</h2>
+        <button
+          id="a11yPanelCloseBtn"
+          class="a11y-panel-close"
+          aria-label="Tutup panel aksesibilitas"
+        >
+          ✕
+        </button>
+      </div>
+      <div class="a11y-panel-body">
+        <div class="a11y-group">
+          <div class="a11y-group-title">Ukuran & Tipografi</div>
+          <div class="a11y-slider-group">
+            <div class="a11y-slider-label">
+              <strong>📏 Ukuran Font</strong>
+              <span id="a11yFontVal">16px</span>
+            </div>
+            <input
+              type="range"
+              id="a11yFontSlider"
+              class="a11y-slider"
+              min="12"
+              max="28"
+              step="2"
+              value="16"
+              aria-label="Atur ukuran font"
+            />
+          </div>
+          <div
+            class="a11y-option"
+            data-key="dyslexia"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">Aa</div>
+            <div class="a11y-option-text">
+              <strong>Font Disleksia</strong
+              ><span>Ganti ke font ramah disleksia</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="spacing"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">↕</div>
+            <div class="a11y-option-text">
+              <strong>Spasi Teks</strong
+              ><span>Perbesar jarak antar huruf dan baris</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Tampilan & Warna</div>
+          <div
+            class="a11y-option"
+            data-key="hc"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">◑</div>
+            <div class="a11y-option-text">
+              <strong>Kontras Tinggi</strong
+              ><span>Tingkatkan kontras warna</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="dark"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🌙</div>
+            <div class="a11y-option-text">
+              <strong>Mode Gelap</strong><span>Latar belakang gelap</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="grayscale"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🔘</div>
+            <div class="a11y-option-text">
+              <strong>Skala Abu-abu</strong><span>Hilangkan warna</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="saturate"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🎨</div>
+            <div class="a11y-option-text">
+              <strong>Saturasi Tinggi</strong
+              ><span>Perkuat warna untuk buta warna</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Navigasi & Fokus</div>
+          <div
+            class="a11y-option"
+            data-key="links"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🔗</div>
+            <div class="a11y-option-text">
+              <strong>Sorot Semua Link</strong><span>Highlight pada link</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="strongFocus"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🎯</div>
+            <div class="a11y-option-text">
+              <strong>Fokus Kuat</strong
+              ><span>Perbesar indikator fokus keyboard</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="bigCursor"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">👆</div>
+            <div class="a11y-option-text">
+              <strong>Kursor Besar</strong><span>Perbesar ukuran kursor</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="readingGuide"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">📖</div>
+            <div class="a11y-option-text">
+              <strong>Panduan Baca</strong
+              ><span>Garis bantu mengikuti kursor</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+        <div class="a11y-group">
+          <div class="a11y-group-title">Konten & Animasi</div>
+          <div
+            class="a11y-option"
+            data-key="noAnim"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">⏸</div>
+            <div class="a11y-option-text">
+              <strong>Hentikan Animasi</strong
+              ><span>Matikan animasi dan transisi</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+          <div
+            class="a11y-option"
+            data-key="noImages"
+            role="switch"
+            aria-pressed="false"
+            tabindex="0"
+          >
+            <div class="a11y-option-icon">🖼</div>
+            <div class="a11y-option-text">
+              <strong>Sembunyikan Gambar</strong><span>Fokus pada teks</span>
+            </div>
+            <div class="a11y-option-toggle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="a11y-panel-footer">
+        <button
+          id="a11yResetBtn"
+          class="a11y-reset-btn"
+          aria-label="Reset semua pengaturan aksesibilitas"
+        >
+          ↺ Reset Semua
+        </button>
+        <button
+          id="a11yShortcutBtn"
+          class="a11y-shortcut-btn"
+          aria-label="Lihat pintasan keyboard"
+        >
+          ⌨ Pintasan
+        </button>
+      </div>
+    </div>
+
+    <!-- Reading Guide -->
+    <div id="readingGuide" class="reading-guide" aria-hidden="true"></div>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-mark">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5l5.5 3.4v6.2L12 17.5l-5.5-3.4V7.9L12 4.5z"
+              />
+            </svg>
+          </div>
+          <div class="sidebar-logo-text">
+            <strong>MaConnect</strong><span>Portal Admin</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="sidebar-av">AH</div>
+          <div>
+            <div class="sidebar-uname">Drs. Abdul Hakim</div>
+            <div class="sidebar-urole">Tata Usaha · SMAN Muh 1</div>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Menu admin">
+        <div class="sidebar-group-label">Menu Utama</div>
+        <a class="sidebar-link" href="dashboard-admin.html"
+          ><span class="si">🏠</span> Beranda</a
+        >
+        <a class="sidebar-link active" aria-current="page" href="admin-ppdb.html"
+          ><span class="si">📥</span> Verifikasi PPDB
+          <span class="sidebar-badge" id="ppdbBadge" style="display: none"
+            >0</span
+          ></a
+        >
+        <a class="sidebar-link" href="admin-users.html"
+          ><span class="si">👥</span> Kelola Pengguna</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html"><span>🚪</span> Keluar dari Portal</a>
+      </div>
+    </aside>
+    <main class="main-area" id="main-content">
+      <div class="topbar">
+        <div class="topbar-left">
+          <h1>📥 Verifikasi PPDB</h1>
+          <p>Terima pendaftar untuk membuatkan akun siswa &amp; orang tua secara otomatis</p>
+        </div>
+        <div class="topbar-right">
+          <button class="notif-btn" aria-label="Notifikasi">
+            🔔 <span class="notif-dot" aria-hidden="true"></span>
+          </button>
+          <div class="sidebar-av">AH</div>
+        </div>
+      </div>
+
+      <div class="filter-tabs" role="group" aria-label="Filter status pendaftar">
+        <button class="f-tab active" data-f="all">Semua</button>
+        <button class="f-tab" data-f="Menunggu Verifikasi">⏳ Menunggu</button>
+        <button class="f-tab" data-f="Diterima">✅ Diterima</button>
+        <button class="f-tab" data-f="Ditolak">❌ Ditolak</button>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table class="adm-table" aria-label="Daftar pendaftar PPDB">
+            <thead>
+              <tr>
+                <th>Ref</th>
+                <th>Nama Calon Siswa</th>
+                <th>Jenjang</th>
+                <th>Kontak</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="ppdbTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin-ppdb.js"></script>
+  </body>
+</html>

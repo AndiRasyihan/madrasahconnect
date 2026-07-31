@@ -9,7 +9,7 @@
 
   const PREFIX = "mc_db_";
   const SEED_VERSION_KEY = "mc_db_version";
-  const SEED_VERSION = 3;
+  const SEED_VERSION = 4;
 
   function read(key, fallback) {
     try {
@@ -105,6 +105,18 @@
         info: "Orang Tua · Ahmad Fauzi",
         phone: "0811-2233-4455",
         address: "Jl. Kemuning No. 12, Yogyakarta",
+      },
+      {
+        id: "a1",
+        role: "admin",
+        name: "Drs. Abdul Hakim",
+        initials: "AH",
+        email: "admin@maconnect.sch.id",
+        username: "admin",
+        pass: "admin123",
+        info: "Tata Usaha · SMAN Muh 1",
+        phone: "0812-0000-1111",
+        address: "Jl. Kauman No. 1, Yogyakarta",
       },
     ],
 
@@ -667,6 +679,7 @@
       siswa: [],
       guru: [],
       ortu: [],
+      admin: [],
     },
   };
 

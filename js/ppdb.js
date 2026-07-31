@@ -52,6 +52,7 @@ document.getElementById('ppdbFormEl').addEventListener('submit', e => {
       time: MCDB.nowTime(),
       status: 'Menunggu Verifikasi',
     });
+    MCDB.notify('admin', 'Pendaftar PPDB baru: ' + nama + ' (' + jenjang + ')');
     document.getElementById('refNumber').textContent = 'No. Referensi: ' + ref;
     document.getElementById('ppdbForm').style.display = 'none';
     document.getElementById('successBanner').classList.add('show');

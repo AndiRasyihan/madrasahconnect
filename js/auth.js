@@ -76,6 +76,8 @@
       return "guru";
     if (file.startsWith("ortu-") || file === "dashboard-ortu.html")
       return "ortu";
+    if (file.startsWith("admin-") || file === "dashboard-admin.html")
+      return "admin";
     return "siswa";
   }
 
@@ -92,6 +94,7 @@
         siswa: "dashboard.html",
         guru: "dashboard-guru.html",
         ortu: "dashboard-ortu.html",
+        admin: "dashboard-admin.html",
       };
       window.location.replace(home[user.role] || "../index.html");
     }
