@@ -57,6 +57,7 @@
     });
     current = idx;
     renderThread(idx);
+    document.querySelector(".main-area").classList.add("chat-open");
   };
 
   function init() {

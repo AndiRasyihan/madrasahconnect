@@ -62,6 +62,7 @@
     if (b) b.remove();
     current = idx >= 0 ? idx : 0;
     renderThread(current);
+    document.querySelector(".main-area").classList.add("chat-open");
   };
 
   window.sendMsg = function () {

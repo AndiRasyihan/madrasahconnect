@@ -382,10 +382,23 @@ body {
   }
   .main-area {
     margin-left: 0;
+    height: 100dvh;
   }
   .chat-list {
     width: 100%;
-    position: absolute;
-    z-index: 10;
+    position: static;
+    border-right: none;
+  }
+  .chat-main {
+    display: none;
+  }
+  .main-area.chat-open .chat-list {
+    display: none;
+  }
+  .main-area.chat-open .chat-main {
+    display: flex;
+  }
+  .msg {
+    max-width: 85%;
   }
 }

@@ -177,6 +177,7 @@ function selectChat(el, key) {
     info.bg;
   renderThread(key);
   document.getElementById("chatMain").classList.add("show");
+  document.querySelector(".main-area").classList.add("chat-open");
 }
 function sendMessage() {
   const inp = document.getElementById("chatInput");

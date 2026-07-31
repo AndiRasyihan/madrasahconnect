@@ -2506,6 +2506,27 @@ body.hc img {
   }
 }
 
+/* ── TOMBOL KEMBALI CHAT (mobile) ── */
+.chat-back {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  font-size: 17px;
+  color: var(--gray-700);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .chat-back {
+    display: inline-flex;
+  }
+}
+
 /* ── MOBILE SIDEBAR TOGGLE (halaman dalam) ── */
 .mobile-sidebar-btn {
   display: none;

@@ -335,10 +335,23 @@ body {
   }
   .main-area {
     margin-left: 0;
+    height: 100dvh;
   }
   .chat-contacts {
     width: 100%;
-    position: absolute;
-    z-index: 10;
+    position: static;
+    border-right: none;
+  }
+  .chat-area {
+    display: none;
+  }
+  .main-area.chat-open .chat-contacts {
+    display: none;
+  }
+  .main-area.chat-open .chat-area {
+    display: flex;
+  }
+  .msg {
+    max-width: 85%;
   }
 }
