@@ -9,7 +9,7 @@
 
   const PREFIX = "mc_db_";
   const SEED_VERSION_KEY = "mc_db_version";
-  const SEED_VERSION = 5;
+  const SEED_VERSION = 6;
 
   function read(key, fallback) {
     try {
@@ -228,6 +228,71 @@
       tg6: { done: true, at: "2026-03-25" },
       tg7: { done: true, at: "2026-03-24" },
     },
+
+    // Jadwal pelajaran kelas X IPA 1 (dibaca siswa & ortu)
+    jadwal_pelajaran: {
+      Senin: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "📖 Bahasa Indonesia", meta: "Pak Ahmad · Ruang 3A · 07:30–09:00", dot: "var(--blue-400)" },
+        { time: "09:15", name: "🌐 Bahasa Inggris", meta: "Mrs. Diana · Ruang 3A · 09:15–10:45", dot: "var(--blue-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Dzuhur Berjamaah", meta: "Masjid Sekolah · 11:15–11:45", dot: "var(--teal-400)" },
+        { time: "13:00", name: "🧪 Kimia", meta: "Pak Rizky · Lab Kimia · 13:00–14:30", dot: "var(--coral-400)" },
+        { time: "14:45", name: "🏃 Penjaskes", meta: "Pak Deni · Lapangan · 14:45–16:00", dot: "var(--green-400)" },
+      ],
+      Selasa: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "📐 Matematika", meta: "Bu Siti Rahma · Ruang 3A · 07:30–09:00", dot: "var(--green-400)" },
+        { time: "09:15", name: "🧪 Kimia", meta: "Pak Rizky · Lab Kimia · 09:15–10:45", dot: "var(--coral-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Dzuhur Berjamaah", meta: "Masjid Sekolah · 11:15–11:45", dot: "var(--teal-400)" },
+        { time: "13:00", name: "📖 Bahasa Indonesia", meta: "Pak Ahmad · Ruang 3A · 13:00–14:30", dot: "var(--blue-400)" },
+        { time: "14:45", name: "💻 Informatika", meta: "Pak Rudi · Lab Komputer · 14:45–16:00", dot: "var(--blue-400)" },
+      ],
+      Rabu: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "⚗️ Fisika", meta: "Bu Dewi · Lab Fisika · 07:30–09:00", dot: "var(--amber-200)" },
+        { time: "09:15", name: "🌐 Bahasa Inggris", meta: "Mrs. Diana · Ruang 3A · 09:15–10:45", dot: "var(--blue-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Dzuhur Berjamaah", meta: "Masjid Sekolah · 11:15–11:45", dot: "var(--teal-400)" },
+        { time: "13:00", name: "📐 Matematika", meta: "Bu Siti Rahma · Ruang 3A · 13:00–14:30", dot: "var(--green-400)" },
+        { time: "14:45", name: "🤖 Ekskul Robotika", meta: "Pak Rudi · Lab Komputer · 15:30–17:00", dot: "var(--blue-400)", badge: "Ekskul", badgeBg: "#dbeafe", badgeColor: "#2563eb" },
+      ],
+      Kamis: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "☪️ Pendidikan Agama Islam", meta: "Ustaz Hamid · Ruang 3A · 07:30–09:00", dot: "var(--teal-600)" },
+        { time: "09:15", name: "📖 Bahasa Indonesia", meta: "Pak Ahmad · Ruang 3A · 09:15–10:45", dot: "var(--blue-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Dzuhur Berjamaah", meta: "Masjid Sekolah · 11:15–11:45", dot: "var(--teal-400)" },
+        { time: "13:00", name: "⚗️ Fisika", meta: "Bu Dewi · Lab Fisika · 13:00–14:30", dot: "var(--amber-200)" },
+        { time: "14:45", name: "🎨 Seni Budaya", meta: "Bu Rina · Ruang Seni · 14:45–16:00", dot: "var(--coral-400)" },
+      ],
+      Jumat: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "📐 Matematika", meta: "Bu Siti Rahma · Ruang 3A · 07:30–09:00", dot: "var(--green-400)" },
+        { time: "09:15", name: "🧪 Kimia", meta: "Pak Rizky · Lab Kimia · 09:15–10:45", dot: "var(--coral-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Jumat", meta: "Masjid Sekolah · 11:15–12:30", dot: "var(--teal-600)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "13:00", name: "🏸 Ekskul Badminton", meta: "Pak Deni · GOR Sekolah · 15:30–17:00", dot: "var(--green-400)", badge: "Ekskul", badgeBg: "#dbeafe", badgeColor: "#2563eb" },
+      ],
+      Sabtu: [
+        { time: "07:00", name: "☪️ Sholat Dhuha Berjamaah", meta: "Masjid Sekolah · 07:00–07:25", dot: "var(--teal-400)", badge: "Wajib", badgeBg: "var(--teal-50)", badgeColor: "var(--teal-600)" },
+        { time: "07:30", name: "📐 Matematika", meta: "Bu Siti Rahma · Ruang 3A · 07:30–09:00", dot: "var(--green-400)", badge: "Berlangsung", badgeBg: "var(--green-50)", badgeColor: "var(--green-600)" },
+        { time: "09:15", name: "📖 Bahasa Indonesia", meta: "Pak Ahmad · Ruang 3A · 09:15–10:45", dot: "var(--blue-400)" },
+        { time: "10:45", empty: "🍽️ Istirahat 1 (10:45–11:15)" },
+        { time: "11:15", name: "☪️ Sholat Dzuhur Berjamaah", meta: "Masjid Sekolah · 11:15–11:45", dot: "var(--teal-400)" },
+        { time: "13:00", name: "⚗️ Fisika", meta: "Bu Dewi · Lab Fisika · 13:00–14:30", dot: "var(--amber-200)" },
+        { time: "14:45", name: "☪️ Pendidikan Agama Islam", meta: "Ustaz Hamid · Ruang 3A · 14:45–16:00", dot: "var(--teal-600)" },
+      ],
+    },
+
+    // Jadwal mengajar Bu Siti Rahma (Matematika) – selaras dgn jadwal X IPA 1
+    jadwal_mengajar: [
+      { time: "07:30–09:00", cells: [ { cls: "10 IPS", room: "R.202" }, { cls: "X IPA 1", room: "R.3A" }, null, null, { cls: "X IPA 1", room: "R.3A" }, { cls: "X IPA 1", room: "R.3A" } ] },
+      { time: "09:15–10:45", cells: [ { cls: "11 IPA", room: "R.301" }, { cls: "12 IPA", room: "R.401" }, null, { cls: "10 IPS", room: "R.202" }, { cls: "11 IPS", room: "R.302" }, null ] },
+      { time: "13:00–14:30", cells: [ null, { cls: "11 IPS", room: "R.302" }, { cls: "X IPA 1", room: "R.3A" }, { cls: "12 IPA", room: "R.401" }, null, { cls: "12 IPS", room: "R.402" } ] },
+      { time: "14:45–16:00", cells: [ { cls: "12 IPS", room: "R.402" }, null, null, { cls: "11 IPA", room: "R.301" }, null, null ] },
+    ],
 
     // Siswa kelas X IPA 1 (dipakai guru: absensi, nilai)
     students: [
@@ -948,6 +1013,18 @@
         item.read = true;
       });
       write("notif", n);
+    },
+
+    // Nilai siswa: dari nilai_kelas jika ada, selain itu deterministik dari NIS
+    nilaiSiswa: function (nis) {
+      const all = read("nilai_kelas", {});
+      if (all[nis]) return all[nis];
+      const seed = parseInt(nis, 10) || 0;
+      const base = 72 + (seed % 19);
+      const v = function (offset) {
+        return Math.min(98, base + ((seed * 7 + offset * 13) % 9));
+      };
+      return { uh1: v(1), uh2: v(2), uh3: v(3), tugas: v(4), uts: v(5) };
     },
   };
 

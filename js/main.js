@@ -1069,3 +1069,139 @@ document.addEventListener("DOMContentLoaded", () => {
     a11yOpts.appendChild(bisindoBtn);
   }
 });
+
+// ═══ PWA: manifest + service worker ═══
+(function () {
+  const base = window.location.pathname.includes("/pages/") ? "../" : "";
+  const link = document.createElement("link");
+  link.rel = "manifest";
+  link.href = base + "manifest.json";
+  document.head.appendChild(link);
+  const theme = document.createElement("meta");
+  theme.name = "theme-color";
+  theme.content = "#16a34a";
+  document.head.appendChild(theme);
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register(base + "sw.js").catch(function () {});
+    });
+  }
+})();
+
+// ═══ CETAK: helper print area khusus ═══
+window.mcPrint = function (html) {
+  let area = document.getElementById("printArea");
+  if (!area) {
+    area = document.createElement("div");
+    area.id = "printArea";
+    document.body.appendChild(area);
+  }
+  area.innerHTML = html;
+  document.body.classList.add("print-doc");
+  const cleanup = function () {
+    document.body.classList.remove("print-doc");
+    window.removeEventListener("afterprint", cleanup);
+  };
+  window.addEventListener("afterprint", cleanup);
+  window.print();
+};
+
+// ═══ JADWAL SHOLAT + KALENDER HIJRIAH ═══
+(function () {
+  const strip = document.getElementById("prayerStrip");
+  if (!strip) return;
+
+  // Perhitungan astronomis standar (Yogyakarta, WIB). Sudut Kemenag: Subuh 20°, Isya 18°.
+  function prayerTimes(date, lat, lng, tz) {
+    const rad = Math.PI / 180;
+    const D =
+      Math.floor(
+        (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+          Date.UTC(2000, 0, 1)) /
+          86400000,
+      ) + 0.5;
+    const g = (357.529 + 0.98560028 * D) % 360;
+    const q = (280.459 + 0.98564736 * D) % 360;
+    const L = q + 1.915 * Math.sin(g * rad) + 0.02 * Math.sin(2 * g * rad);
+    const e = 23.439 - 0.00000036 * D;
+    const decl =
+      Math.asin(Math.sin(e * rad) * Math.sin(L * rad)) / rad;
+    let RA =
+      Math.atan2(Math.cos(e * rad) * Math.sin(L * rad), Math.cos(L * rad)) /
+      rad /
+      15;
+    RA = (RA + 24) % 24;
+    const eqt = q / 15 - RA;
+    const dhuhr = (12 + tz - lng / 15 - eqt + 24) % 24;
+    function hourAngle(angle) {
+      const cosHA =
+        (-Math.sin(angle * rad) -
+          Math.sin(decl * rad) * Math.sin(lat * rad)) /
+        (Math.cos(decl * rad) * Math.cos(lat * rad));
+      return Math.acos(Math.min(1, Math.max(-1, cosHA))) / rad / 15;
+    }
+    // Asr (Syafi'i): bayangan = 1 + tan|lat-decl|
+    const asrAngle =
+      -Math.atan(1 / (1 + Math.tan(Math.abs(lat - decl) * rad))) / rad;
+    return {
+      Subuh: dhuhr - hourAngle(20),
+      Dzuhur: dhuhr,
+      Ashar: dhuhr + hourAngle(asrAngle),
+      Maghrib: dhuhr + hourAngle(0.833),
+      Isya: dhuhr + hourAngle(18),
+    };
+  }
+
+  function fmt(h) {
+    h = (h + 24) % 24;
+    const m = Math.round(h * 60);
+    return (
+      String(Math.floor(m / 60)).padStart(2, "0") +
+      ":" +
+      String(m % 60).padStart(2, "0")
+    );
+  }
+
+  const now = new Date();
+  const times = prayerTimes(now, -7.8014, 110.3647, 7); // Yogyakarta WIB
+  let hijri = "";
+  try {
+    hijri = new Intl.DateTimeFormat("id-ID-u-ca-islamic-umalqura", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(now);
+  } catch (e) {
+    hijri = "";
+  }
+
+  // sholat berikutnya
+  const nowH = now.getHours() + now.getMinutes() / 60;
+  const order = ["Subuh", "Dzuhur", "Ashar", "Maghrib", "Isya"];
+  let next = order.find(function (n) {
+    return ((times[n] + 24) % 24) > nowH;
+  });
+
+  strip.innerHTML =
+    '<div class="prayer-head"><span class="prayer-title">🕌 Jadwal Sholat</span>' +
+    (hijri ? '<span class="prayer-hijri">📅 ' + hijri + "</span>" : "") +
+    "</div>" +
+    '<div class="prayer-times">' +
+    order
+      .map(function (n) {
+        return (
+          '<div class="prayer-item' +
+          (n === next ? " next" : "") +
+          '"><span class="p-name">' +
+          n +
+          '</span><span class="p-time">' +
+          fmt(times[n]) +
+          "</span></div>"
+        );
+      })
+      .join("") +
+    "</div>" +
+    '<div class="prayer-note">Perkiraan wilayah Yogyakarta (WIB)' +
+    (next ? " · Berikutnya: <strong>" + next + "</strong>" : "") +
+    "</div>";
+})();

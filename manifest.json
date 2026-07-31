@@ -1,0 +1,25 @@
+{
+  "name": "MaConnect – Portal Madrasah Digital",
+  "short_name": "MaConnect",
+  "description": "Portal digital madrasah inklusif: siswa, guru, orang tua, dan admin.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f0eee8",
+  "theme_color": "#16a34a",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "500x500",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo_maconnect.png",
+      "sizes": "2000x2000",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

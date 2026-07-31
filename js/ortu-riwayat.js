@@ -40,6 +40,28 @@
     ].join("\n");
   }
 
+  function slipHTML(b) {
+    return (
+      '<div style="font-family:Georgia,serif;color:#111;padding:32px;max-width:560px;margin:0 auto">' +
+      '<div style="text-align:center;border-bottom:3px double #111;padding-bottom:12px;margin-bottom:20px">' +
+      '<div style="font-size:18px;font-weight:700">SMAN MUHAMMADIYAH 1</div>' +
+      '<div style="font-size:12px">Jl. Kauman No. 1, Yogyakarta · MaConnect Portal Madrasah</div>' +
+      '<div style="font-size:15px;font-weight:700;margin-top:10px">KWITANSI PEMBAYARAN</div></div>' +
+      '<table style="width:100%;font-size:13px;line-height:2">' +
+      "<tr><td style='width:140px'>No. Referensi</td><td>: <strong>" + (b.ref || "-") + "</strong></td></tr>" +
+      "<tr><td>Tanggal</td><td>: " + fmtTanggal(b.paidAt) + "</td></tr>" +
+      "<tr><td>Diterima dari</td><td>: H. Muhammad Fauzi</td></tr>" +
+      "<tr><td>Untuk siswa</td><td>: Ahmad Fauzi (Kelas 10 IPA)</td></tr>" +
+      "<tr><td>Pembayaran</td><td>: " + b.item + "</td></tr>" +
+      "<tr><td>Metode</td><td>: " + (b.method || "-") + "</td></tr>" +
+      '<tr><td>Jumlah</td><td>: <strong style="font-size:15px">' + rupiah(b.amount) + "</strong></td></tr>" +
+      '<tr><td>Status</td><td>: <strong style="color:#166534">LUNAS ✓</strong></td></tr></table>' +
+      '<div style="display:flex;justify-content:space-between;margin-top:40px;font-size:13px">' +
+      '<div style="font-size:11px;color:#555;max-width:260px">Dokumen ini dicetak dari MaConnect dan sah tanpa tanda tangan basah.</div>' +
+      '<div style="text-align:center">Bendahara Madrasah<br /><br /><br />(Drs. Abdul Hakim)</div></div></div>'
+    );
+  }
+
   function renderTable() {
     const tbody = document.querySelector(".card table tbody");
     if (!tbody) return;
@@ -57,8 +79,10 @@
           (b.method || "-") + '</td><td style="font-weight:600">' +
           rupiah(b.amount) +
           '</td><td><span class="badge badge-green">Lunas</span></td>' +
-          '<td><button class="action-btn" data-id="' + b.id +
-          '">📄 Kwitansi</button></td></tr>'
+          '<td><button class="action-btn" data-act="print" data-id="' + b.id +
+          '">🖨️ Cetak Slip</button>' +
+          '<button class="action-btn" data-act="txt" data-id="' + b.id +
+          '">📄</button></td></tr>'
         );
       })
       .join("");
@@ -68,11 +92,15 @@
           return b.id === btn.dataset.id;
         });
         if (!bill) return;
-        downloadText(
-          "kwitansi-" + (bill.ref || bill.id) + ".txt",
-          kwitansiText(bill),
-        );
-        showToast("Kwitansi " + bill.item + " berhasil diunduh! 📄", "success");
+        if (btn.dataset.act === "print") {
+          mcPrint(slipHTML(bill));
+        } else {
+          downloadText(
+            "kwitansi-" + (bill.ref || bill.id) + ".txt",
+            kwitansiText(bill),
+          );
+          showToast("Kwitansi " + bill.item + " berhasil diunduh! 📄", "success");
+        }
       };
     });
 
