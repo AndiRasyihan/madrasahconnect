@@ -49,7 +49,9 @@
           pct + '%;background:var(--green-600)"></div></div>' +
           kumpul + "/" + t.total + "</td>" +
           "<td>" + badge + "</td>" +
-          '<td><button class="action-btn" data-act="nilai">📊 Nilai</button>' +
+          '<td><button class="action-btn" data-act="kiriman" data-id="' + t.id +
+          '" aria-label="Lihat kiriman tugas ' + esc(t.judul) + '">📥</button>' +
+          '<button class="action-btn" data-act="nilai">📊 Nilai</button>' +
           '<button class="action-btn" data-act="del" data-id="' + t.id +
           '" aria-label="Hapus tugas ' + esc(t.judul) + '">🗑️</button></td></tr>'
         );
@@ -65,6 +67,38 @@
     document.querySelectorAll('.task-table [data-act="nilai"]').forEach(function (btn) {
       btn.onclick = function () { window.location.href = "guru-nilai.html"; };
     });
+    document.querySelectorAll('.task-table [data-act="kiriman"]').forEach(function (btn) {
+      btn.onclick = function () { showKiriman(btn.dataset.id); };
+    });
+  }
+
+  function fmtSize(b) {
+    return b >= 1024 * 1024
+      ? (b / 1024 / 1024).toFixed(1) + " MB"
+      : (b / 1024).toFixed(1) + " KB";
+  }
+
+  function showKiriman(taskId) {
+    const t = MCDB.get("tugas_list", []).find(function (x) { return x.id === taskId; });
+    const sub = MCDB.get("tugas_siswa", {})[taskId];
+    let body;
+    if (sub) {
+      const unduh = sub.data
+        ? '<a class="mc-btn mc-btn-primary" style="text-decoration:none;display:inline-block;margin-top:10px" href="' +
+          sub.data + '" download="' + esc(sub.name) + '">⬇️ Unduh File</a>'
+        : '<p style="font-size:12px;color:var(--gray-400);margin-top:8px">File asli tidak tersimpan (dikumpulkan sebelum fitur unduh aktif).</p>';
+      body =
+        '<div style="display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--gray-100,#f3f4f6);border-radius:10px">' +
+        '<span style="font-size:26px">📎</span><div>' +
+        '<p style="font-weight:700;font-size:14px">Ahmad Fauzi · NIS 10001</p>' +
+        '<p style="font-size:13px">' + esc(sub.name) + " · " + fmtSize(sub.size) + "</p>" +
+        '<p style="font-size:11px;color:var(--gray-400)">Dikumpulkan ' + esc(sub.at || "-") + "</p>" +
+        unduh + "</div></div>";
+    } else {
+      body =
+        '<p style="font-size:13px;color:var(--gray-500);text-align:center;padding:18px">Belum ada siswa yang mengumpulkan file untuk tugas ini.</p>';
+    }
+    mcModal("📥 Kiriman: " + esc(t ? t.judul : ""), body);
   }
 
   function delTask(id) {

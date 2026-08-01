@@ -1,5 +1,5 @@
 // MaConnect Service Worker – app shell + runtime cache (offline-ready)
-const CACHE = "maconnect-v1";
+const CACHE = "maconnect-v2";
 const CORE = [
   "index.html",
   "manifest.json",
@@ -9,6 +9,7 @@ const CORE = [
   "js/main.js",
   "assets/logo.png",
   "assets/logo_maconnect.png",
+  "assets/vendor/jspdf.umd.min.js",
 ];
 
 self.addEventListener("install", (e) => {

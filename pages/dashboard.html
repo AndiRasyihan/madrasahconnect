@@ -400,7 +400,11 @@
       </div>
 
       <!-- Jadwal Sholat & Hijriah -->
-      <div id="prayerStrip" class="prayer-strip" aria-label="Jadwal sholat hari ini"></div>
+      <div
+        id="prayerStrip"
+        class="prayer-strip"
+        aria-label="Jadwal sholat hari ini"
+      ></div>
 
       <!-- Stats 4 col -->
       <div class="stats-4" role="group" aria-label="Statistik akademik">
@@ -423,6 +427,24 @@
           <div class="s-lbl"><span>🏆</span> Peringkat Kelas</div>
           <div class="s-val">#4</div>
           <div class="s-chg chg-up">↑ Naik 2 peringkat</div>
+        </div>
+      </div>
+
+      <!-- Grafik Akademik -->
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <h3>📈 Tren Nilai Matematika</h3>
+            <a href="nilai.html">Detail</a>
+          </div>
+          <canvas id="chartNilai" class="mc-chart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <h3>🗓️ Rekap Kehadiran</h3>
+            <a href="jadwal.html">Jadwal</a>
+          </div>
+          <canvas id="chartAbsen" class="mc-chart"></canvas>
         </div>
       </div>
 

@@ -365,6 +365,14 @@
           <h1>Assalamu'alaikum, Bu Siti 👋</h1>
           <p id="topbarDate">Sabtu, 28 Maret 2026 · Semester Genap 2025/2026</p>
         </div>
+        <div class="topbar-right">
+          <div class="search-bar" role="search">
+            🔍 <span>Cari kelas, tugas...</span>
+          </div>
+          <button class="notif-btn" aria-label="Notifikasi">
+            🔔 <span class="notif-dot" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
 
       <div class="stat-row">
@@ -432,7 +440,29 @@
       </div>
 
       <!-- Jadwal Sholat & Hijriah -->
-      <div id="prayerStrip" class="prayer-strip" aria-label="Jadwal sholat hari ini"></div>
+      <div
+        id="prayerStrip"
+        class="prayer-strip"
+        aria-label="Jadwal sholat hari ini"
+      ></div>
+
+      <!-- Grafik Kelas -->
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <h3>📊 Rata-rata Kelas per Komponen</h3>
+            <a href="guru-nilai.html">Kelola Nilai</a>
+          </div>
+          <canvas id="chartNilaiKelas" class="mc-chart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <h3>✅ Rekap Absensi Kelas</h3>
+            <a href="guru-absensi.html">Kelola Absensi</a>
+          </div>
+          <canvas id="chartAbsenKelas" class="mc-chart"></canvas>
+        </div>
+      </div>
 
       <div class="grid-3">
         <div class="card">

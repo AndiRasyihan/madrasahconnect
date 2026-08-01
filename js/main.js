@@ -164,8 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (btnDys) {
       btnDys.classList.toggle("active", a11yState.dyslexia);
-      btnDys.setAttribute("aria-pressed", a11yState.dyslexia ? "true" : "false");
+      btnDys.setAttribute(
+        "aria-pressed",
+        a11yState.dyslexia ? "true" : "false",
+      );
     }
+
+    window.dispatchEvent(new CustomEvent("mc-a11y"));
 
     saveA11yPrefs();
   }
@@ -562,7 +567,10 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.textContent = "Masuk ke Portal";
             btn.disabled = false;
           }
-          showToast("Email/NISN atau kata sandi salah untuk peran ini", "error");
+          showToast(
+            "Email/NISN atau kata sandi salah untuk peran ini",
+            "error",
+          );
           const hint = document.getElementById("loginHint");
           if (hint) hint.style.display = "block";
           return;
@@ -900,28 +908,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── SEARCH BAR (inner pages) ──────────────
-  document.querySelectorAll(".search-bar").forEach((bar) => {
-    bar.style.cursor = "pointer";
-    bar.addEventListener("click", () => {
-      const q = prompt("Cari materi, tugas, atau informasi:");
-      if (q && q.trim()) {
-        showToast('Mencari: "' + q.trim() + '"...');
-        // Search through visible text content on page
-        setTimeout(() => {
-          const body = document.querySelector(".main-area") || document.body;
-          const text = body.innerText.toLowerCase();
-          if (text.includes(q.trim().toLowerCase())) {
-            showToast('Ditemukan hasil untuk "' + q.trim() + '"');
-          } else {
-            showToast('Tidak ditemukan hasil untuk "' + q.trim() + '"');
-          }
-        }, 500);
-      }
-    });
-  });
-
-  // ── NOTIF BUTTON (data nyata dari MCDB) ───
+  // ── ROLE DARI PATH (dipakai search & notif) ──
   function currentRoleFromPath() {
     const path = window.location.pathname;
     const file = path.split("/").pop() || "";
@@ -935,10 +922,191 @@ document.addEventListener("DOMContentLoaded", () => {
     return "siswa";
   }
 
+  // ── PENCARIAN GLOBAL (data nyata MCDB) ────
+  const SEARCH_PAGES = {
+    siswa: [
+      ["🏠 Dashboard", "dashboard.html"], ["📅 Jadwal Pelajaran", "jadwal.html"],
+      ["📚 Materi Pelajaran", "pelajaran.html"], ["📋 Tugas", "tugas.html"],
+      ["📝 Ujian", "ujian.html"], ["📊 Nilai", "nilai.html"],
+      ["⚽ Ekstrakurikuler", "ekskul.html"], ["💬 Pesan", "pesan.html"],
+      ["👤 Profil", "profil.html"], ["⚙️ Pengaturan", "pengaturan.html"],
+    ],
+    guru: [
+      ["🏠 Dashboard", "dashboard-guru.html"], ["📅 Jadwal Mengajar", "guru-jadwal.html"],
+      ["🏫 Kelas Saya", "guru-kelas.html"], ["✅ Absensi", "guru-absensi.html"],
+      ["📊 Nilai", "guru-nilai.html"], ["📋 Tugas", "guru-tugas.html"],
+      ["📝 Ujian", "guru-ujian.html"], ["📄 Rapor", "guru-rapor.html"],
+      ["📢 Pengumuman", "guru-pengumuman.html"], ["💬 Pesan", "guru-pesan.html"],
+      ["👤 Profil", "guru-profil.html"], ["⚙️ Pengaturan", "guru-pengaturan.html"],
+    ],
+    ortu: [
+      ["🏠 Dashboard", "dashboard-ortu.html"], ["📅 Jadwal Anak", "ortu-jadwal.html"],
+      ["✅ Absensi Anak", "ortu-absensi.html"], ["📊 Nilai Anak", "ortu-nilai.html"],
+      ["📋 Tugas Anak", "ortu-tugas.html"], ["💳 Pembayaran", "ortu-pembayaran.html"],
+      ["🧾 Riwayat Pembayaran", "ortu-riwayat.html"], ["📢 Pengumuman", "ortu-pengumuman.html"],
+      ["💬 Pesan", "ortu-pesan.html"], ["👤 Profil", "ortu-profil.html"],
+      ["⚙️ Pengaturan", "ortu-pengaturan.html"],
+    ],
+    admin: [
+      ["🏠 Dashboard", "dashboard-admin.html"], ["📥 Verifikasi PPDB", "admin-ppdb.html"],
+      ["👥 Kelola Pengguna", "admin-users.html"],
+    ],
+  };
+
+  function buildSearchIndex() {
+    const role = currentRoleFromPath() || "siswa";
+    const idx = [];
+    (SEARCH_PAGES[role] || []).forEach((p) => {
+      idx.push({ group: "Halaman", label: p[0], href: p[1] });
+    });
+    if (typeof MCDB === "undefined") return idx;
+    const tugasHref =
+      role === "guru" ? "guru-tugas.html" : role === "ortu" ? "ortu-tugas.html" : "tugas.html";
+    MCDB.get("tugas_list", []).forEach((t) => {
+      idx.push({
+        group: "Tugas",
+        label: (t.icon || "📋") + " " + t.judul + " · " + t.mapel,
+        href: tugasHref,
+      });
+    });
+    const annHref =
+      role === "guru" ? "guru-pengumuman.html" : role === "ortu" ? "ortu-pengumuman.html" : "dashboard.html";
+    MCDB.getPengumuman(role !== "guru").forEach((a) => {
+      idx.push({ group: "Pengumuman", label: "📢 " + (a.title || a.judul || ""), href: annHref });
+    });
+    const jadwalHref =
+      role === "guru" ? "guru-jadwal.html" : role === "ortu" ? "ortu-jadwal.html" : "jadwal.html";
+    const seen = {};
+    const jadwal = MCDB.get("jadwal_pelajaran", {});
+    Object.keys(jadwal).forEach((hari) => {
+      (jadwal[hari] || []).forEach((j) => {
+        if (!j.name || seen[j.name]) return;
+        seen[j.name] = true;
+        idx.push({ group: "Jadwal", label: j.name + " · " + hari, href: jadwalHref });
+      });
+    });
+    if (role === "siswa") {
+      MCDB.get("ekskul_joined", []).forEach((e) => {
+        idx.push({ group: "Ekskul", label: "⚽ " + e, href: "ekskul.html" });
+      });
+    }
+    return idx;
+  }
+
+  document.querySelectorAll("div.search-bar").forEach((bar) => {
+    bar.innerHTML =
+      '🔍 <input type="search" class="mc-search-input" placeholder="Cari halaman, tugas, pengumuman..." aria-label="Pencarian global" autocomplete="off">';
+    const input = bar.querySelector("input");
+    const drop = document.createElement("div");
+    drop.className = "mc-search-results";
+    drop.setAttribute("role", "listbox");
+    bar.style.position = "relative";
+    bar.appendChild(drop);
+
+    let items = [];
+    function close() {
+      drop.classList.remove("open");
+      drop.innerHTML = "";
+    }
+    function renderResults(q) {
+      const query = q.trim().toLowerCase();
+      if (query.length < 2) {
+        close();
+        return;
+      }
+      if (!items.length) items = buildSearchIndex();
+      const hits = items
+        .filter((it) => it.label.toLowerCase().includes(query))
+        .slice(0, 8);
+      if (!hits.length) {
+        drop.innerHTML =
+          '<div class="mc-search-empty">Tidak ada hasil untuk "' +
+          q.replace(/</g, "&lt;") + '"</div>';
+        drop.classList.add("open");
+        return;
+      }
+      drop.innerHTML = hits
+        .map(
+          (h, i) =>
+            '<button type="button" class="mc-search-item" role="option" data-href="' +
+            h.href + '" data-i="' + i + '">' +
+            '<span class="mc-search-group">' + h.group + "</span>" +
+            '<span class="mc-search-label">' + h.label.replace(/</g, "&lt;") + "</span></button>",
+        )
+        .join("");
+      drop.classList.add("open");
+      drop.querySelectorAll(".mc-search-item").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => {
+          e.preventDefault();
+          window.location.href = btn.dataset.href;
+        });
+      });
+    }
+    input.addEventListener("input", () => renderResults(input.value));
+    input.addEventListener("focus", () => renderResults(input.value));
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+      if (e.key === "Enter") {
+        const first = drop.querySelector(".mc-search-item");
+        if (first) window.location.href = first.dataset.href;
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        drop.querySelector(".mc-search-item")?.focus();
+      }
+    });
+    drop.addEventListener("keydown", (e) => {
+      const focusables = [...drop.querySelectorAll(".mc-search-item")];
+      const i = focusables.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        (focusables[i + 1] || focusables[0])?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (i <= 0) input.focus();
+        else focusables[i - 1].focus();
+      } else if (e.key === "Enter" && document.activeElement.dataset?.href) {
+        window.location.href = document.activeElement.dataset.href;
+      } else if (e.key === "Escape") {
+        close();
+        input.focus();
+      }
+    });
+    input.addEventListener("blur", () => {
+      setTimeout(() => {
+        if (!drop.contains(document.activeElement)) close();
+      }, 150);
+    });
+  });
+
+  // ── NOTIF BUTTON (data nyata dari MCDB) ───
+  function refreshNotifBadge() {
+    const role = currentRoleFromPath();
+    if (!role || typeof MCDB === "undefined") return;
+    const unread = MCDB.getNotif(role).filter((n) => !n.read).length;
+    document.querySelectorAll(".notif-btn").forEach((btn) => {
+      let dot = btn.querySelector(".notif-dot");
+      if (unread > 0) {
+        if (!dot) {
+          dot = document.createElement("span");
+          dot.className = "notif-dot";
+          dot.setAttribute("aria-hidden", "true");
+          btn.appendChild(dot);
+        }
+        dot.classList.add("notif-count");
+        dot.style.display = "";
+        dot.textContent = unread > 9 ? "9+" : unread;
+        btn.setAttribute("aria-label", "Notifikasi — " + unread + " belum dibaca");
+      } else {
+        if (dot) dot.style.display = "none";
+        btn.setAttribute("aria-label", "Notifikasi");
+      }
+    });
+  }
+  refreshNotifBadge();
+
   document.querySelectorAll(".notif-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const dot = btn.querySelector(".notif-dot");
-      if (dot) dot.style.display = "none";
       const role = currentRoleFromPath();
       let items = [];
       if (role && typeof MCDB !== "undefined") {
@@ -959,6 +1127,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "</div>"
         : '<p style="font-size:13px;color:var(--gray-500);text-align:center;padding:16px">Belum ada notifikasi baru. Aktivitas dari peran lain (nilai, absensi, pesan, pengumuman) akan muncul di sini.</p>';
       mcModal("🔔 Notifikasi", bodyHTML);
+      refreshNotifBadge();
     });
   });
 
@@ -1121,8 +1290,7 @@ window.mcPrint = function (html) {
 // ═══ TANGGAL TOPBAR DINAMIS ═══
 (function () {
   const el = document.getElementById("topbarDate");
-  if (!el) return;
-  const now = new Date();
+  if (!el) return;  const now = new Date();
   const tanggal = now.toLocaleDateString("id-ID", {
     weekday: "long",
     day: "numeric",
@@ -1137,6 +1305,122 @@ window.mcPrint = function (html) {
       : "Semester Genap " + (tahun - 1) + "/" + tahun;
   el.textContent = tanggal + " · " + semester;
 })();
+
+// ═══ GRAFIK CANVAS RINGAN (tanpa library) ═══
+// cfg: { type:'line'|'bar', labels:[], values:[], color, min, max, label }
+window.mcChart = function (canvas, cfg) {
+  if (!canvas || !canvas.getContext || !cfg.values || !cfg.values.length)
+    return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth || canvas.parentElement.clientWidth || 320;
+  const h = canvas.clientHeight || 180;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  if (cfg.label) {
+    canvas.setAttribute("role", "img");
+    canvas.setAttribute("aria-label", cfg.label);
+  }
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  const dark = document.body.classList.contains("a11y-dark");
+  const gridCol = dark ? "rgba(255,255,255,.12)" : "rgba(17,24,39,.08)";
+  const txtCol = dark ? "#cbd5e1" : "#6b7280";
+  const color = cfg.color || "#16a34a";
+  const vals = cfg.values;
+  const n = vals.length;
+  let vmin = cfg.min != null ? cfg.min : Math.min.apply(null, vals);
+  let vmax = cfg.max != null ? cfg.max : Math.max.apply(null, vals);
+  if (cfg.min == null) vmin = Math.max(0, Math.floor((vmin - 5) / 10) * 10);
+  if (cfg.max == null) vmax = Math.ceil((vmax + 5) / 10) * 10;
+  if (vmax <= vmin) vmax = vmin + 10;
+  const P = { t: 12, r: 12, b: 26, l: 34 };
+  const cw = w - P.l - P.r;
+  const ch = h - P.t - P.b;
+  const y = (v) => P.t + ch - ((v - vmin) / (vmax - vmin)) * ch;
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = "10px system-ui, sans-serif";
+  ctx.fillStyle = txtCol;
+  ctx.strokeStyle = gridCol;
+  ctx.lineWidth = 1;
+  const steps = 4;
+  for (let i = 0; i <= steps; i++) {
+    const v = vmin + ((vmax - vmin) / steps) * i;
+    const yy = y(v);
+    ctx.beginPath();
+    ctx.moveTo(P.l, yy);
+    ctx.lineTo(w - P.r, yy);
+    ctx.stroke();
+    ctx.textAlign = "right";
+    ctx.fillText(String(Math.round(v)), P.l - 6, yy + 3);
+  }
+  ctx.textAlign = "center";
+
+  if (cfg.type === "bar") {
+    const bw = Math.min(46, (cw / n) * 0.55);
+    vals.forEach(function (v, i) {
+      const cx = P.l + (cw / n) * (i + 0.5);
+      const yy = y(v);
+      const colors = Array.isArray(color) ? color[i % color.length] : color;
+      ctx.fillStyle = colors;
+      const bh = P.t + ch - yy;
+      const r = Math.min(5, bw / 2, bh);
+      ctx.beginPath();
+      ctx.moveTo(cx - bw / 2, P.t + ch);
+      ctx.lineTo(cx - bw / 2, yy + r);
+      ctx.arcTo(cx - bw / 2, yy, cx - bw / 2 + r, yy, r);
+      ctx.lineTo(cx + bw / 2 - r, yy);
+      ctx.arcTo(cx + bw / 2, yy, cx + bw / 2, yy + r, r);
+      ctx.lineTo(cx + bw / 2, P.t + ch);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = txtCol;
+      ctx.fillText(String(v), cx, yy - 5);
+      ctx.fillText(cfg.labels[i] || "", cx, h - 8);
+    });
+  } else {
+    // area fill
+    ctx.beginPath();
+    vals.forEach(function (v, i) {
+      const cx = P.l + (cw / Math.max(1, n - 1)) * i;
+      if (i === 0) ctx.moveTo(cx, y(v));
+      else ctx.lineTo(cx, y(v));
+    });
+    ctx.lineTo(P.l + cw, P.t + ch);
+    ctx.lineTo(P.l, P.t + ch);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, P.t, 0, P.t + ch);
+    grad.addColorStop(0, color + "44");
+    grad.addColorStop(1, color + "00");
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // garis
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = "round";
+    vals.forEach(function (v, i) {
+      const cx = P.l + (cw / Math.max(1, n - 1)) * i;
+      if (i === 0) ctx.moveTo(cx, y(v));
+      else ctx.lineTo(cx, y(v));
+    });
+    ctx.stroke();
+    // titik + label
+    vals.forEach(function (v, i) {
+      const cx = P.l + (cw / Math.max(1, n - 1)) * i;
+      ctx.beginPath();
+      ctx.arc(cx, y(v), 4, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.strokeStyle = dark ? "#16213e" : "#fff";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = txtCol;
+      ctx.fillText(String(v), cx, y(v) - 10);
+      ctx.fillText(cfg.labels[i] || "", cx, h - 8);
+    });
+  }
+};
 
 // ═══ JADWAL SHOLAT + KALENDER HIJRIAH ═══
 (function () {
@@ -1156,8 +1440,7 @@ window.mcPrint = function (html) {
     const q = (280.459 + 0.98564736 * D) % 360;
     const L = q + 1.915 * Math.sin(g * rad) + 0.02 * Math.sin(2 * g * rad);
     const e = 23.439 - 0.00000036 * D;
-    const decl =
-      Math.asin(Math.sin(e * rad) * Math.sin(L * rad)) / rad;
+    const decl = Math.asin(Math.sin(e * rad) * Math.sin(L * rad)) / rad;
     let RA =
       Math.atan2(Math.cos(e * rad) * Math.sin(L * rad), Math.cos(L * rad)) /
       rad /
@@ -1167,8 +1450,7 @@ window.mcPrint = function (html) {
     const dhuhr = (12 + tz - lng / 15 - eqt + 24) % 24;
     function hourAngle(angle) {
       const cosHA =
-        (-Math.sin(angle * rad) -
-          Math.sin(decl * rad) * Math.sin(lat * rad)) /
+        (-Math.sin(angle * rad) - Math.sin(decl * rad) * Math.sin(lat * rad)) /
         (Math.cos(decl * rad) * Math.cos(lat * rad));
       return Math.acos(Math.min(1, Math.max(-1, cosHA))) / rad / 15;
     }
@@ -1211,7 +1493,7 @@ window.mcPrint = function (html) {
   const nowH = now.getHours() + now.getMinutes() / 60;
   const order = ["Subuh", "Dzuhur", "Ashar", "Maghrib", "Isya"];
   let next = order.find(function (n) {
-    return ((times[n] + 24) % 24) > nowH;
+    return (times[n] + 24) % 24 > nowH;
   });
 
   strip.innerHTML =

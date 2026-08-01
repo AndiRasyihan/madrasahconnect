@@ -52,6 +52,14 @@
           : it.overdue
             ? '<span class="task-tag tag-deadline">⏰ Terlambat (deadline ' + fmtDate(t.deadline) + ")</span>"
             : '<span class="task-tag tag-deadline">⏰ ' + fmtDate(t.deadline) + "</span>";
+        const sub = MCDB.get("tugas_siswa", {})[t.id];
+        const submitHTML = sub
+          ? '<div class="task-submit"><span class="task-tag tag-file">📎 ' +
+            esc(sub.name) + " · terkirim " + (sub.at || "") + "</span>" +
+            '<button type="button" class="task-submit-btn resub" data-submit="' + t.id +
+            '" aria-label="Ganti file kiriman tugas ' + esc(t.judul) + '">🔄 Ganti File</button></div>'
+          : '<div class="task-submit"><button type="button" class="task-submit-btn" data-submit="' + t.id +
+            '" aria-label="Kumpulkan file tugas ' + esc(t.judul) + '">📤 Kumpulkan File</button></div>';
         return (
           '<div class="task-card ' + cls + '" data-status="' + dataStatus + '">' +
           '<div class="task-check' + (it.done ? " checked" : "") +
@@ -65,11 +73,49 @@
           '<span class="task-tag tag-subject">' + t.icon + " " + esc(t.mapel) + "</span>" +
           deadlineTag +
           '<span class="task-tag tag-type">' + esc(t.jenis) + "</span>" +
-          "</div></div></div>"
+          "</div>" + submitHTML + "</div></div>"
         );
       })
       .join("");
     wire();
+  }
+
+  // ── Kumpul file per tugas (file asli tersimpan base64, terbaca guru) ──
+  const MAX_FILE = 2 * 1024 * 1024;
+  function pickFile(taskId) {
+    const t = MCDB.get("tugas_list", []).find(function (x) { return x.id === taskId; });
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".pdf,.docx,.doc,.jpg,.jpeg,.png,.zip";
+    input.onchange = function (e) {
+      if (!e.target.files.length) return;
+      const f = e.target.files[0];
+      if (f.size > MAX_FILE) {
+        showToast("File terlalu besar! Maks 2MB agar tersimpan di browser", "error");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function () {
+        const sub = MCDB.get("tugas_siswa", {});
+        sub[taskId] = {
+          name: f.name,
+          size: f.size,
+          at: MCDB.todayISO() + " " + MCDB.nowTime(),
+          data: reader.result,
+        };
+        if (!MCDB.set("tugas_siswa", sub)) {
+          delete sub[taskId].data;
+          MCDB.set("tugas_siswa", sub);
+          showToast("Penyimpanan penuh — hanya info file yang tersimpan", "error");
+        }
+        MCDB.notify("guru", "Ahmad Fauzi mengumpulkan file tugas" + (t ? " \"" + t.judul + "\"" : "") + ": " + f.name);
+        MCDB.notify("ortu", "Ananda Ahmad mengumpulkan tugas" + (t ? ": " + t.judul : ""));
+        render();
+        showToast("File " + f.name + " berhasil dikumpulkan ✅", "success");
+      };
+      reader.readAsDataURL(f);
+    };
+    input.click();
   }
 
   function toggleTask(id) {
@@ -90,6 +136,12 @@
   }
 
   function wire() {
+    document.querySelectorAll("[data-submit]").forEach(function (btn) {
+      btn.onclick = function (e) {
+        e.stopPropagation();
+        pickFile(btn.dataset.submit);
+      };
+    });
     document.querySelectorAll(".task-check").forEach(function (el) {
       el.onclick = function () { toggleTask(el.dataset.id); };
       el.onkeydown = function (e) {
@@ -151,21 +203,30 @@
       input.onchange = function (e) {
         if (e.target.files.length) {
           const f = e.target.files[0];
-          if (f.size > 10 * 1024 * 1024) {
-            showToast("File terlalu besar! Maks 10MB");
+          if (f.size > MAX_FILE) {
+            showToast("File terlalu besar! Maks 2MB", "error");
             return;
           }
-          const rec = {
-            name: f.name,
-            size: f.size,
-            at: MCDB.todayISO() + " " + MCDB.nowTime(),
+          const reader = new FileReader();
+          reader.onload = function () {
+            const rec = {
+              name: f.name,
+              size: f.size,
+              at: MCDB.todayISO() + " " + MCDB.nowTime(),
+              data: reader.result,
+            };
+            const sub = MCDB.get("tugas_siswa", {});
+            sub["upload_utama"] = rec;
+            if (!MCDB.set("tugas_siswa", sub)) {
+              delete rec.data;
+              sub["upload_utama"] = rec;
+              MCDB.set("tugas_siswa", sub);
+            }
+            MCDB.notify("guru", "Ahmad Fauzi mengumpulkan tugas: " + f.name);
+            renderUploaded(rec);
+            showToast("Tugas " + f.name + " berhasil dikumpulkan ✅", "success");
           };
-          const sub = MCDB.get("tugas_siswa", {});
-          sub["upload_utama"] = rec;
-          MCDB.set("tugas_siswa", sub);
-          MCDB.notify("guru", "Ahmad Fauzi mengumpulkan tugas: " + f.name);
-          renderUploaded(rec);
-          showToast("Tugas " + f.name + " berhasil dikumpulkan ✅", "success");
+          reader.readAsDataURL(f);
         }
       };
       input.click();
