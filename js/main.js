@@ -148,13 +148,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sliderVal) sliderVal.textContent = a11yState.fontSize + "px";
 
     // Update mini toolbar button states
-    document.getElementById("btnHC")?.classList.toggle("active", a11yState.hc);
-    document
-      .getElementById("btnBig")
-      ?.classList.toggle("active", a11yState.fontSize > 16);
-    document
-      .getElementById("btnDys")
-      ?.classList.toggle("active", a11yState.dyslexia);
+    const btnHC = document.getElementById("btnHC");
+    const btnBig = document.getElementById("btnBig");
+    const btnDys = document.getElementById("btnDys");
+    if (btnHC) {
+      btnHC.classList.toggle("active", a11yState.hc);
+      btnHC.setAttribute("aria-pressed", a11yState.hc ? "true" : "false");
+    }
+    if (btnBig) {
+      btnBig.classList.toggle("active", a11yState.fontSize > 16);
+      btnBig.setAttribute(
+        "aria-pressed",
+        a11yState.fontSize > 16 ? "true" : "false",
+      );
+    }
+    if (btnDys) {
+      btnDys.classList.toggle("active", a11yState.dyslexia);
+      btnDys.setAttribute("aria-pressed", a11yState.dyslexia ? "true" : "false");
+    }
 
     saveA11yPrefs();
   }
@@ -437,7 +448,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast = document.getElementById("toast");
     if (!toast) return;
     clearTimeout(toastTimer);
-    toast.textContent = "✓ " + msg;
+    const icons = { error: "✕", success: "✓" };
+    toast.textContent = (icons[type] || "✓") + " " + msg;
     toast.className = "toast show " + type;
     toastTimer = setTimeout(() => {
       toast.className = "toast";
@@ -1105,6 +1117,26 @@ window.mcPrint = function (html) {
   window.addEventListener("afterprint", cleanup);
   window.print();
 };
+
+// ═══ TANGGAL TOPBAR DINAMIS ═══
+(function () {
+  const el = document.getElementById("topbarDate");
+  if (!el) return;
+  const now = new Date();
+  const tanggal = now.toLocaleDateString("id-ID", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const bulan = now.getMonth() + 1; // Jan–Jun = Genap, Jul–Des = Ganjil
+  const tahun = now.getFullYear();
+  const semester =
+    bulan >= 7
+      ? "Semester Ganjil " + tahun + "/" + (tahun + 1)
+      : "Semester Genap " + (tahun - 1) + "/" + tahun;
+  el.textContent = tanggal + " · " + semester;
+})();
 
 // ═══ JADWAL SHOLAT + KALENDER HIJRIAH ═══
 (function () {
